@@ -17,6 +17,7 @@
     if (self) {
         // Initialization code
         urlPlayerVideo = urlVideo;
+        
         myFilter=filterApplied;
         
         myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
@@ -64,7 +65,7 @@
     thePlayer = [[SplimagePlayer alloc] initWithURL:urlPlayerVideo];
     [thePlayer setIndexPlayer:self.tag];
     [thePlayer setDelegate:self];
-    [thePlayer setPrepareReverseVideo:NO];
+  //  [thePlayer setPrepareReverseVideo:NO];
     [thePlayer setSelectedFilter:myFilter];
     [thePlayer setGpuImageView:viewVideoArea];
     [thePlayer getOrientationAndFitting];
@@ -76,7 +77,7 @@
     thePlayer = [[SplimagePlayer alloc] initWithURL:urlPlayerVideo];
     [thePlayer setIndexPlayer:self.tag];
     [thePlayer setDelegate:self];
-    [thePlayer setPrepareReverseVideo:NO];
+   // [thePlayer setPrepareReverseVideo:NO];
     [thePlayer setSelectedFilter:myFilter];
     [thePlayer setGpuImageView:viewVideoArea];
     [thePlayer getOrientationAndFitting];

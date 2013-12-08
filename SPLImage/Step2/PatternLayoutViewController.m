@@ -9,7 +9,7 @@
 #import "PatternLayoutViewController.h"
 
 @interface PatternLayoutViewController ()
-
+@property (nonatomic, assign) BOOL atleastOneVideo;
 @end
 
 @implementation PatternLayoutViewController
@@ -25,11 +25,13 @@
         }
     return self;
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
 
 }
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self loadUpCanvasView];
@@ -58,18 +60,21 @@
 }
 - (void)viewDidLoad
 {
+    useSuperButtons = YES;
     [super viewDidLoad];
-    [btnRightNav setHidden:YES];
+    self.atleastOneVideo = NO;
     selectedVideo = 999;
-    [btnLeftNav setBackgroundImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
-    
+    UIImage *changePattern = [UIImage imageNamed:@"topbar_change"];
+    [btnLeftNav setFrame:CGRectMake(9, 8, changePattern.size.width, changePattern.size.height)];
+    [btnLeftNav setBackgroundImage:changePattern forState:UIControlStateNormal];
+    //[btnLeftNav setImage:changePattern forState:UIControlStateNormal];
+
     [SavedData setValue:[self getPatternArrayForPattern:selectedPattern] forKey:ARRAY_PATTERN];
 
-    UIImage *imgCanvas = [UIImage imageNamed:@"canvas"];
-    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 59, imgCanvas.size.width, imgCanvas.size.height) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:imgCanvas];
+    UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
+    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, 350) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:imgCanvas];
     [canvasView shouldAddAllTheGesture:YES];
     [canvasView setDelegate:self];
-    
 
     actionSheetLoadVideos = [[UIActionSheet alloc] initWithTitle:@"Choose Video Source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Record Video",@"Choose from Gallery", nil];
     [self setUpToolBarButton];
@@ -92,16 +97,16 @@
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spacer.width = 20;
+    spacer.width = 40;
     
     [arrayBtn addObject:spacer];
     
-    UIImage *imgCommints = [UIImage imageNamed:@"commint"];
-    UIImageView *imageViewCommints = [[UIImageView alloc] initWithImage:imgCommints];
-    [imageViewCommints setFrame:CGRectMake(100, 5, imgCommints.size.width, imgCommints.size.height)];
+  //  UIImage *imgCommints = [UIImage imageNamed:@"commint"];
+  //  UIImageView *imageViewCommints = [[UIImageView alloc] initWithImage:imgCommints];
+  //  [imageViewCommints setFrame:CGRectMake(100, 5, imgCommints.size.width, imgCommints.size.height)];
     
-    UIBarButtonItem *barBtn1 = [[UIBarButtonItem alloc] initWithCustomView:imageViewCommints];
-    [arrayBtn addObject:barBtn1];
+  //  UIBarButtonItem *barBtn1 = [[UIBarButtonItem alloc] initWithCustomView:imageViewCommints];
+  //  [arrayBtn addObject:barBtn1];
     
     [arrayBtn addObject:spacer];
     
@@ -166,10 +171,14 @@
 
 -(void)navBarButtonClicked:(UIButton *)sender{
     [canvasView stopPlayer];//    [canvasView stopPlayingAllPlayers];
-
-    UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Clear all videos and close?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, close", nil];
-    [alertView show];
-    
+    NSLog (@"selected video: %ld", (long)selectedVideo);
+    if (self.atleastOneVideo) {
+        UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Clear all videos and close?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, close", nil];
+        [alertView show];
+    }else {
+        [canvasView setDelegate:Nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 
@@ -181,8 +190,8 @@
             NSLog(@"Fx") ;
             if (selectedVideo==999) break;
             if ([SavedData isVideoAvalableAtSelectedPosition:selectedVideo]){
-                filtersViewController  = [[FiltersViewController alloc] initWithNibName:@"FiltersViewController" bundle:nil andTag:selectedVideo];
-                [self.navigationController pushViewController:filtersViewController animated:YES];
+                effectsViewController  = [[EffectsViewController alloc] initWithNibName:@"FiltersViewController" bundle:nil andTag:selectedVideo];
+                [self.navigationController pushViewController:effectsViewController animated:YES];
             }
             break;
         }
@@ -201,7 +210,6 @@
 
         case INDEX_RIGHT:
             NSLog(@"Share") ;
-
             break;
 
         default:
@@ -245,6 +253,7 @@
 -(void)viewSelected:(NSInteger)selectedView{
     selectedVideo = selectedView;
 }
+
 -(void)videoPositionsChanged{
     [self loadUpCanvasView];
 }
@@ -304,9 +313,11 @@
 //    [canvasView loadSelectedVideosOnView:selectedVideo];
     [self checkPlayButtonSatus];
 }
+
 -(void)checkPlayButtonSatus{
     [btnPlay setEnabled:[canvasView checkAllButtons]];
 }
+
 #pragma Mark - Image Picker Controller Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo{
     
@@ -324,8 +335,6 @@
     
     [[[SavedData getValueForKey:ARRAY_FRAMES] objectAtIndex:selectedVideo] setValue:[NSNumber numberWithFloat:CMTimeGetSeconds(movieLength)] forKey:kLength];
 
-    
-
     //save the video in library
 
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
@@ -339,7 +348,9 @@
         }
     }
     [self addMediaTotheView:[[[SavedData getValueForKey:ARRAY_FRAMES] objectAtIndex:selectedVideo] valueForKey:kVideoURL]];
+    self.atleastOneVideo = YES;
 }
+
 -(void)video:(NSString*)videoPath didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {
     if (error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed"
@@ -381,7 +392,6 @@
             break;
         }
     }
-    
 }
 
 

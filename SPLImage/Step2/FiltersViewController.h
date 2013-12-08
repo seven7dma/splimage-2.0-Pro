@@ -12,7 +12,8 @@
 #import "SplFilterCell.h"
 #import "SplimageInput.h"
 #import "MBProgressHUD.h"
-@interface FiltersViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SplPlayerViewDelegate,MBProgressHUDDelegate>
+#import "SPLViewController.h"
+@interface FiltersViewController : SPLViewController<SPLViewControllerDelegate,UITableViewDataSource,UITableViewDelegate,SplPlayerViewDelegate,MBProgressHUDDelegate>
 {
     UIToolbar *toolBarFilters;
     UITableView *tableFilters;
@@ -23,8 +24,9 @@
     NSMutableArray *arrayFilteredImages;
     UIImage *imageThumb;
     NSURL *videoPath;
-    MBProgressHUD *HUD;
+    //MBProgressHUD *HUD;
 
 }
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andTag:(NSInteger)selectedTag;
 @end

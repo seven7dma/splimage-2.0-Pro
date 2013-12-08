@@ -32,6 +32,11 @@ typedef enum
 
 typedef enum
 {
+    FILTER_MOSAIC,
+    FILTER_ADDNOISE,
+    FILTER_EMBOSS,
+    FILTER_TILTSHIFT,
+    FILTER_SEPIA,
     FILTER_NONE,
     FILTER_BLACK_WHITE,
     FILTER_POSTERIZE,
@@ -123,7 +128,7 @@ typedef enum
 #define kFrameCenter                  @"centerFrame"
 
 #define VIDEO_VIEW_HEIGHT 320
-#define VIDEO_MAX_DURATION 10.0
+#define VIDEO_MAX_DURATION 15.0
 
 //keys and accesses
 

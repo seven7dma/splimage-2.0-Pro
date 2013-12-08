@@ -37,15 +37,17 @@
         [self setDelegate:self];
         
         myContentView = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width*zScale,self.frame.size.height*zScale)];
-        [myContentView setBackgroundColor:[UIColor lightGrayColor]];
-        [self addSubview:myContentView];
+       // [myContentView setBackgroundColor:[UIColor lightGrayColor]];
         
+        [myContentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"canvasForeground"]]];
+        [self addSubview:myContentView];
+        //myContentView.alpha = 0.5;
         viewGpuImage = [[GPUImageView alloc] initWithFrame:CGRectMake(0,0,myContentView.frame.size.width,myContentView.frame.size.height)];
-        [viewGpuImage setBackgroundColor:[UIColor lightGrayColor]];
+        [viewGpuImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"canvasForeground"]]];
         [viewGpuImage setTag:self.tag];
         [myContentView addSubview:viewGpuImage];
 
-        UIImage *imgBtn = [UIImage imageNamed:@"green_plus_mark"];
+        UIImage *imgBtn = [UIImage imageNamed:@"btn_addphoto"];
         btnAddVideo = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnAddVideo setTag:selfTag];
         [btnAddVideo setImage:imgBtn forState:UIControlStateNormal];

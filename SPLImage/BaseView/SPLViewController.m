@@ -7,13 +7,15 @@
 //
 
 #import "SPLViewController.h"
-@interface SPLViewController ()
+#define CAMERA_TRANSFORM   1.12412
 
+@interface SPLViewController () {
+    UIImagePickerController *_pickerController;
+}
 @end
 
 @implementation SPLViewController
 @synthesize delegate = _delegate;
-@synthesize adView, advertView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,11 +28,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIScreen *screen = [UIScreen mainScreen];
-    CGRect screenFrame = [screen applicationFrame];
+    CGRect screenFrame = [UIScreen mainScreen].bounds;
     NSMutableArray * filtersArray = [NSMutableArray array];
     
     [filtersArray addObject:[GPUImageBrightnessFilter new]];
+    [filtersArray addObject:[GPUImageBrightnessFilter new]];
+    //[filtersArray addObject:[GPUImageMosaicFilter new]];
+    [filtersArray addObject:[GPUImagePerlinNoiseFilter new]];
+    [filtersArray addObject:[GPUImageEmbossFilter new]];
+    [filtersArray addObject:[GPUImageTiltShiftFilter new]];
+    [filtersArray addObject:[GPUImageSepiaFilter new]];
     [filtersArray addObject:[GPUImageGrayscaleFilter new]];
     [filtersArray addObject:[GPUImagePosterizeFilter new]];
     [filtersArray addObject:[GPUImageToonFilter new]];
@@ -45,53 +52,62 @@
     
     [SavedData setValue:filtersArray forKey:ARRAY_FILTERS];
 
-    [SavedData setValue:[NSArray arrayWithObjects:@"No Filter",@"B & W",@"Tsunami", @"300", @"Terminator",@"Mahogany",@"Gamma", @"2X", @"Inebriated", nil] forKey:ARRAY_FILTER_NAMES];
+    [SavedData setValue:[NSArray arrayWithObjects:@"No Filter",@"Mosaic", @"add noise", @"Emboss", @"Tilt Shift",@"Sepia", @"B & W",@"Tsunami", @"300", @"Electronica",@"Mahogany",@"X-RAY", @"2X", @"Inebriated", nil] forKey:ARRAY_FILTER_NAMES];
     
     imageViewBaseBg = [[UIImageView alloc] initWithFrame:screenFrame];
     [self.view addSubview:imageViewBaseBg];
     
-    UIImage *imgToolBar = [UIImage imageNamed:@"toolbar_bg"];
+    UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
+    NSLog(@"tab bar image height:%f",imgToolBar.size.height);
+    NSLog(@"screenframe image height:%f",screenFrame.size.height);
     toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, screenFrame.size.height-imgToolBar.size.height, screenFrame.size.width , imgToolBar.size.height)];
     [toolBar setBackgroundImage:imgToolBar forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
     [self.view addSubview:toolBar];
-    
-    advertView = [[UIView alloc] initWithFrame:CGRectMake(0, toolBar.frame.origin.y - ADVERT_BAR_HEIGHT, screenFrame.size.width, ADVERT_BAR_HEIGHT)];
-    [self.view addSubview:advertView];
+    NSLog(@"toolbar height: %f",toolBar.frame.origin.y);
+ //   advertView = [[UIView alloc] initWithFrame:CGRectMake(0, toolBar.frame.origin.y - ADVERT_BAR_HEIGHT, screenFrame.size.width, ADVERT_BAR_HEIGHT)];
+ //   [self.view addSubview:advertView];
+ //   advertView.backgroundColor = [UIColor lightGrayColor];
     
    //testing***
     
-    adView = [[MPAdView alloc] initWithAdUnitId:@"fc5187d830f111e2a30712313b12f67e" size:MOPUB_BANNER_SIZE];
-    adView.delegate = self;
-    [adView loadAd];
-    [advertView addSubview:adView];
-    [adView refreshAd];
+    if (self.adView.superview == nil) {
+       self.adView = [[MPAdView alloc] initWithAdUnitId:@"5b9fb0e4fdc846a08970907490054507" size:MOPUB_BANNER_SIZE];
+        self.adView.delegate = self;
+        CGRect frame = self.adView.frame;
+        frame.origin.y = toolBar.frame.origin.y - ADVERT_BAR_HEIGHT;
+        self.adView.frame = frame;
+        [self.view addSubview:self.adView];
+        [self.adView loadAd];
+        self.adView.backgroundColor = [UIColor lightGrayColor];
+        [self.view bringSubviewToFront:self.adView];
+    } else {
+        [self.adView refreshAd];
+    }
 
-    
-    UIImage *imgNavBar = [UIImage imageNamed:@"Navbar"];
-    navBarPrimary = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, screenFrame.size.width, imgNavBar.size.height)];
+    UIImage *imgNavBar = [UIImage imageNamed:@"topbar_bg"];
+    navBarPrimary = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,20, screenFrame.size.width, imgNavBar.size.height)];
     [navBarPrimary setBackgroundImage:imgNavBar forBarMetrics:UIBarMetricsDefault];
     [self.view addSubview:navBarPrimary];
     
     [self.navigationController.navigationBar setHidden:YES];
-
-    UIImage *imgBtnNav = [UIImage imageNamed:@"fbButton"];
-    btnLeftNav = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [btnLeftNav setFrame:CGRectMake(9, 20, imgBtnNav.size.width, imgBtnNav.size.height)];
-    [btnLeftNav setTag:INDEX_LEFT];
-    [btnLeftNav addTarget:self action:@selector(leftBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [btnLeftNav setBackgroundImage:imgBtnNav forState:UIControlStateNormal];
-    [navBarPrimary addSubview:btnLeftNav];
+    if (useSuperButtons) {
+        UIImage *imgBtnNav = [UIImage imageNamed:@"topbar_twitter"];
+        btnLeftNav = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [btnLeftNav setFrame:CGRectMake(9, 5, imgBtnNav.size.width, imgBtnNav.size.height)];
+        [btnLeftNav setTag:INDEX_LEFT];
+        [btnLeftNav addTarget:self action:@selector(leftBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [btnLeftNav setBackgroundImage:imgBtnNav forState:UIControlStateNormal];
+        [navBarPrimary addSubview:btnLeftNav];
     
-    imgBtnNav = nil;
-    imgBtnNav = [UIImage imageNamed:@"twitterButton"];
-    btnRightNav = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnRightNav setFrame:CGRectMake(screenFrame.size.width - (imgBtnNav.size.width+9), 10, imgBtnNav.size.width, imgBtnNav.size.height)];
-    [btnRightNav setTag:INDEX_RIGHT];
-    [btnRightNav addTarget:self action:@selector(rightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [btnRightNav setImage:imgBtnNav forState:UIControlStateNormal];
-    [navBarPrimary addSubview:btnRightNav];
-
-	// Do any additional setup after loading the view.
+        imgBtnNav = nil;
+        imgBtnNav = [UIImage imageNamed:@"topbar_instagram"];
+        btnRightNav = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnRightNav setFrame:CGRectMake(screenFrame.size.width - (imgBtnNav.size.width+9), 5, imgBtnNav.size.width, imgBtnNav.size.height)];
+        [btnRightNav setTag:INDEX_RIGHT];
+        [btnRightNav addTarget:self action:@selector(rightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [btnRightNav setImage:imgBtnNav forState:UIControlStateNormal];
+        [navBarPrimary addSubview:btnRightNav];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,8 +116,11 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void) viewDidAppear:(BOOL)animated {
+    //  [self updatePrimaryUI];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
     [self updatePrimaryUI];
 }
 
@@ -123,12 +142,23 @@
 
 -(void) updatePrimaryUI
 {
-    UIImage *backImage = [UIImage imageNamed:ASSET_BY_SCREEN_HEIGHT(@"background.png", @"background-568h.png")];
+    
+   /* _pickerController = [[UIImagePickerController alloc] init];
+	_pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+	//_pickerController.delegate = self;
+	_pickerController.showsCameraControls = NO;
+	_pickerController.allowsEditing = NO;
+    _pickerController.wantsFullScreenLayout = YES;
+    _pickerController.cameraViewTransform = CGAffineTransformScale(_pickerController.cameraViewTransform, CAMERA_TRANSFORM, CAMERA_TRANSFORM);
+	[self.view addSubview:_pickerController.view];
+	[self.view sendSubviewToBack:_pickerController.view];
+
+    */
+    NSString *imageName =  IS_IPHONE5 ? @"background_iPhone5" : @"background";
+
+    UIImage *backImage = [UIImage imageNamed:imageName];
     [imageViewBaseBg setImage:backImage];
     imageViewBaseBg.frame = CGRectMake(0, 0, backImage.size.width, backImage.size.height);
-    [btnLeftNav setCenter:CGPointMake(btnLeftNav.center.x, navBarPrimary.center.y)];
-    [btnRightNav setCenter:CGPointMake(btnRightNav.center.x, navBarPrimary.center.y)];
-
 }
 
 - (void)viewDidUnload
@@ -144,13 +174,14 @@
 {
     if (self)
         return self;
-        return nil;
+    return nil;
 }
 - (void)adViewDidFailToLoadAd:(MPAdView *)view{
-
+    NSLog(@"Failed to load add");
 }
+
 - (void)adViewDidLoadAd:(MPAdView *)view{
-    
+    NSLog(@"did load ad");
 }
 
 #pragma mark - Read Plist
@@ -173,7 +204,6 @@
     for (NSDictionary *dict in arrayPlist) {
         [arrayOfImages addObject:[dict valueForKey:@"Image"]];
     }
-    
     return arrayOfImages;
 }
 

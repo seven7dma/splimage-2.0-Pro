@@ -19,6 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.delegate = self;
         // Custom initialization
         selectedIndex = selectedTag;
     }
@@ -27,10 +28,18 @@
 
 - (void)viewDidLoad
 {
+    useSuperButtons = YES;
     [super viewDidLoad];
+    UIImage *back = [UIImage imageNamed:@"btn_back"];
+    [btnLeftNav setFrame:CGRectMake(9, 5, back.size.width, back.size.height)];
+    [btnLeftNav setBackgroundImage:back forState:UIControlStateNormal];
     
-    UIScreen *screen = [UIScreen mainScreen];
-    CGRect screenFrame = [screen applicationFrame];
+    UIImage *done = [UIImage imageNamed:@"btn_done"];
+    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size
+                                     .width - done.size.width - 9, 5, done.size.width, done.size.height)];
+    [btnRightNav setImage:done forState:UIControlStateNormal];
+    
+    CGRect screenFrame = [UIScreen mainScreen].bounds;
 
     videoPath = [SavedData getVideoURLAtIndex:selectedIndex];
     arrayFilteredImages = [NSMutableArray array];
@@ -40,13 +49,15 @@
         [arrayFilteredImages addObject:[splImageClass imageProcessedUsingGPUFilter:i]];
     }
     
-    UIImage *imgToolBar = [UIImage imageNamed:@"grayToolBar"];
+    UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
     toolBarFilters = [[UIToolbar alloc] initWithFrame:CGRectMake(0, screenFrame.size.height-imgToolBar.size.height, 320 , imgToolBar.size.height)];
     [toolBarFilters setBackgroundImage:imgToolBar forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
     [self.view addSubview:toolBarFilters];
     
-    tableFilters = [[UITableView alloc] initWithFrame:CGRectMake(0, VIDEO_VIEW_HEIGHT, 320, screenFrame.size.height-VIDEO_VIEW_HEIGHT-imgToolBar.size.height)];
-    [tableFilters setBackgroundColor:[UIColor blackColor]];
+    tableFilters = [[UITableView alloc] initWithFrame:CGRectMake(0, VIDEO_VIEW_HEIGHT + 50, 320, screenFrame.size.height-VIDEO_VIEW_HEIGHT-imgToolBar.size.height - self.adView.frame.size.height)];
+    NSLog(@"adview height : %f",self.adView.frame.size.height);
+    //tableFilters.backgroundColor = [UIColor greenColor];
+    //[tableFilters setBackgroundColor:[UIColor blackColor]];
     [tableFilters setDelegate:self];
     [tableFilters setDataSource:self];
     [tableFilters setSeparatorColor:[UIColor clearColor]];
@@ -55,12 +66,13 @@
 
     CGAffineTransform rotateTable = CGAffineTransformMakeRotation(-M_PI_2);
     tableFilters.transform = rotateTable;
-    tableFilters.frame = CGRectMake(0,VIDEO_VIEW_HEIGHT,tableFilters.frame.size.height,tableFilters.frame.size.width);
+    tableFilters.frame = CGRectMake(0,VIDEO_VIEW_HEIGHT + 50,tableFilters.frame.size.height,tableFilters.frame.size.width);
 
     // Do any additional setup after loading the view from its nib.
     
     [self setUpToolBarButton];
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     selectedFilter = [SavedData getFilterAtIndex:selectedIndex];
@@ -73,8 +85,6 @@
 
     [tableFilters selectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0] animated:NO  scrollPosition:UITableViewScrollPositionNone ];
     [[tableFilters delegate] tableView:tableFilters didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0]];
-    
-
 }
 - (void)didReceiveMemoryWarning
 {
@@ -92,8 +102,11 @@
         [splPlayerView removeFromSuperview];
         splPlayerView=nil;
     }
-    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(0, 0, 320 , VIDEO_VIEW_HEIGHT) andUrl:videoPath andFiltered:selectedFilter];
+    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, 320 , VIDEO_VIEW_HEIGHT) andUrl:videoPath andFiltered:selectedFilter];
+
+    
     [splPlayerView setTag:selectedIndex];
+    
     [splPlayerView setDelegate:self];
     [splPlayerView addThumbViewImage];
     [self.view addSubview:splPlayerView];
@@ -129,33 +142,35 @@
     
     [arrayBtn addObject:spacer];
     
-     
     UIImage * imgCross = [UIImage imageNamed:@"cancel_icon"];
     UIButton * btnCross = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnCross setFrame:CGRectMake(150, 8, imgCross.size.width, imgCross.size.height)];
     [btnCross setImage:imgCross forState:UIControlStateNormal];
     [btnCross setTag:INDEX_LEFT];
     [btnCross addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    btnCross.tintColor = [UIColor redColor];
     
     UIBarButtonItem *barBtn3 = [[UIBarButtonItem alloc] initWithCustomView:btnCross];
+    barBtn3.tintColor = [UIColor redColor];
     [arrayBtn addObject:barBtn3];
     
     [arrayBtn addObject:spacer];
     
     UIImage * imgBtnOk = [UIImage imageNamed:@"accept_icon"];
     UIButton * btnBtnOk = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnBtnOk.tintColor = [UIColor greenColor];
     [btnBtnOk setFrame:CGRectMake(CGRectGetMaxX(btnCross.frame), 8, imgBtnOk.size.width, imgBtnOk.size.height)];
     [btnBtnOk setImage:imgBtnOk forState:UIControlStateNormal];
     [btnBtnOk setTag:INDEX_RIGHT];
     [btnBtnOk addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem * barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnBtnOk];
+    barBtn2.tintColor = [UIColor greenColor];
     [arrayBtn addObject:barBtn2];
     
     [arrayBtn addObject:spacer];
 
     [toolBarFilters setItems:arrayBtn animated:YES];
-    
 }
 
 -(void)tabBarButtonClicked:(UIButton *)sender{
@@ -232,6 +247,28 @@
     
 }
 
+-(void)navBarButtonClicked:(UIButton *)sender{
+    
+    if (splPlayerView) {
+        [self stopPlayer];
+        [splPlayerView removeFromSuperview];
+    }
+    switch ([sender tag]) {
+        case INDEX_LEFT:
+            NSLog(@"back");
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+            
+        case INDEX_RIGHT:
+            NSLog(@"Done");
+            [self setTheFilter];
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+            
+        default:
+            break;
+    }
+}
 
 
 @end

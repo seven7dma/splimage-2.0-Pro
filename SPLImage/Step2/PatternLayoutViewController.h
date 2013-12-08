@@ -11,6 +11,7 @@
 #import "PlayBackViewController.h"
 #import "TrimVideoViewController.h"
 #import "FiltersViewController.h"
+#import "EffectsViewController.h"
 
 @interface PatternLayoutViewController : SPLViewController<SPLViewControllerDelegate, CanvasViewDelegate,UIActionSheetDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate, UIVideoEditorControllerDelegate>{
     NSInteger selectedPattern;
@@ -20,7 +21,7 @@
     NSMutableArray *arrayVideoUrls;
     UIImagePickerController *imagePickerController;
     UIButton * btnPlay;
-    FiltersViewController *filtersViewController;
+    EffectsViewController *effectsViewController;
     TrimVideoViewController *trimVideoViewController;
     UIViewController *pushThisController;
     NSURL * videoPath;

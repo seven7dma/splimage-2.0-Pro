@@ -51,14 +51,15 @@
     return _indexPlayer;
 }
 - (void)startProcessing{
+    self.playSound = YES;
     [self setPlayAtActualSpeed:YES];
-    [self setPlayAt2XSpeed:!isActualSpeed];
+   // [self setPlayAt2XSpeed:!isActualSpeed];
+   // super.audioEncodingTarget = [[GPUImageMovieWriter alloc] init];
     [super startProcessing];
-    
 }
 
 - (void)endProcessing{
-    [self setEndProcessingForced:YES];
+   // [self setEndProcessingForced:YES];
     [self checkAndRemoveAllTargets];
     
     if (_delegate )
@@ -69,7 +70,7 @@
 
 - (void)endMyProcessing{
     [super endProcessing];
-    [self setEndProcessingForced:YES];
+   // [self setEndProcessingForced:YES];
     [self checkAndRemoveAllTargets];
 
     if (_delegate )
@@ -84,9 +85,37 @@
     
     isActualSpeed = YES;
     switch (selectedFilter) {
-
         case FILTER_NONE:
             myFilter = [GPUImageBrightnessFilter new];
+            break;
+        case FILTER_MOSAIC:
+            //myFilter = [GPUImageMosaicFilter new];
+            myFilter = [GPUImageBrightnessFilter new];
+            
+            break;
+            
+        case FILTER_ADDNOISE:
+            myFilter =  [GPUImagePerlinNoiseFilter new];
+            // myFilter = [GPUImageBrightnessFilter new];
+            
+            break;
+            
+        case FILTER_EMBOSS:
+            myFilter =  [GPUImageEmbossFilter new];
+            //myFilter = [GPUImageBrightnessFilter new];
+            
+            break;
+            
+        case FILTER_TILTSHIFT:
+            myFilter = [GPUImageTiltShiftFilter new];
+            // myFilter = [GPUImageBrightnessFilter new];
+            
+            break;
+            
+        case FILTER_SEPIA:
+            myFilter = [GPUImageSepiaFilter new];
+            //myFilter = [GPUImageBrightnessFilter new];
+            
             break;
             
         case FILTER_BLACK_WHITE:

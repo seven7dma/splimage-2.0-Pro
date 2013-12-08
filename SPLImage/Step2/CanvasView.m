@@ -9,7 +9,7 @@
 #import "CanvasView.h"
 
 @implementation CanvasView
-#define PADDING 0.3
+#define PADDING 5.0
 @synthesize arrayCanvasView,delegate;
 - (id)initWithFrame:(CGRect)frame andPattern:(NSArray *)patternArray andBGImage:(UIImage *)bgImage
 {
@@ -23,10 +23,10 @@
         arrayCenterPoints = [NSMutableArray array];
         arraySequences = [NSMutableArray array];
         
-        UIImageView *imageCanvasBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, bgImage.size.width, bgImage.size.height)];
+        UIImageView *imageCanvasBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [imageCanvasBG setImage:bgImage];
         [self addSubview:imageCanvasBG];
-        
+        self.backgroundColor = [UIColor clearColor];
         int tag = 0;
         [self initFramesSavedData];
         
@@ -181,7 +181,7 @@
     [theGpuPlayer setDelegate:self];
     [theGpuPlayer setSelectedFilter:assignedFilter];
     [theGpuPlayer setGpuImageView:viewVideoArea];
-    [theGpuPlayer setPrepareReverseVideo:NO];
+    //[theGpuPlayer setPrepareReverseVideo:NO];
     [theGpuPlayer getOrientationAndFitting];
     [theGpuPlayer prepareForProcessing];
     [theGpuPlayer startProcessing];

@@ -41,7 +41,7 @@
         CGAffineTransform rotateTable = CGAffineTransformMakeRotation(M_PI_2);
         self.transform = rotateTable;
         self.frame = CGRectMake(0,self.frame.size.height,self.frame.size.height,self.frame.size.width);
-        [self setBackgroundColor:[UIColor whiteColor]];
+        //[self setBackgroundColor:[UIColor whiteColor]];
         [btnFilterView setCenter:CGPointMake(self.center.y, self.center.x)];
         
     }
@@ -55,15 +55,15 @@
     if (selected){
         [[btnFilterView layer] setBorderColor:[[UIColor whiteColor] CGColor]];
         [btnFilterView setFrame:BTN_FRAME_SELECTED];
-        [labelFilterName setTextColor:[UIColor whiteColor]];
+        //[labelFilterName setTextColor:[UIColor whiteColor]];
     }
     else{
         [[btnFilterView layer] setBorderColor:[[UIColor clearColor] CGColor]];
         [btnFilterView setFrame:BTN_FRAME_UNSELECTED];
         [labelFilterName setTextColor:[UIColor grayColor]];
     }
-
 }
+
 -(void)setThisFilter:(MY_FILTERS )thisFilter{
     [labelFilterName setText:[[SavedData getValueForKey:ARRAY_FILTER_NAMES] objectAtIndex:thisFilter]];
 }

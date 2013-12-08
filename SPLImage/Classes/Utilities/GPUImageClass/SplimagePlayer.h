@@ -20,6 +20,7 @@
 //   GPUImageFilter * myFilter;
     GPUImageOutput <GPUImageInput> * myFilter;
     SplimageInput *splimageInput;
+    GPUImageMovie *imageMovie; 
     GPUImageMovieWriter * movieWriter;
     UIImageView *thumbView;
     BOOL isActualSpeed;

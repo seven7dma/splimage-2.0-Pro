@@ -6,7 +6,7 @@
 		<key>Tag</key>
 		<integer>0</integer>
 		<key>Image</key>
-		<string>btn_1.png</string>
+		<string>thumb07.png</string>
 		<key>Pattern</key>
 		<array>
 			<dict>
@@ -15,19 +15,19 @@
 				<key>CoordinateY</key>
 				<integer>0</integer>
 				<key>Width</key>
-				<integer>1</integer>
-				<key>Height</key>
 				<real>0.5</real>
+				<key>Height</key>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>CoordinateX</key>
-				<integer>0</integer>
+				<real>0.5</real>
 				<key>CoordinateY</key>
-				<real>0.5</real>
+				<integer>0</integer>
 				<key>Width</key>
-				<integer>1</integer>
-				<key>Height</key>
 				<real>0.5</real>
+				<key>Height</key>
+				<integer>1</integer>
 			</dict>
 		</array>
 	</dict>
@@ -35,7 +35,7 @@
 		<key>Tag</key>
 		<integer>1</integer>
 		<key>Image</key>
-		<string>btn_3.png</string>
+		<string>thumb06.png</string>
 		<key>Pattern</key>
 		<array>
 			<dict>
@@ -44,27 +44,17 @@
 				<key>CoordinateY</key>
 				<integer>0</integer>
 				<key>Width</key>
-				<real>0.5</real>
-				<key>Height</key>
 				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>CoordinateX</key>
-				<real>0.5</real>
-				<key>CoordinateY</key>
-				<integer>0</integer>
-				<key>Width</key>
-				<real>0.5</real>
 				<key>Height</key>
 				<real>0.5</real>
 			</dict>
 			<dict>
 				<key>CoordinateX</key>
-				<real>0.5</real>
+				<integer>0</integer>
 				<key>CoordinateY</key>
 				<real>0.5</real>
 				<key>Width</key>
-				<real>0.5</real>
+				<integer>1</integer>
 				<key>Height</key>
 				<real>0.5</real>
 			</dict>
@@ -74,7 +64,7 @@
 		<key>Tag</key>
 		<integer>2</integer>
 		<key>Image</key>
-		<string>btn_2.png</string>
+		<string>thumb05.png</string>
 		<key>Pattern</key>
 		<array>
 			<dict>
@@ -85,23 +75,13 @@
 				<key>Width</key>
 				<real>0.5</real>
 				<key>Height</key>
-				<real>0.5</real>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>CoordinateX</key>
 				<real>0.5</real>
 				<key>CoordinateY</key>
 				<integer>0</integer>
-				<key>Width</key>
-				<real>0.5</real>
-				<key>Height</key>
-				<real>0.5</real>
-			</dict>
-			<dict>
-				<key>CoordinateX</key>
-				<integer>0</integer>
-				<key>CoordinateY</key>
-				<real>0.5</real>
 				<key>Width</key>
 				<real>0.5</real>
 				<key>Height</key>
@@ -123,7 +103,183 @@
 		<key>Tag</key>
 		<integer>3</integer>
 		<key>Image</key>
-		<string>Coming-Soon.png</string>
+		<string>thumb04.png</string>
+		<key>Pattern</key>
+		<array>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<integer>1</integer>
+				<key>Height</key>
+				<real>0.5</real>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<real>0.5</real>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.5</real>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.5</real>
+				<key>CoordinateY</key>
+				<real>0.5</real>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.5</real>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Tag</key>
+		<integer>4</integer>
+		<key>Image</key>
+		<string>thumb03.png</string>
+		<key>Pattern</key>
+		<array>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.33</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.33</real>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.33</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.66</real>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.34</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Tag</key>
+		<integer>5</integer>
+		<key>Image</key>
+		<string>thumb02.png</string>
+		<key>Pattern</key>
+		<array>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.25</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.25</real>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.25</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.5</real>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.25</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.75</real>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.25</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Tag</key>
+		<integer>6</integer>
+		<key>Image</key>
+		<string>thumb01.png</string>
+		<key>Pattern</key>
+		<array>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.5</real>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.5</real>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.5</real>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<real>0.5</real>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.5</real>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.5</real>
+				<key>CoordinateY</key>
+				<real>0.5</real>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.5</real>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Tag</key>
+		<integer>7</integer>
+		<key>Image</key>
+		<string>thumb_depic.png</string>
 		<key>Pattern</key>
 		<array>
 			<dict>
@@ -135,6 +291,152 @@
 				<integer>0</integer>
 				<key>Height</key>
 				<integer>0</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Tag</key>
+		<integer>8</integer>
+		<key>Image</key>
+		<string>thumb09.png</string>
+		<key>Pattern</key>
+		<array>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<integer>0</integer>
+				<key>Height</key>
+				<integer>0</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Tag</key>
+		<integer>9</integer>
+		<key>Image</key>
+		<string>thumb10.png</string>
+		<key>Pattern</key>
+		<array>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.33</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.33</real>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.33</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.66</real>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.34</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Tag</key>
+		<integer>10</integer>
+		<key>Image</key>
+		<string>thumb11.png</string>
+		<key>Pattern</key>
+		<array>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<integer>1</integer>
+				<key>Height</key>
+				<real>0.33</real>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<real>0.33</real>
+				<key>Width</key>
+				<integer>1</integer>
+				<key>Height</key>
+				<real>0.33</real>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<real>0.66</real>
+				<key>Width</key>
+				<integer>1</integer>
+				<key>Height</key>
+				<real>0.34</real>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Tag</key>
+		<integer>11</integer>
+		<key>Image</key>
+		<string>thumb12.png</string>
+		<key>Pattern</key>
+		<array>
+			<dict>
+				<key>CoordinateX</key>
+				<integer>0</integer>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.5</real>
+				<key>CoordinateY</key>
+				<integer>0</integer>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.33</real>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.5</real>
+				<key>CoordinateY</key>
+				<real>0.33</real>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.33</real>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
+				<real>0.5</real>
+				<key>CoordinateY</key>
+				<real>0.66</real>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.34</real>
 			</dict>
 		</array>
 	</dict>

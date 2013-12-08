@@ -58,8 +58,25 @@
         case FILTER_XRAY:
             myFilter = [GPUImageColorInvertFilter new];
             break;
-        
-
+        case FILTER_MOSAIC:
+            myFilter = [GPUImageBrightnessFilter new];
+            //myFilter = [GPUImageBrightnessFilter new];
+            break;
+        case FILTER_ADDNOISE:
+            myFilter = [GPUImageBrightnessFilter new];
+            //myFilter = [GPUImageBrightnessFilter new];
+            break;
+        case FILTER_EMBOSS:
+            myFilter = [GPUImageEmbossFilter new];
+            //myFilter = [GPUImageBrightnessFilter new];
+            break;
+        case FILTER_TILTSHIFT:
+            myFilter = [GPUImageTiltShiftFilter new];
+            break;
+        case FILTER_SEPIA:
+            //myFilter = [GPUImageBrightnessFilter new];
+            myFilter = [GPUImageSepiaFilter new]; 
+            break;
         default:
             break;
     }
@@ -105,7 +122,35 @@
         case FILTER_XRAY:
             stillImageFilter = [GPUImageColorInvertFilter new];
             break;
+        case FILTER_MOSAIC:
+            //stillImageFilter = [GPUImageMosaicFilter new];
+            stillImageFilter = [GPUImageBrightnessFilter new];
+
+            break;
             
+        case FILTER_ADDNOISE:
+            stillImageFilter =  [GPUImagePerlinNoiseFilter new];
+            //stillImageFilter = [GPUImageBrightnessFilter new];
+
+            break;
+            
+        case FILTER_EMBOSS:
+            stillImageFilter =  [GPUImageEmbossFilter new];
+            //stillImageFilter = [GPUImageBrightnessFilter new];
+
+            break;
+            
+        case FILTER_TILTSHIFT:
+            stillImageFilter = [GPUImageTiltShiftFilter new];
+            //stillImageFilter = [GPUImageBrightnessFilter new];
+
+            break;
+            
+        case FILTER_SEPIA:
+            stillImageFilter = [GPUImageSepiaFilter new];
+            //stillImageFilter = [GPUImageBrightnessFilter new];
+
+            break;
 
         default:
             break;

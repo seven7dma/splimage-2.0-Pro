@@ -68,6 +68,33 @@
         case FILTER_NONE:
             myFilter = [GPUImageBrightnessFilter new];
             break;
+        case FILTER_MOSAIC:
+            //myFilter = [GPUImageMosaicFilter new];
+            myFilter = [GPUImageBrightnessFilter new];
+            break;
+            
+        case FILTER_ADDNOISE:
+            // myFilter =  [GPUImagePerlinNoiseFilter new];
+            myFilter = [GPUImageBrightnessFilter new];
+            
+            break;
+            
+        case FILTER_EMBOSS:
+            myFilter =  [GPUImageEmbossFilter new];
+            // myFilter = [GPUImageBrightnessFilter new];
+            
+            break;
+            
+        case FILTER_TILTSHIFT:
+            myFilter = [GPUImageTiltShiftFilter new];
+            //myFilter = [GPUImageBrightnessFilter new];
+            break;
+            
+        case FILTER_SEPIA:
+            myFilter = [GPUImageSepiaFilter new];
+            //myFilter = [GPUImageBrightnessFilter new];
+            
+            break;
             
         case FILTER_BLACK_WHITE:
             myFilter = [GPUImageGrayscaleFilter new];
@@ -110,6 +137,7 @@
             break;
     }
 }
+
 -(void)loadVideoWithName:(NSURL *)sampleURL andFilter:(MY_FILTERS)_filter andSize:(CGSize)_originalSize andContent:(CGRect)contentRect
 {
     [self setSelectedFilter:_filter];
@@ -119,7 +147,7 @@
     movieFile = [[GPUImageMovie alloc] initWithURL:sampleURL ];
     movieFile.runBenchmark = YES;
     movieFile.playAtActualSpeed = YES;
-    movieFile.playAt2XSpeed = !runActualSpeed;
+ //   movieFile.playAt2XSpeed = !runActualSpeed;
 
     cropFilter = [[GPUImageCropFilter alloc] initWithCropRegion:contentRect];
 
@@ -142,11 +170,13 @@
     NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
     
     movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:originalSize ];
-    movieWriter.playAt2XSpeed = !runActualSpeed;
+   // movieWriter.playAt2XSpeed = !runActualSpeed;
 
     [myFilter addTarget:movieWriter];
     
     // Configure this for video from the movie file, where we want to preserve all video frames and audio samples
+    movieFile.playSound = NO;
+    [movieFile setPlayAtActualSpeed:YES];
     movieWriter.shouldPassthroughAudio = YES;
     movieFile.audioEncodingTarget = movieWriter;
     [movieFile enableSynchronizedEncodingUsingMovieWriter:movieWriter];
@@ -158,7 +188,6 @@
     [movieWriter setCompletionBlock:^{
         [self_ finishedWritingVideo];
     }];
-      
 }
 
 -(void)finishedWritingVideo{

@@ -34,12 +34,20 @@
 
 - (void)viewDidLoad
 {
-
+    
+    useSuperButtons = YES;
     [super viewDidLoad];
-    UIImage *backImage = [UIImage imageNamed:@"back_btn"];
-    [btnLeftNav setImage:backImage forState:UIControlStateNormal];
-    [btnRightNav setHidden:YES];
+    //UIImage *backImage = [UIImage imageNamed:@"btn_back"];
+    //[btnLeftNav setImage:backImage forState:UIControlStateNormal];
     // Do any additional setup after loading the view from its nib.
+    
+    UIImage *back = [UIImage imageNamed:@"btn_back"];
+    [btnLeftNav setFrame:CGRectMake(9, 5, back.size.width, back.size.height)];
+    [btnLeftNav setBackgroundImage:back forState:UIControlStateNormal];
+    
+    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
+    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
+    [btnRightNav setBackgroundImage:goPro forState:UIControlStateNormal];
     
     [self loadUpCanvasView];
     [self setUpToolBarButton];
@@ -88,6 +96,7 @@
     [self.view addSubview:splPlayerView];
     
 }
+
 -(void)setUpToolBarButton{
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
     
@@ -96,7 +105,7 @@
     
     [arrayBtn addObject:spacer];
     
-    mySwitch = [UICustomSwitch switchWithLeftText:@"Play all at once" andRight:@"Chose Playback Order"];
+    mySwitch = [UICustomSwitch switchWithLeftText:@"Play all at once" andRight:@"Choose Playback Order"];
     [mySwitch setFrame:CGRectMake(5, 5, 225, 25)];
     [mySwitch.rightLabel setText:@"Playback Order"];
     [mySwitch setTag:INDEX_LEFT];
@@ -131,8 +140,13 @@
 
 -(void)reSetUpToolBarButton{
     
-    UIImage *backImage = [UIImage imageNamed:@"redo_btn"];
-    [btnLeftNav setImage:backImage forState:UIControlStateNormal];
+    UIImage *back = [UIImage imageNamed:@"btn_back"];
+    [btnLeftNav setFrame:CGRectMake(9, 5, back.size.width, back.size.height)];
+    [btnLeftNav setBackgroundImage:back forState:UIControlStateNormal];
+    
+    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
+    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
+    [btnRightNav setImage:goPro forState:UIControlStateNormal];
     
     UIScreen *screen = [UIScreen mainScreen];
     CGRect screenFrame = [screen applicationFrame];
@@ -144,7 +158,7 @@
     
 //    [arrayBtn addObject:spacer];
    
-    UIImage *homeImage = [UIImage imageNamed:@"home_btn"];
+    UIImage *homeImage = [UIImage imageNamed:@"home_icon"];
     UIButton *btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnHome setFrame:CGRectMake(5,5,homeImage.size.width,homeImage.size.height)];
     [btnHome setImage:homeImage forState:UIControlStateNormal];
@@ -152,13 +166,12 @@
     [btnHome setEnabled:YES];
     [btnHome addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
-    
     UIBarButtonItem *barBtn1 = [[UIBarButtonItem alloc] initWithCustomView:btnHome];
     [arrayBtn addObject:barBtn1];
     
     [arrayBtn addObject:spacer];
     
-    UIImage *shareImage = [UIImage imageNamed:@"share_btn"];
+    UIImage *shareImage = [UIImage imageNamed:@"icon_share"];
     
     UIButton *btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnShare setFrame:CGRectMake(screenFrame.size.width - (shareImage.size.width+9), 10, shareImage.size.width, shareImage.size.height)];
@@ -408,7 +421,7 @@
 }
 
 -(void)getSetReloadWriter{
-    
+    NSLog(@"saved data array frames count: %d",[[SavedData getValueForKey:ARRAY_FRAMES] count]);
     if (counter<[[SavedData getValueForKey:ARRAY_FRAMES] count]) {
         [self performSelectorInBackground:@selector(myMixedTask) withObject:Nil];
         CGRect frame = [SavedData getFramesAtIndex:counter];
@@ -536,8 +549,10 @@
         if (isNotMute) {
             //If Audiotrack not available then it might crash here ***
             AVMutableCompositionTrack * audioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-            [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:startTime error:nil];
-            
+            NSLog(@"audio track : %@",audioTrack);
+            //NSError *abc = [[NSError alloc] init];
+            //BOOL abc = [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:startTime error:nil];
+            //NSLog(@"return: %d",abc);
         }
         
         AVMutableVideoCompositionLayerInstruction *videoLayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
@@ -707,7 +722,9 @@
     } else {
         [self showAlertWithMessage:@"Your Splimage was saved to your gallery" andTitle:@"Please Note:" cancelButtonTitle:@"OK" otherButtonTitles:nil andTag:SUCCESS_FAIL];
     }
+    NSLog (@"error: %@", error);
 }
+
 #pragma mark - VideoPlaybackView Delegate Methods -
 -(void)videoCreatedSuccessfully:(VideoPlaybackView *)videoView
 {

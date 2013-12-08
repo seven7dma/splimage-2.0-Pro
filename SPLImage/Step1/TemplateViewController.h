@@ -18,7 +18,7 @@
 @interface TemplateViewController : SPLViewController<SPLViewControllerDelegate, FBLoginViewDelegate,UIAlertViewDelegate, UIScrollViewDelegate,MFMessageComposeViewControllerDelegate>{
     UIScrollView *scrollTemplateView;
     UIPageControl *pageControl;
-    UIButton *btnRateUs;
+    UIButton *btnSettings;
     UIButton *btnShare;
     PatternLayoutViewController *patternLayoutView;
     __block NSString *twitterAlerMsg;

@@ -13,7 +13,7 @@
 @interface MPStore (Internal)
 
 - (void)requestProductDataForProductIdentifier:(NSString *)identifier;
-- (void)startPaymentForProductIdentifier:(NSString *)identifier;
+- (void)startPaymentForProductIdentifier:(SKProduct *)product;
 - (void)recordTransaction:(SKPaymentTransaction *)transaction;
 
 @end
@@ -62,9 +62,9 @@
 	[request start];
 }
 
-- (void)startPaymentForProductIdentifier:(NSString *)identifier
+- (void)startPaymentForProductIdentifier:(SKProduct *)product
 {
-	SKMutablePayment *payment = [SKMutablePayment paymentWithProductIdentifier:identifier];
+	SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
 	payment.quantity = _quantity;
 	[[SKPaymentQueue defaultQueue] addPayment:payment];
 	_isProcessing = NO;
@@ -109,7 +109,7 @@
 {
 	[request autorelease];
 	SKProduct *product = [response.products objectAtIndex:0];
-	[self startPaymentForProductIdentifier:product.productIdentifier];
+	[self startPaymentForProductIdentifier:product];
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error
