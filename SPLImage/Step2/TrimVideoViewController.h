@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SplPlayerView.h"
-
-@interface TrimVideoViewController : UIViewController<SplPlayerViewDelegate,UIVideoEditorControllerDelegate,UINavigationControllerDelegate>
+#import "SPLViewController.h"
+@interface TrimVideoViewController : SPLViewController<SplPlayerViewDelegate,UIVideoEditorControllerDelegate,UINavigationControllerDelegate>
 {
     UIToolbar *toolBarTrimmer;
     SplPlayerView *splPlayerView;

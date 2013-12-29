@@ -2,13 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoProViewController">
             <connections>
-                <outlet property="buyButtonClicked" destination="11" id="IrL-h2-F36"/>
-                <outlet property="cancelButtonClicked" destination="10" id="hBR-nG-KBy"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -17,13 +15,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="img_inappback.png" id="4">
-                    <rect key="frame" x="0.0" y="72" width="320" height="336"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="img_inappback.png" id="VFq-kb-ogG">
+                    <rect key="frame" x="29" y="74" width="261" height="302"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="10">
-                    <rect key="frame" x="26" y="358" width="75" height="37"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="I0W-XA-P9x">
+                    <rect key="frame" x="49" y="332" width="70" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="CANCEL" image="btn_inappcancel.png">
@@ -34,12 +32,11 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="bMethod:" destination="-1" eventType="touchUpInside" id="12"/>
-                        <action selector="cancelButtonClicked:" destination="-1" eventType="touchUpInside" id="oMs-IF-fFh"/>
+                        <action selector="cancelButtonClicked:" destination="-1" eventType="touchUpInside" id="pQH-EK-5Qr"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="11">
-                    <rect key="frame" x="225" y="358" width="75" height="37"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="N33-vY-8rI">
+                    <rect key="frame" x="209" y="332" width="67" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="BUY" image="btn_inappbuy.png">
@@ -50,8 +47,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="aMethod:" destination="-1" eventType="touchUpInside" id="13"/>
-                        <action selector="buyButtonClicked:" destination="-1" eventType="touchUpInside" id="wRD-Wd-9Ge"/>
+                        <action selector="buyButtonClicked:" destination="-1" eventType="touchUpInside" id="R1B-3Q-p2M"/>
                     </connections>
                 </button>
             </subviews>

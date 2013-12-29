@@ -148,8 +148,7 @@
     [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
     [btnRightNav setImage:goPro forState:UIControlStateNormal];
     
-    UIScreen *screen = [UIScreen mainScreen];
-    CGRect screenFrame = [screen applicationFrame];
+    CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
 
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
     

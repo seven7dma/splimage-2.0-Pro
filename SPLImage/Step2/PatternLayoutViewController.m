@@ -62,6 +62,7 @@
 {
     useSuperButtons = YES;
     [super viewDidLoad];
+    CGRect frame = [super getScreenFrameForCurrentOrientation];
     self.atleastOneVideo = NO;
     selectedVideo = 999;
     UIImage *changePattern = [UIImage imageNamed:@"topbar_change"];
@@ -72,7 +73,8 @@
     [SavedData setValue:[self getPatternArrayForPattern:selectedPattern] forKey:ARRAY_PATTERN];
 
     UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
-    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, 350) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:imgCanvas];
+    
+    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:imgCanvas];
     [canvasView shouldAddAllTheGesture:YES];
     [canvasView setDelegate:self];
 
@@ -97,9 +99,10 @@
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spacer.width = 40;
+    CGRect frame = [super getScreenFrameForCurrentOrientation];
+    spacer.width = frame.size.width/3;
     
-    [arrayBtn addObject:spacer];
+ //   [arrayBtn addObject:spacer];
     
   //  UIImage *imgCommints = [UIImage imageNamed:@"commint"];
   //  UIImageView *imageViewCommints = [[UIImageView alloc] initWithImage:imgCommints];
@@ -108,7 +111,7 @@
   //  UIBarButtonItem *barBtn1 = [[UIBarButtonItem alloc] initWithCustomView:imageViewCommints];
   //  [arrayBtn addObject:barBtn1];
     
-    [arrayBtn addObject:spacer];
+  //  [arrayBtn addObject:spacer];
     
     UIImage *imgBtn = [UIImage imageNamed:@"fx"];
     UIButton * btnFx = [UIButton buttonWithType:UIButtonTypeCustom];

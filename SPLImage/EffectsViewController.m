@@ -43,7 +43,7 @@
     [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
     [btnRightNav setImage:goPro forState:UIControlStateNormal];
     
-    CGRect screenFrame = [UIScreen mainScreen].bounds;
+    CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
     
     videoPath = [SavedData getVideoURLAtIndex:selectedIndex];
     arrayFilteredImages = [NSMutableArray array];

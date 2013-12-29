@@ -28,7 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    CGRect screenFrame = [UIScreen mainScreen].bounds;
+    self.view.autoresizesSubviews = YES;
+    CGRect screenFrame = [self getScreenFrameForCurrentOrientation];
+    
+    // setup filters
     NSMutableArray * filtersArray = [NSMutableArray array];
     
     [filtersArray addObject:[GPUImageBrightnessFilter new]];
@@ -43,38 +46,29 @@
     [filtersArray addObject:[GPUImageToonFilter new]];
     [filtersArray addObject:[GPUImageSobelEdgeDetectionFilter new]];
     [filtersArray addObject:[GPUImageMissEtikateFilter new]];
-    
     [filtersArray addObject:[GPUImageColorInvertFilter new]];
-
     [filtersArray addObject:[GPUImageBrightnessFilter new]];
     [filtersArray addObject:[GPUImageBrightnessFilter new]];
-    
     
     [SavedData setValue:filtersArray forKey:ARRAY_FILTERS];
-
     [SavedData setValue:[NSArray arrayWithObjects:@"No Filter",@"Mosaic", @"add noise", @"Emboss", @"Tilt Shift",@"Sepia", @"B & W",@"Tsunami", @"300", @"Electronica",@"Mahogany",@"X-RAY", @"2X", @"Inebriated", nil] forKey:ARRAY_FILTER_NAMES];
     
+    // setup background Image
     imageViewBaseBg = [[UIImageView alloc] initWithFrame:screenFrame];
     [self.view addSubview:imageViewBaseBg];
     
+    // setup toolbar image
     UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
-    NSLog(@"tab bar image height:%f",imgToolBar.size.height);
-    NSLog(@"screenframe image height:%f",screenFrame.size.height);
     toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, screenFrame.size.height-imgToolBar.size.height, screenFrame.size.width , imgToolBar.size.height)];
     [toolBar setBackgroundImage:imgToolBar forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
     [self.view addSubview:toolBar];
-    NSLog(@"toolbar height: %f",toolBar.frame.origin.y);
- //   advertView = [[UIView alloc] initWithFrame:CGRectMake(0, toolBar.frame.origin.y - ADVERT_BAR_HEIGHT, screenFrame.size.width, ADVERT_BAR_HEIGHT)];
- //   [self.view addSubview:advertView];
- //   advertView.backgroundColor = [UIColor lightGrayColor];
-    
-   //testing***
     
     if (self.adView.superview == nil) {
-       self.adView = [[MPAdView alloc] initWithAdUnitId:@"5b9fb0e4fdc846a08970907490054507" size:MOPUB_BANNER_SIZE];
+       self.adView = [[MPAdView alloc] initWithAdUnitId:@"5b9fb0e4fdc846a08970907490054507" size:screenFrame.size];
         self.adView.delegate = self;
         CGRect frame = self.adView.frame;
         frame.origin.y = toolBar.frame.origin.y - ADVERT_BAR_HEIGHT;
+        frame.size.height = ADVERT_BAR_HEIGHT;
         self.adView.frame = frame;
         [self.view addSubview:self.adView];
         [self.adView loadAd];
@@ -98,7 +92,7 @@
         [btnLeftNav addTarget:self action:@selector(leftBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btnLeftNav setBackgroundImage:imgBtnNav forState:UIControlStateNormal];
         [navBarPrimary addSubview:btnLeftNav];
-    
+        
         imgBtnNav = nil;
         imgBtnNav = [UIImage imageNamed:@"topbar_instagram"];
         btnRightNav = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -107,17 +101,15 @@
         [btnRightNav addTarget:self action:@selector(rightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btnRightNav setImage:imgBtnNav forState:UIControlStateNormal];
         [navBarPrimary addSubview:btnRightNav];
+        
+        imgBtnNav = [UIImage imageNamed:@"SplImageNew"];
+        btnCenterNav = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnCenterNav setFrame:CGRectMake(screenFrame.size.width/2 - imgBtnNav.size.width/2, 5, imgBtnNav.size.width, imgBtnNav.size.height)];
+        [btnCenterNav addTarget:self action:@selector(rightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [btnCenterNav setImage:imgBtnNav forState:UIControlStateNormal];
+        btnCenterNav.userInteractionEnabled = NO;
+        [navBarPrimary addSubview:btnCenterNav];
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void) viewDidAppear:(BOOL)animated {
-    //  [self updatePrimaryUI];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -142,29 +134,13 @@
 
 -(void) updatePrimaryUI
 {
-    
-   /* _pickerController = [[UIImagePickerController alloc] init];
-	_pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-	//_pickerController.delegate = self;
-	_pickerController.showsCameraControls = NO;
-	_pickerController.allowsEditing = NO;
-    _pickerController.wantsFullScreenLayout = YES;
-    _pickerController.cameraViewTransform = CGAffineTransformScale(_pickerController.cameraViewTransform, CAMERA_TRANSFORM, CAMERA_TRANSFORM);
-	[self.view addSubview:_pickerController.view];
-	[self.view sendSubviewToBack:_pickerController.view];
-
-    */
-    NSString *imageName =  IS_IPHONE5 ? @"background_iPhone5" : @"background";
-
+    CGRect screenFrame = [self getScreenFrameForCurrentOrientation];
+    NSString *imageName = @"background";
     UIImage *backImage = [UIImage imageNamed:imageName];
     [imageViewBaseBg setImage:backImage];
-    imageViewBaseBg.frame = CGRectMake(0, 0, backImage.size.width, backImage.size.height);
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    imageViewBaseBg.frame = CGRectMake(0, 0, screenFrame.size.width, screenFrame.size.height);
+    imageViewBaseBg.autoresizesSubviews = YES;
+    imageViewBaseBg.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
 
@@ -207,6 +183,33 @@
     return arrayOfImages;
 }
 
+#pragma screen convenience methods 
+
+- (CGRect)getScreenFrameForCurrentOrientation {
+    return [self getScreenFrameForOrientation:[UIApplication sharedApplication].statusBarOrientation];
+}
+
+- (CGRect)getScreenFrameForOrientation:(UIInterfaceOrientation)orientation {
+    
+    UIScreen *screen = [UIScreen mainScreen];
+    CGRect fullScreenRect = screen.bounds;
+    BOOL statusBarHidden = [UIApplication sharedApplication].statusBarHidden;
+    
+    //implicitly in Portrait orientation.
+    if(orientation == UIInterfaceOrientationLandscapeRight || orientation == UIInterfaceOrientationLandscapeLeft){
+        CGRect temp = CGRectZero;
+        temp.size.width = fullScreenRect.size.height;
+        temp.size.height = fullScreenRect.size.width;
+        fullScreenRect = temp;
+    }
+    
+    if(!statusBarHidden){
+     //   CGFloat statusBarHeight = 20;//Needs a better solution, FYI statusBarFrame reports wrong in some cases..
+     //   fullScreenRect.size.height -= statusBarHeight;
+    }
+    
+    return fullScreenRect;
+}
 
 
 @end

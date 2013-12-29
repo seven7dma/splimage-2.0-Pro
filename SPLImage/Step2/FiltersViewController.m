@@ -39,7 +39,7 @@
                                      .width - done.size.width - 9, 5, done.size.width, done.size.height)];
     [btnRightNav setImage:done forState:UIControlStateNormal];
     
-    CGRect screenFrame = [UIScreen mainScreen].bounds;
+    CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
 
     videoPath = [SavedData getVideoURLAtIndex:selectedIndex];
     arrayFilteredImages = [NSMutableArray array];

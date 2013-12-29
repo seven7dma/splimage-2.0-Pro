@@ -27,8 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIScreen *screen = [UIScreen mainScreen];
-    CGRect screenFrame = [screen applicationFrame];
+    CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
 
 //    [self likeOnFaceBookClicked];
     webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, navBarPrimary.frame.size.height, screenFrame.size.width, screenFrame.size.height-navBarPrimary.frame.size.height)];

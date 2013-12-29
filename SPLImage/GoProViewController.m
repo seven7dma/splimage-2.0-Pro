@@ -16,7 +16,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    NSString *nibName =  IS_IPHONE5 ? @"GoProViewController_iPhone5" : @"GoProViewController";
+    NSString *nibName =  IS_IPAD ? @"GoProViewController_iPad" : @"GoProViewController";
+    
     
     self = [super initWithNibName:nibName bundle:nibBundleOrNil];
     if (self) {
@@ -28,6 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGRect frame = [self getScreenFrameForCurrentOrientation];
+    self.view.frame = CGRectMake(0, 0,frame.size.width - 40, frame.size.height - 100);
     self.presentingViewController.view.alpha = 0.4;
     
     self.navigationController.navigationBarHidden = YES;
@@ -57,4 +60,31 @@
 - (IBAction)cancelButtonClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (CGRect)getScreenFrameForCurrentOrientation {
+    return [self getScreenFrameForOrientation:[UIApplication sharedApplication].statusBarOrientation];
+}
+
+- (CGRect)getScreenFrameForOrientation:(UIInterfaceOrientation)orientation {
+    
+    UIScreen *screen = [UIScreen mainScreen];
+    CGRect fullScreenRect = screen.bounds;
+    BOOL statusBarHidden = [UIApplication sharedApplication].statusBarHidden;
+    
+    //implicitly in Portrait orientation.
+    if(orientation == UIInterfaceOrientationLandscapeRight || orientation == UIInterfaceOrientationLandscapeLeft){
+        CGRect temp = CGRectZero;
+        temp.size.width = fullScreenRect.size.height;
+        temp.size.height = fullScreenRect.size.width;
+        fullScreenRect = temp;
+    }
+    
+    if(!statusBarHidden){
+        //   CGFloat statusBarHeight = 20;//Needs a better solution, FYI statusBarFrame reports wrong in some cases..
+        //   fullScreenRect.size.height -= statusBarHeight;
+    }
+    
+    return fullScreenRect;
+}
+
 @end

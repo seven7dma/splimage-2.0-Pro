@@ -40,5 +40,7 @@
 -(void)rightBarButtonClicked:(UIButton *)sender;
 -(NSArray *)getPatternArrayForPattern:(NSInteger)selectedPattern;
 -(NSArray *)readPlistForImagesArray;
+- (CGRect)getScreenFrameForCurrentOrientation;
+- (CGRect)getScreenFrameForOrientation:(UIInterfaceOrientation)orientation; 
 
 @end

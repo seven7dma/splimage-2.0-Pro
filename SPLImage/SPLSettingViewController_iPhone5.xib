@@ -112,12 +112,12 @@
         </view>
     </objects>
     <resources>
-        <image name="background_iPhone5.png" width="381" height="568"/>
+        <image name="background_iPhone5.png" width="1200" height="1200"/>
         <image name="btn_back.png" width="60" height="20"/>
         <image name="btn_customwatermark.png" width="256" height="47"/>
         <image name="btn_rateus.png" width="256" height="47"/>
         <image name="btn_restorepurchase.png" width="256" height="47"/>
         <image name="btn_shareapplication.png" width="256" height="47"/>
-        <image name="topbar_bg.png" width="320" height="35"/>
+        <image name="topbar_bg.png" width="366" height="40"/>
     </resources>
 </document>

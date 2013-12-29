@@ -14,9 +14,12 @@
 @end
 
 @implementation TemplateViewController
-#define SCROLL_VIEW_HEIGHT 500
-#define PADDINGHEIGHT 50
-#define PADDINGWIDTH 12
+//#define PADDINGHEIGHT 50
+#define PADDINGHEIGHT ( (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 100 : 50 )
+
+//#define PADDINGWIDTH 12
+#define PADDINGWIDTH ( (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 60 : 12 )
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,15 +35,18 @@
 {
     useSuperButtons = YES;
     [super viewDidLoad];
-    scrollTemplateView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBarPrimary.frame.size.height, navBarPrimary.frame.size.width , SCROLL_VIEW_HEIGHT)];
+    CGRect frame = [super getScreenFrameForCurrentOrientation];
+    scrollTemplateView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBarPrimary.frame.size.height + 20, frame.size.width , frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 74)];
     [scrollTemplateView setPagingEnabled:YES];
     [scrollTemplateView setBackgroundColor:[UIColor clearColor]];
     [scrollTemplateView setShowsHorizontalScrollIndicator:NO];
     [scrollTemplateView setDelegate:self];
+    scrollTemplateView.autoresizesSubviews = YES;
+    
     [self.view addSubview:scrollTemplateView];
     [self.view bringSubviewToFront:scrollTemplateView];
     
-    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(10, self.adView.frame.origin.y  - 20 , 20, 10)];
+    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(10, self.adView.frame.origin.y  - 20 , 5, 10)];
     [pageControl setCenter:CGPointMake(self.view.center.x, pageControl.center.y)];
     [pageControl setNumberOfPages:2];
     [pageControl setCurrentPage:0];
@@ -52,26 +58,16 @@
     
     [self setTemplateButtons];
     [self setUpToolBarButton];
-    
-     
+
     // Do any additional setup after loading the view from its nib.
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
   
     //Delete files in tmp folder
     [SavedData removeAllImportedFiles];
-  }
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return NO;//(interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma - mark User Functions
@@ -124,27 +120,81 @@
 
 }
 
-//not working for iOS 6
 -(void)setTemplateButtons{
-    int i =0;
+    
+    CGRect frame = [super getScreenFrameForCurrentOrientation];
+    
+    // calculate the height of scrollview
+    CGFloat scrollViewHeight = frame.size.height - 30 - navBarPrimary.frame.size.height - toolBar.frame.size.height - self.adView.frame.size.height;
+    
+    NSInteger buttonNumber =0;
     CGFloat btnWidth = 90;
     CGFloat btnHeight = 90;
+    
+    if (IS_IPAD) {
+        btnWidth = btnHeight = 180;
+    }
+    
+    CGFloat widthPadding = (navBarPrimary.frame.size.width/3 - btnWidth) / 2;
+    CGFloat heightPadding = (scrollViewHeight/3 - btnHeight) / 2;
+
+    NSLog(@"width padding :%f heightPadding : %f", widthPadding, heightPadding);
+    
     for (NSString *strBtnImage in [self readPlistForImagesArray]) {
         UIImage * btnImage = [UIImage imageNamed:strBtnImage];
-//        NSLog(strBtnImage);
-        int j = i%9;
-        int k = floor(i/9);
-        int l = j%3;
-        int m = floor(j/3);
+        NSInteger buttonNumberOnPage = buttonNumber % 9;
+        NSInteger pageNumber = floor(buttonNumber/9);
+        NSInteger numberOfwidthPaddings = buttonNumberOnPage % 3;
+        NSInteger rowNumber = floor(buttonNumberOnPage/3);
         NSLog(@"button height:%f",btnImage.size.height);
-        CGFloat x = (l+1)*PADDINGWIDTH + l*btnWidth + k*navBarPrimary.frame.size.width;
-        CGFloat y = (m+1)*PADDINGHEIGHT + m*btnHeight;
-        [self createButtonsWithImage:btnImage andTag:i andPoint:CGRectMake(x,y,btnWidth,btnHeight)];
-        i++;
-        [pageControl setNumberOfPages:k+1];
-        [scrollTemplateView  setContentSize:CGSizeMake(pageControl.numberOfPages * navBarPrimary.frame.size.width, SCROLL_VIEW_HEIGHT)];
+        CGFloat x = (2 * numberOfwidthPaddings + 1)*widthPadding + numberOfwidthPaddings * btnWidth + pageNumber * navBarPrimary.frame.size.width;
+        CGFloat y = (2 * rowNumber + 1)*heightPadding + rowNumber*btnHeight;
+        [self createButtonsWithImage:btnImage andTag:buttonNumber andPoint:CGRectMake(x,y,btnWidth,btnHeight)];
+        buttonNumber++;
+        [pageControl setNumberOfPages:pageNumber+1];
+        [scrollTemplateView  setContentSize:CGSizeMake(pageControl.numberOfPages * navBarPrimary.frame.size.width, scrollViewHeight)];
     }
 }
+
+
+-(void)resetTemplateButtonsforRotation:(UIInterfaceOrientation) interfaceOrientation{
+    
+    CGRect frame = [super getScreenFrameForOrientation:interfaceOrientation];
+    
+    // calculate the height of scrollview
+    CGFloat scrollViewHeight = frame.size.height - 30 - navBarPrimary.frame.size.height - toolBar.frame.size.height - self.adView.frame.size.height;
+    
+    NSInteger buttonNumber =0;
+    CGFloat btnWidth = 90;
+    CGFloat btnHeight = 90;
+    
+    if (IS_IPAD) {
+        btnWidth = btnHeight = 180;
+    }
+    
+    CGFloat widthPadding = (navBarPrimary.frame.size.width/3 - btnWidth) / 2;
+    CGFloat heightPadding = (scrollViewHeight/3 - btnHeight) / 2;
+    
+    NSLog(@"width padding :%f heightPadding : %f", widthPadding, heightPadding);
+    
+    for (UIView *buttons in scrollTemplateView.subviews) {
+
+        if ( [buttons isKindOfClass:[UIButton class]] ) {
+            
+            NSInteger buttonNumberOnPage = buttonNumber % 9;
+            NSInteger pageNumber = floor(buttonNumber/9);
+            NSInteger numberOfwidthPaddings = buttonNumberOnPage % 3;
+            NSInteger rowNumber = floor(buttonNumberOnPage/3);
+            CGFloat x = (2 * numberOfwidthPaddings + 1)*widthPadding + numberOfwidthPaddings * btnWidth + pageNumber * navBarPrimary.frame.size.width;
+            CGFloat y = (2 * rowNumber + 1)*heightPadding + rowNumber*btnHeight;
+            buttons.frame = CGRectMake(x,y,btnWidth,btnHeight);
+            buttonNumber++;
+            [pageControl setNumberOfPages:pageNumber+1];
+            [scrollTemplateView  setContentSize:CGSizeMake(pageControl.numberOfPages * navBarPrimary.frame.size.width, scrollViewHeight)];
+        }
+    }
+}
+
 
 -(void)createButtonsWithImage:(UIImage *)imgBtn andTag:(NSInteger)tagBtn andPoint:(CGRect)btnFrame{
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -154,6 +204,7 @@
     [btn addTarget:self action:@selector(patternSelected:) forControlEvents:UIControlEventTouchUpInside];
     NSLog(@"array count: %d", [[self readPlistForImagesArray] count]);
     [scrollTemplateView addSubview:btn];
+    btn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 }
 
 -(void)patternSelected:(UIButton *)btnPatternSelected{
@@ -253,9 +304,11 @@
             break;
     }
 }
+
 #pragma amrk -
 
 #pragma mark - SMS
+
 -(void) sendShortMessageService
 {
 	MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init] ;
@@ -266,6 +319,8 @@
 		[self presentViewController:controller animated:YES completion:nil];
 	}
 }
+
+
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
 	switch (result) {
@@ -353,7 +408,6 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"twitter" object:nil];
         }
     }];
-
 }
 
 -(void)showTwitterAlertMessage:(NSNotification *)notification {
@@ -366,4 +420,48 @@
      waitUntilDone:NO];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    
+    NSLog (@"before scroll view template width :%f height :%f", scrollTemplateView.frame.size.width, scrollTemplateView.frame.size.height);
+    CGRect frame = [super getScreenFrameForOrientation:toInterfaceOrientation];
+
+    // resize navigation bar
+    CGRect navBarFrame = navBarPrimary.frame;
+    navBarPrimary.frame = CGRectMake(0, 20, frame.size.width, navBarFrame.size.height);
+    
+    // resize instagram button
+    UIImage *imgBtnNav = btnRightNav.imageView.image;
+    btnRightNav.frame = CGRectMake(frame.size.width - (imgBtnNav.size.width+9), 5, imgBtnNav.size.width, imgBtnNav.size.height);
+
+    // resize splimage icon
+    imgBtnNav = btnCenterNav.imageView.image;
+    btnCenterNav.frame = CGRectMake(frame.size.width/2 - imgBtnNav.size.width/2, 5, imgBtnNav.size.width, imgBtnNav.size.height);
+
+    // resize scrollview
+    scrollTemplateView.frame = CGRectMake(0, navBarPrimary.frame.size.height + 20, frame.size.width , frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 74);
+    [scrollTemplateView  setContentSize:CGSizeMake(pageControl.numberOfPages * frame.size.width, scrollTemplateView.frame.size.height)];
+
+    NSLog (@"after scroll view template width :%f height :%f", scrollTemplateView.frame.size.width, scrollTemplateView.frame.size.height);
+
+    // resize toolbar
+    UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
+    toolBar.frame = CGRectMake(0, frame.size.height- imgToolBar.size.height, frame.size.width , imgToolBar.size.height);
+    
+    // resize adview
+    self.adView.frame = CGRectMake(0, frame.size.height - toolBar.frame.size.height - ADVERT_BAR_HEIGHT, frame.size.width, ADVERT_BAR_HEIGHT);
+
+    // TODO resize pageControl
+    //    pageControl.frame = CGRectMake(frame.size.width/2 - 5, frame.size.height - toolBar.frame.size.height - self.adView.frame.size.height - 10, 10, 10);
+
+    //pageControl.frame = CGRectMake(10, self.adView.frame.origin.y  - 20 , 5, 10);
+    //pageControl.center = CGPointMake(frame.size.width/2 - 10, pageControl.center.y);
+    
+    //pageControl.backgroundColor = [UIColor redColor];
+
+    // layout buttons for new orientation
+    [self resetTemplateButtonsforRotation:toInterfaceOrientation];
+
+}
+
 @end

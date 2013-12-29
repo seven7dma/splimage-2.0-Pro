@@ -29,8 +29,7 @@
 {
     [super viewDidLoad];
     isReplacable = NO;
-    UIScreen *screen = [UIScreen mainScreen];
-    CGRect screenFrame = [screen applicationFrame];
+    CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
 
     UIImage *imgToolBar = [UIImage imageNamed:@"grayToolBar"];
     toolBarTrimmer = [[UIToolbar alloc] initWithFrame:CGRectMake(0, screenFrame.size.height-imgToolBar.size.height, 320 , imgToolBar.size.height)];

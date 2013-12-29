@@ -9,7 +9,7 @@
 #ifndef SPLImage_Constants_h
 #define SPLImage_Constants_h
 
-#define ADVERT_BAR_HEIGHT 50.0
+#define ADVERT_BAR_HEIGHT 44.0
 
 
 typedef enum
