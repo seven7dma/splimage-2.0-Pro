@@ -42,5 +42,6 @@
 -(NSArray *)readPlistForImagesArray;
 - (CGRect)getScreenFrameForCurrentOrientation;
 - (CGRect)getScreenFrameForOrientation:(UIInterfaceOrientation)orientation; 
+-(void) layoutTopViewForInterfaceFrame: (CGRect) frame; 
 
 @end

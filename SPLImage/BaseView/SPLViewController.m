@@ -65,7 +65,7 @@
     
     if (self.adView.superview == nil) {
        self.adView = [[MPAdView alloc] initWithAdUnitId:@"5b9fb0e4fdc846a08970907490054507" size:screenFrame.size];
-        self.adView.delegate = self;
+       // self.adView.delegate = self;
         CGRect frame = self.adView.frame;
         frame.origin.y = toolBar.frame.origin.y - ADVERT_BAR_HEIGHT;
         frame.size.height = ADVERT_BAR_HEIGHT;
@@ -211,5 +211,26 @@
     return fullScreenRect;
 }
 
+-(void) layoutTopViewForInterfaceFrame: (CGRect) frame{
+
+    // resize navigation bar
+    CGRect navBarFrame = navBarPrimary.frame;
+    navBarPrimary.frame = CGRectMake(0, 20, frame.size.width, navBarFrame.size.height);
+    
+    // resize instagram button
+    UIImage *imgBtnNav = btnRightNav.imageView.image;
+    btnRightNav.frame = CGRectMake(frame.size.width - (imgBtnNav.size.width+9), 5, imgBtnNav.size.width, imgBtnNav.size.height);
+    
+    // resize splimage icon
+    imgBtnNav = btnCenterNav.imageView.image;
+    btnCenterNav.frame = CGRectMake(frame.size.width/2 - imgBtnNav.size.width/2, 5, imgBtnNav.size.width, imgBtnNav.size.height);
+
+    // resize toolbar
+    UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
+    toolBar.frame = CGRectMake(0, frame.size.height- imgToolBar.size.height, frame.size.width , imgToolBar.size.height);
+    
+    // resize adview
+    self.adView.frame = CGRectMake(0, frame.size.height - toolBar.frame.size.height - ADVERT_BAR_HEIGHT, frame.size.width, ADVERT_BAR_HEIGHT);
+}
 
 @end

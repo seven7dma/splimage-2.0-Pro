@@ -10,6 +10,7 @@
 
 @interface PatternLayoutViewController ()
 @property (nonatomic, assign) BOOL atleastOneVideo;
+@property (nonatomic, strong) NSArray *saveArrayFramesOnRotation;
 @end
 
 @implementation PatternLayoutViewController
@@ -29,20 +30,24 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    CGRect frame = [super getScreenFrameForCurrentOrientation];
+    [self adjustFrameBeforeView:frame];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+ 
     [super viewDidAppear:animated];
-    [self loadUpCanvasView];
-    [self.view addSubview:canvasView];
-
+    CGRect frame = [super getScreenFrameForCurrentOrientation];
+    [self adjustFrameAfterView:frame];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
 //    [canvasView saveVideoScrollDimensionData];
     [super viewWillDisappear:animated];
 }
+
 -(void)loadUpCanvasView{
     
     for (NSDictionary * objects in [SavedData getValueForKey:ARRAY_FRAMES]) {
@@ -56,8 +61,9 @@
     [canvasView setDelegate:self];
    
     [self checkPlayButtonSatus];
-
+    
 }
+
 - (void)viewDidLoad
 {
     useSuperButtons = YES;
@@ -75,9 +81,12 @@
     UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
     
     canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:imgCanvas];
+    canvasView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     [canvasView shouldAddAllTheGesture:YES];
     [canvasView setDelegate:self];
-
+    canvasView.autoresizesSubviews = YES;
+    
     actionSheetLoadVideos = [[UIActionSheet alloc] initWithTitle:@"Choose Video Source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Record Video",@"Choose from Gallery", nil];
     [self setUpToolBarButton];
 
@@ -186,6 +195,7 @@
 
 
 -(void)tabBarButtonClicked:(UIButton *)sender{
+    
     [canvasView stopPlayer];
     pushThisController = nil;
     switch ([sender tag]) {
@@ -218,7 +228,6 @@
         default:
             break;
     }
-    
     
     if(pushThisController != nil)
         [self.navigationController pushViewController:pushThisController animated:YES];
@@ -260,6 +269,7 @@
 -(void)videoPositionsChanged{
     [self loadUpCanvasView];
 }
+
 #pragma mark - UIActionSheet Delegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -314,11 +324,14 @@
 -(void)addMediaTotheView:(NSURL *)videoUrl{
     
 //    [canvasView loadSelectedVideosOnView:selectedVideo];
+
     [self checkPlayButtonSatus];
 }
 
 -(void)checkPlayButtonSatus{
     [btnPlay setEnabled:[canvasView checkAllButtons]];
+    
+ 
 }
 
 #pragma Mark - Image Picker Controller Delegate
@@ -405,10 +418,94 @@
     [self replaceVideoWithTrimmedVideo];
     
 }//- (void)videoEditorController:(UIVideoEditorController *)editor didFailWithError:(NSError *)error;
+
 - (void)videoEditorControllerDidCancel:(UIVideoEditorController *)editor{
     [editor dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 
+    CGRect frame = [super getScreenFrameForOrientation:toInterfaceOrientation];
+    [self adjustFrameBeforeView:frame];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+
+    UIInterfaceOrientation orientation;
+    if ( (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) )
+        orientation = UIInterfaceOrientationPortrait;
+    else
+        orientation = UIInterfaceOrientationLandscapeLeft;
+    
+    CGRect frame = [super getScreenFrameForOrientation:orientation];
+    [self adjustFrameAfterView:frame];
+    
+}
+
+-(void)adjustFrameBeforeView:(CGRect) frame{
+    
+    [self layoutTopViewForInterfaceFrame:frame];
+    
+    [canvasView removeFromSuperview];
+    canvasView = nil;
+    toolBar.items = [NSArray new];
+    
+}
+
+-(void)adjustFrameAfterView:(CGRect) frame{
+    
+    [self  saveSelectedVideoInfo];
+    UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
+
+    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:imgCanvas];
+
+    [self loadBackSavedVideoInfoAfterRotation];
+
+    [canvasView shouldAddAllTheGesture:YES];
+    [canvasView setDelegate:self];
+    [self loadUpCanvasView];
+    [self.view addSubview:canvasView];
+    BOOL isPlayButtonEnabled = btnPlay.isEnabled;
+    [self setUpToolBarButton];
+    [btnPlay setEnabled:isPlayButtonEnabled];
+
+}
+
+// saving video content info on rotation so it can be restored back.
+-(void) saveSelectedVideoInfo {
+
+    self.saveArrayFramesOnRotation = [NSArray arrayWithArray:[SavedData getValueForKey:ARRAY_FRAMES]];
+}
+
+
+// load back video content info on rotation as canvas view has been initialized.
+-(void) loadBackSavedVideoInfoAfterRotation {
+    
+    for (NSDictionary * objects in [SavedData getValueForKey:ARRAY_FRAMES]) {
+        
+        for (NSDictionary *savedObjects in self.saveArrayFramesOnRotation) {
+        
+            if ([[objects valueForKey:kTag] integerValue]  == [[savedObjects valueForKey:kTag] integerValue])
+            {
+                [objects setValue:savedObjects[kVideoURL] forKey:kVideoURL];
+                [objects setValue:savedObjects[kReverseVideoURL] forKey:kReverseVideoURL];
+                [objects setValue:savedObjects[kFilter] forKey:kFilter];
+                [objects setValue:savedObjects[kLength] forKey:kLength];
+                [objects setValue:savedObjects[kIsReverse] forKey:kIsReverse];
+                [objects setValue:savedObjects[kIsMute] forKey:kIsMute];
+                [objects setValue:savedObjects[kWidth] forKey:kWidth];
+                [objects setValue:savedObjects[kHeight] forKey:kHeight];
+                [objects setValue:savedObjects[kZoomScale] forKey:kZoomScale];
+                [objects setValue:savedObjects[kShouldRevert] forKey:kShouldRevert];
+                [objects setValue:savedObjects[kContentOffset] forKey:kContentOffset];
+                [objects setValue:savedObjects[kShouldRevert] forKey:kShouldRevert];
+                [objects setValue:savedObjects[kVideoURL] forKey:kVideoURL];
+            
+            }
+        }
+    }
+    //[SavedData setValue:self.saveArrayFramesOnRotation forKey:ARRAY_FRAMES];
+
+}
 
 @end

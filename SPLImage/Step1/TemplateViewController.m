@@ -67,6 +67,7 @@
   
     //Delete files in tmp folder
     [SavedData removeAllImportedFiles];
+    [self reloadSelfViewForOrientation:[UIApplication sharedApplication].statusBarOrientation];
 
 }
 
@@ -422,46 +423,31 @@
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+
+    [self reloadSelfViewForOrientation:toInterfaceOrientation];
+}
+
+-(void)reloadSelfViewForOrientation:(UIInterfaceOrientation) orientation {
+
+    CGRect frame = [super getScreenFrameForOrientation:orientation];
+
+    [super layoutTopViewForInterfaceFrame:frame];
     
-    NSLog (@"before scroll view template width :%f height :%f", scrollTemplateView.frame.size.width, scrollTemplateView.frame.size.height);
-    CGRect frame = [super getScreenFrameForOrientation:toInterfaceOrientation];
-
-    // resize navigation bar
-    CGRect navBarFrame = navBarPrimary.frame;
-    navBarPrimary.frame = CGRectMake(0, 20, frame.size.width, navBarFrame.size.height);
-    
-    // resize instagram button
-    UIImage *imgBtnNav = btnRightNav.imageView.image;
-    btnRightNav.frame = CGRectMake(frame.size.width - (imgBtnNav.size.width+9), 5, imgBtnNav.size.width, imgBtnNav.size.height);
-
-    // resize splimage icon
-    imgBtnNav = btnCenterNav.imageView.image;
-    btnCenterNav.frame = CGRectMake(frame.size.width/2 - imgBtnNav.size.width/2, 5, imgBtnNav.size.width, imgBtnNav.size.height);
-
     // resize scrollview
     scrollTemplateView.frame = CGRectMake(0, navBarPrimary.frame.size.height + 20, frame.size.width , frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 74);
     [scrollTemplateView  setContentSize:CGSizeMake(pageControl.numberOfPages * frame.size.width, scrollTemplateView.frame.size.height)];
-
-    NSLog (@"after scroll view template width :%f height :%f", scrollTemplateView.frame.size.width, scrollTemplateView.frame.size.height);
-
-    // resize toolbar
-    UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
-    toolBar.frame = CGRectMake(0, frame.size.height- imgToolBar.size.height, frame.size.width , imgToolBar.size.height);
     
-    // resize adview
-    self.adView.frame = CGRectMake(0, frame.size.height - toolBar.frame.size.height - ADVERT_BAR_HEIGHT, frame.size.width, ADVERT_BAR_HEIGHT);
-
     // TODO resize pageControl
     //    pageControl.frame = CGRectMake(frame.size.width/2 - 5, frame.size.height - toolBar.frame.size.height - self.adView.frame.size.height - 10, 10, 10);
-
+    
     //pageControl.frame = CGRectMake(10, self.adView.frame.origin.y  - 20 , 5, 10);
     //pageControl.center = CGPointMake(frame.size.width/2 - 10, pageControl.center.y);
     
     //pageControl.backgroundColor = [UIColor redColor];
-
+    
     // layout buttons for new orientation
-    [self resetTemplateButtonsforRotation:toInterfaceOrientation];
-
+    
+    [self resetTemplateButtonsforRotation:orientation];
 }
 
 @end

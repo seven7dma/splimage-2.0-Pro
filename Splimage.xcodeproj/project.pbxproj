@@ -100,10 +100,10 @@
 		2F16DC83183AF4E30067416C /* btn_textpen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DC71183AF4E30067416C /* btn_textpen@2x.png */; };
 		2F16DC84183AF4E30067416C /* btn_textplus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DC72183AF4E30067416C /* btn_textplus.png */; };
 		2F16DC85183AF4E30067416C /* btn_textplus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DC73183AF4E30067416C /* btn_textplus@2x.png */; };
-		2F16DC8B183B26C10067416C /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DC8A183B26C10067416C /* background@2x.png */; };
 		2F16DC92183B308B0067416C /* SPLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F16DC8F183B308B0067416C /* SPLSettingViewController.m */; };
 		2F16DC93183B308B0067416C /* SPLSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DC90183B308B0067416C /* SPLSettingViewController.xib */; };
 		2F16DC94183B308B0067416C /* SPLSettingViewController_iPhone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DC91183B308B0067416C /* SPLSettingViewController_iPhone5.xib */; };
+		2F1C2A35186FE10F008FF577 /* SplImageNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F1C2A34186FE10F008FF577 /* SplImageNew.png */; };
 		2F5A4C44183449D700C6872A /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5A4C43183449D700C6872A /* libFlurry_4.3.0.a */; };
 		2F5A4D6218344AD200C6872A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5A4C4618344AD000C6872A /* FacebookSDK.framework */; };
 		2F5A4D6318344AD200C6872A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2F5A4C4718344AD000C6872A /* LICENSE */; };
@@ -117,7 +117,7 @@
 		2F84FA83183F56B500A594B4 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84FA82183F56B500A594B4 /* iAd.framework */; };
 		2F84FA85183F56E500A594B4 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84FA84183F56E500A594B4 /* PassKit.framework */; };
 		2F84FA8A183FE11200A594B4 /* GoProViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F84FA88183FE11200A594B4 /* GoProViewController.xib */; };
-		2F84FA8B183FE11200A594B4 /* GoProViewController_iPhone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F84FA89183FE11200A594B4 /* GoProViewController_iPhone5.xib */; };
+		2F84FA8B183FE11200A594B4 /* GoProViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F84FA89183FE11200A594B4 /* GoProViewController_iPad.xib */; };
 		2F84FA8E183FE15100A594B4 /* GoProViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84FA8D183FE15100A594B4 /* GoProViewController.m */; };
 		2F864AE5183B54CF00B32FC5 /* Canvas.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F864AE3183B54CF00B32FC5 /* Canvas.png */; };
 		2F864AE6183B54CF00B32FC5 /* Canvas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F864AE4183B54CF00B32FC5 /* Canvas@2x.png */; };
@@ -131,8 +131,8 @@
 		2FACC25C1842E04A001D8834 /* icon_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC25A1842E04A001D8834 /* icon_share@2x.png */; };
 		2FACC2621842E15F001D8834 /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2611842E15F001D8834 /* home_icon.png */; };
 		2FACC27918435591001D8834 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FACC27618435420001D8834 /* libGPUImage.a */; };
-		2FACC2A2184D4844001D8834 /* background_iPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A1184D4844001D8834 /* background_iPhone5.png */; };
-		2FACC2A4184D485D001D8834 /* background_iPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A3184D485D001D8834 /* background_iPhone5@2x.png */; };
+		2FACC2A2184D4844001D8834 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A1184D4844001D8834 /* background.png */; };
+		2FACC2A4184D485D001D8834 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A3184D485D001D8834 /* background@2x.png */; };
 		2FACC2A6184D4CA1001D8834 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A5184D4CA1001D8834 /* lookup_miss_etikate.png */; };
 		2FE49EE8184FBC4C007465E6 /* thumb12.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EE6184FBC4C007465E6 /* thumb12.png */; };
 		2FE49EE9184FBC4C007465E6 /* thumb12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EE7184FBC4C007465E6 /* thumb12@2x.png */; };
@@ -330,7 +330,6 @@
 		68FC961A1681B62C006FA4E2 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC96191681B62C006FA4E2 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		68FC98531681D7A3006FA4E2 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC98521681D7A3006FA4E2 /* libsqlite3.0.dylib */; };
 		68FE175C1675DEC600EAE018 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FE175B1675DEC600EAE018 /* Default-568h@2x.png */; };
-		68FE17631675E58C00EAE018 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FE17621675E58C00EAE018 /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -488,11 +487,11 @@
 		2F16DC71183AF4E30067416C /* btn_textpen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_textpen@2x.png"; sourceTree = "<group>"; };
 		2F16DC72183AF4E30067416C /* btn_textplus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_textplus.png; sourceTree = "<group>"; };
 		2F16DC73183AF4E30067416C /* btn_textplus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_textplus@2x.png"; sourceTree = "<group>"; };
-		2F16DC8A183B26C10067416C /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background@2x.png"; path = "Resources/Images/3G/background@2x.png"; sourceTree = "<group>"; };
 		2F16DC8E183B308B0067416C /* SPLSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLSettingViewController.h; sourceTree = "<group>"; };
 		2F16DC8F183B308B0067416C /* SPLSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLSettingViewController.m; sourceTree = "<group>"; };
 		2F16DC90183B308B0067416C /* SPLSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPLSettingViewController.xib; sourceTree = "<group>"; };
 		2F16DC91183B308B0067416C /* SPLSettingViewController_iPhone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPLSettingViewController_iPhone5.xib; sourceTree = "<group>"; };
+		2F1C2A34186FE10F008FF577 /* SplImageNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplImageNew.png; sourceTree = "<group>"; };
 		2F5A4AFE1834417000C6872A /* GData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GData.h; sourceTree = "<group>"; };
 		2F5A4AFF1834417000C6872A /* GDataACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataACL.h; sourceTree = "<group>"; };
 		2F5A4B001834417000C6872A /* GDataACLKeyedRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataACLKeyedRole.h; sourceTree = "<group>"; };
@@ -820,7 +819,7 @@
 		2F84FA82183F56B500A594B4 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		2F84FA84183F56E500A594B4 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		2F84FA88183FE11200A594B4 /* GoProViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoProViewController.xib; sourceTree = "<group>"; };
-		2F84FA89183FE11200A594B4 /* GoProViewController_iPhone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoProViewController_iPhone5.xib; sourceTree = "<group>"; };
+		2F84FA89183FE11200A594B4 /* GoProViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoProViewController_iPad.xib; sourceTree = "<group>"; };
 		2F84FA8C183FE15100A594B4 /* GoProViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoProViewController.h; sourceTree = "<group>"; };
 		2F84FA8D183FE15100A594B4 /* GoProViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoProViewController.m; sourceTree = "<group>"; };
 		2F864AE3183B54CF00B32FC5 /* Canvas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Canvas.png; sourceTree = "<group>"; };
@@ -835,8 +834,8 @@
 		2FACC25A1842E04A001D8834 /* icon_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share@2x.png"; sourceTree = "<group>"; };
 		2FACC2611842E15F001D8834 /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		2FACC26F1843541F001D8834 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
-		2FACC2A1184D4844001D8834 /* background_iPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_iPhone5.png; sourceTree = "<group>"; };
-		2FACC2A3184D485D001D8834 /* background_iPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background_iPhone5@2x.png"; sourceTree = "<group>"; };
+		2FACC2A1184D4844001D8834 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		2FACC2A3184D485D001D8834 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		2FACC2A5184D4CA1001D8834 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
 		2FE49EE6184FBC4C007465E6 /* thumb12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb12.png; sourceTree = "<group>"; };
 		2FE49EE7184FBC4C007465E6 /* thumb12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb12@2x.png"; sourceTree = "<group>"; };
@@ -1083,7 +1082,6 @@
 		68FC984C1681D635006FA4E2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		68FC98521681D7A3006FA4E2 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		68FE175B1675DEC600EAE018 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		68FE17621675E58C00EAE018 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/Images/3G/background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1286,6 +1284,7 @@
 		2F16DBDD183AF43F0067416C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				2F1C2A34186FE10F008FF577 /* SplImageNew.png */,
 				2FACC2A5184D4CA1001D8834 /* lookup_miss_etikate.png */,
 				2FACC2611842E15F001D8834 /* home_icon.png */,
 				2FACC2591842E04A001D8834 /* icon_share.png */,
@@ -1718,7 +1717,7 @@
 				2F84FA8C183FE15100A594B4 /* GoProViewController.h */,
 				2F84FA8D183FE15100A594B4 /* GoProViewController.m */,
 				2F84FA88183FE11200A594B4 /* GoProViewController.xib */,
-				2F84FA89183FE11200A594B4 /* GoProViewController_iPhone5.xib */,
+				2F84FA89183FE11200A594B4 /* GoProViewController_iPad.xib */,
 				68B7DC6A1683396C002F8A5F /* FaceBookLikeViewController.h */,
 				68B7DC6B1683396C002F8A5F /* FaceBookLikeViewController.m */,
 			);
@@ -2036,7 +2035,6 @@
 		68F251AA1671F99300B66905 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
-				2F16DC8A183B26C10067416C /* background@2x.png */,
 				68B92FD916E62B9E003B6E03 /* home_btn@2x.png */,
 				68B92FDA16E62B9E003B6E03 /* redo_btn@2x.png */,
 				68C71CA216D8FC51004D532B /* commint@2x.png */,
@@ -2152,7 +2150,6 @@
 				68F251DA167205A400B66905 /* Stars.png */,
 				68F251DB167205A400B66905 /* toolbar_bg.png */,
 				68F251DC167205A400B66905 /* twitterButton.png */,
-				68FE17621675E58C00EAE018 /* background.png */,
 			);
 			name = 3G;
 			sourceTree = "<group>";
@@ -2160,8 +2157,8 @@
 		68FE17661675E5CF00EAE018 /* iPhone5 */ = {
 			isa = PBXGroup;
 			children = (
-				2FACC2A3184D485D001D8834 /* background_iPhone5@2x.png */,
-				2FACC2A1184D4844001D8834 /* background_iPhone5.png */,
+				2FACC2A3184D485D001D8834 /* background@2x.png */,
+				2FACC2A1184D4844001D8834 /* background.png */,
 			);
 			name = iPhone5;
 			path = Resources/Images/iPhone5;
@@ -2300,6 +2297,7 @@
 				2F71BEF81836A7980084BED9 /* Templates.plist in Resources */,
 				68D54E8916708FFB000250A0 /* InfoPlist.strings in Resources */,
 				68E9E9AA1671EB87008C2458 /* TemplateViewController.xib in Resources */,
+				2F1C2A35186FE10F008FF577 /* SplImageNew.png in Resources */,
 				2F16DC85183AF4E30067416C /* btn_textplus@2x.png in Resources */,
 				68F2519E1671F49400B66905 /* Icon@2x.png in Resources */,
 				2F16DC7B183AF4E30067416C /* btn_dropdownphoto@2x.png in Resources */,
@@ -2328,7 +2326,7 @@
 				2F096848183D7D8A004F4F66 /* rev.png in Resources */,
 				2F16DC1B183AF46C0067416C /* thumb_spimage01@2x.png in Resources */,
 				2F16DBD1183AF3CE0067416C /* tabbar_bg@2x.png in Resources */,
-				2FACC2A4184D485D001D8834 /* background_iPhone5@2x.png in Resources */,
+				2FACC2A4184D485D001D8834 /* background@2x.png in Resources */,
 				2F09684B183D7D8A004F4F66 /* fwd@2x.png in Resources */,
 				2F5A4D6418344AD200C6872A /* README in Resources */,
 				68F251E3167205A400B66905 /* Rate-us.png in Resources */,
@@ -2353,7 +2351,7 @@
 				68F251F7167205AD00B66905 /* fbButton@2x.png in Resources */,
 				68F251F8167205AD00B66905 /* Navbar@2x.png in Resources */,
 				68F251F9167205AD00B66905 /* Rate-us@2x.png in Resources */,
-				2FACC2A2184D4844001D8834 /* background_iPhone5.png in Resources */,
+				2FACC2A2184D4844001D8834 /* background.png in Resources */,
 				2FE49EF3184FBF35007465E6 /* thumb10@2x.png in Resources */,
 				68F251FA167205AD00B66905 /* shareBtn@2x.png in Resources */,
 				2F5A4D6318344AD200C6872A /* LICENSE in Resources */,
@@ -2365,7 +2363,6 @@
 				2FE49EF9184FC069007465E6 /* thumb09@2x.png in Resources */,
 				68FE175C1675DEC600EAE018 /* Default-568h@2x.png in Resources */,
 				2F864AE5183B54CF00B32FC5 /* Canvas.png in Resources */,
-				68FE17631675E58C00EAE018 /* background.png in Resources */,
 				2F16DC12183AF46C0067416C /* thumb05.png in Resources */,
 				2F16DC78183AF4E30067416C /* btn_done.png in Resources */,
 				68B784521678816A00C5C3B6 /* PatternLayoutViewController.xib in Resources */,
@@ -2502,7 +2499,6 @@
 				2F16DC75183AF4E30067416C /* btn_addphoto@2x.png in Resources */,
 				68FC960616819A0D006FA4E2 /* accept_iconold@2x.png in Resources */,
 				2F16DC5E183AF4BC0067416C /* btn_sharetumblr.png in Resources */,
-				2F16DC8B183B26C10067416C /* background@2x.png in Resources */,
 				68FC960B1681A63E006FA4E2 /* green_arrow_reverse@2x in Resources */,
 				2F16DC57183AF4BC0067416C /* img_scrollbartrasparency@2x.png in Resources */,
 				2F096849183D7D8A004F4F66 /* rev@2x.png in Resources */,
@@ -2516,7 +2512,7 @@
 				68B44BBA169D46F700547D1A /* Play_All_Once_green.png in Resources */,
 				68B03F8516A050410024DE31 /* play_selected@2x.png in Resources */,
 				68B03F8716A0504A0024DE31 /* play_selected.png in Resources */,
-				2F84FA8B183FE11200A594B4 /* GoProViewController_iPhone5.xib in Resources */,
+				2F84FA8B183FE11200A594B4 /* GoProViewController_iPad.xib in Resources */,
 				2F16DBD7183AF3CE0067416C /* tabbar_setting@2x.png in Resources */,
 				68C0727716B7DE1200CC9FA3 /* 4.png in Resources */,
 				2F16DC5A183AF4BC0067416C /* btn_sharemms.png in Resources */,
@@ -2664,6 +2660,7 @@
 				PROVISIONING_PROFILE = "8FF13A00-900D-4BFC-B457-8D62FAA091F8";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8FF13A00-900D-4BFC-B457-8D62FAA091F8";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -2704,6 +2701,7 @@
 				PROVISIONING_PROFILE = "8FF13A00-900D-4BFC-B457-8D62FAA091F8";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8FF13A00-900D-4BFC-B457-8D62FAA091F8";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2758,7 +2756,7 @@
 				PRODUCT_NAME = Splimage;
 				PROVISIONING_PROFILE = "161CE65A-6318-471A-B7BD-93D88AA722D2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "161CE65A-6318-471A-B7BD-93D88AA722D2";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
@@ -2802,7 +2800,7 @@
 				PRODUCT_NAME = Splimage;
 				PROVISIONING_PROFILE = "161CE65A-6318-471A-B7BD-93D88AA722D2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "161CE65A-6318-471A-B7BD-93D88AA722D2";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";

@@ -1,3 +1,6 @@
+// GPUImageMovieWriter.m
+//
+
 #import "GPUImageMovieWriter.h"
 
 #import "GPUImageContext.h"

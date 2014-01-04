@@ -210,9 +210,8 @@
                 [self startProcessingOutput];
 
             }
-                  }
             break;
-            
+        }
         case INDEX_LEFT_NEXT:
         //home button
             [self homeButtonPressed];
@@ -724,6 +723,7 @@
     NSLog (@"error: %@", error);
 }
 
+
 #pragma mark - VideoPlaybackView Delegate Methods -
 -(void)videoCreatedSuccessfully:(VideoPlaybackView *)videoView
 {
@@ -732,7 +732,7 @@
     [self getSetReloadWriter];
     
 }
-#pragma mark -
+
 
 #pragma mark -
 -(void)showActivity{
@@ -755,8 +755,9 @@
     HUD.progress=0.0;
     while (HUD.progress < 1.0f) {
         HUD.progress += totalDuration;
-  }
+    }
 }
+
 -(void)progressTimer{
     HUD.mode = MBProgressHUDModeIndeterminate;
     HUD.labelText = @"Generating Video";

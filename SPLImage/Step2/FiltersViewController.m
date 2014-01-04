@@ -50,11 +50,11 @@
     }
     
     UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
-    toolBarFilters = [[UIToolbar alloc] initWithFrame:CGRectMake(0, screenFrame.size.height-imgToolBar.size.height, 320 , imgToolBar.size.height)];
+    toolBarFilters = [[UIToolbar alloc] initWithFrame:CGRectMake(0, screenFrame.size.height-imgToolBar.size.height, screenFrame.size.width , imgToolBar.size.height)];
     [toolBarFilters setBackgroundImage:imgToolBar forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
     [self.view addSubview:toolBarFilters];
     
-    tableFilters = [[UITableView alloc] initWithFrame:CGRectMake(0, VIDEO_VIEW_HEIGHT + 50, 320, screenFrame.size.height-VIDEO_VIEW_HEIGHT-imgToolBar.size.height - self.adView.frame.size.height)];
+    tableFilters = [[UITableView alloc] initWithFrame:CGRectMake(0, screenFrame.size.height - FILTER_TABLE_HEIGHT - 88, screenFrame.size.width, FILTER_TABLE_HEIGHT)];
     NSLog(@"adview height : %f",self.adView.frame.size.height);
     //tableFilters.backgroundColor = [UIColor greenColor];
     //[tableFilters setBackgroundColor:[UIColor blackColor]];
@@ -66,7 +66,7 @@
 
     CGAffineTransform rotateTable = CGAffineTransformMakeRotation(-M_PI_2);
     tableFilters.transform = rotateTable;
-    tableFilters.frame = CGRectMake(0,VIDEO_VIEW_HEIGHT + 50,tableFilters.frame.size.height,tableFilters.frame.size.width);
+    tableFilters.frame = CGRectMake(0,screenFrame.size.height - FILTER_TABLE_HEIGHT - 88,tableFilters.frame.size.height,tableFilters.frame.size.width);
 
     // Do any additional setup after loading the view from its nib.
     
@@ -102,9 +102,11 @@
         [splPlayerView removeFromSuperview];
         splPlayerView=nil;
     }
-    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, 320 , VIDEO_VIEW_HEIGHT) andUrl:videoPath andFiltered:selectedFilter];
-
     
+    CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
+
+    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, screenFrame.size.width, screenFrame.size.height - FILTER_TABLE_HEIGHT - 160) andUrl:videoPath andFiltered:selectedFilter];
+
     [splPlayerView setTag:selectedIndex];
     
     [splPlayerView setDelegate:self];
@@ -112,6 +114,7 @@
     [self.view addSubview:splPlayerView];
 
 }
+
 -(void)stopPlayer{
     [splPlayerView stopPlayer];
 }
@@ -270,5 +273,54 @@
     }
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    
+    CGRect frame = [super getScreenFrameForOrientation:toInterfaceOrientation];
+    [self adjustFrameBeforeView:frame];
+    
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+
+    UIInterfaceOrientation orientation;
+    if ( (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) )
+        orientation = UIInterfaceOrientationPortrait;
+    else
+        orientation = UIInterfaceOrientationLandscapeLeft;
+    
+    CGRect frame = [super getScreenFrameForOrientation:orientation];
+    [self adjustFrameAfterView:frame];
+}
+
+-(void)adjustFrameBeforeView:(CGRect) frame{
+    
+    [self layoutTopViewForInterfaceFrame:frame];
+    UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
+    toolBarFilters.frame = CGRectMake(0, frame.size.height-imgToolBar.size.height, frame.size.width , imgToolBar.size.height);
+    if (splPlayerView) {
+        [splPlayerView stopPlayer];
+        [splPlayerView removeFromSuperview];
+        splPlayerView=nil;
+    }
+    [tableFilters removeFromSuperview];
+}
+
+-(void)adjustFrameAfterView:(CGRect) frame{
+    
+    [self setUpToolBarButton];
+    
+    UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
+    toolBarFilters.frame = CGRectMake(0, frame.size.height-imgToolBar.size.height, frame.size.width , imgToolBar.size.height);
+    
+    tableFilters.frame = CGRectMake(0, frame.size.height - FILTER_TABLE_HEIGHT - 88, frame.size.width, FILTER_TABLE_HEIGHT);
+
+    [self.view addSubview:tableFilters];
+    selectedFilter = [SavedData getFilterAtIndex:selectedIndex];
+    [tableFilters reloadData];
+
+    [tableFilters selectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0] animated:NO  scrollPosition:UITableViewScrollPositionNone ];
+    [[tableFilters delegate] tableView:tableFilters didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0]];
+
+}
 
 @end
