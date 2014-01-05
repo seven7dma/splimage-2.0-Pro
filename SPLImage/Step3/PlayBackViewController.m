@@ -8,8 +8,10 @@
 
 #import "PlayBackViewController.h"
 
-@interface PlayBackViewController ()
-
+@interface PlayBackViewController () {
+ 
+    BOOL videoMergeCompleted;
+}
 @end
 
 #define VIDEO_TITLE @"My Latest Video prepared by Splimage"
@@ -56,13 +58,14 @@
     arraySequence = [NSMutableArray array];
     for (int i =0; i<4; i++)
         [arraySequence addObject:[NSNumber numberWithInt:i]];
-
+    videoMergeCompleted = NO;
 }
 
-#pragma mark-
+
 #pragma mark-
 
 -(void)loadUpCanvasView{
+    
     for (NSDictionary * objects in [SavedData getValueForKey:ARRAY_FRAMES]) {
         [canvasView loadSelectedVideosOnView:[[objects valueForKey:kTag] integerValue]];
     }
@@ -89,7 +92,11 @@
 
 #pragma mark-
 -(void)loadUpAndPlayVideo{
-    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, 59, 310 , 310) andUrl:combinedVideoUrl andFiltered:FILTER_NONE];
+    
+    CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
+
+    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, 64, screenFrame.size.width - 10 , screenFrame.size.height - 150) andUrl:combinedVideoUrl andFiltered:FILTER_NONE];
+    
     [splPlayerView setTag:indexSelected];
     [splPlayerView setDelegate:self];
     [splPlayerView loadUpPlayer];
@@ -98,6 +105,7 @@
 }
 
 -(void)setUpToolBarButton{
+    
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -706,6 +714,7 @@
         [SavedData removeFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/Movie%d.m4v",i]]];
     }
     
+    videoMergeCompleted = YES;
 
     [btnPlay setHidden:YES];
     [mySwitch setHidden:YES];
@@ -1226,5 +1235,42 @@ ofTotalByteCount:(unsigned long long)dataLength {
     }];
 }
 
+#pragma handle autorotation 
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+
+    CGRect frame = [super getScreenFrameForOrientation:toInterfaceOrientation];
+    [self adjustFrameBeforeView:frame];
+
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    
+    [self adjustFrameAfterView];
+    
+}
+
+-(void)adjustFrameBeforeView:(CGRect) frame{
+    
+    [self layoutTopViewForInterfaceFrame:frame];
+    if (videoMergeCompleted) {
+
+        if (splPlayerView) {
+            [splPlayerView stopPlayer];
+            [splPlayerView removeFromSuperview];
+            splPlayerView=nil;
+        }
+    }
+}
+
+-(void)adjustFrameAfterView{
+    
+    if (videoMergeCompleted) {
+        [self loadUpAndPlayVideo];
+        [self reSetUpToolBarButton];
+    } else {
+        [self setUpToolBarButton];
+    }
+}
 
 @end

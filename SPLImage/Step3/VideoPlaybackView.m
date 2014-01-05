@@ -175,7 +175,7 @@
     [myFilter addTarget:movieWriter];
     
     // Configure this for video from the movie file, where we want to preserve all video frames and audio samples
-    movieFile.playSound = YES;
+    movieFile.playSound = NO;
     [movieFile setPlayAtActualSpeed:YES];
     movieWriter.shouldPassthroughAudio = YES;
     movieFile.audioEncodingTarget = movieWriter;

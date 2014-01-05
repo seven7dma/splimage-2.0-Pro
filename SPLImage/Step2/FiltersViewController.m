@@ -105,7 +105,7 @@
     
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
 
-    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, screenFrame.size.width, screenFrame.size.height - FILTER_TABLE_HEIGHT - 160) andUrl:videoPath andFiltered:selectedFilter];
+    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, screenFrame.size.width - 10, screenFrame.size.height - FILTER_TABLE_HEIGHT - 160) andUrl:videoPath andFiltered:selectedFilter];
 
     [splPlayerView setTag:selectedIndex];
     
