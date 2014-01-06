@@ -134,6 +134,7 @@
 		2FACC2A2184D4844001D8834 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A1184D4844001D8834 /* background.png */; };
 		2FACC2A4184D485D001D8834 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A3184D485D001D8834 /* background@2x.png */; };
 		2FACC2A6184D4CA1001D8834 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A5184D4CA1001D8834 /* lookup_miss_etikate.png */; };
+		2FC44E35187AA08E00DC7E46 /* libFlurryAds_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC44E34187AA08E00DC7E46 /* libFlurryAds_4.3.0.a */; };
 		2FE49EE8184FBC4C007465E6 /* thumb12.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EE6184FBC4C007465E6 /* thumb12.png */; };
 		2FE49EE9184FBC4C007465E6 /* thumb12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EE7184FBC4C007465E6 /* thumb12@2x.png */; };
 		2FE49EEC184FBF19007465E6 /* thumb_depic.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EEA184FBF19007465E6 /* thumb_depic.png */; };
@@ -837,6 +838,9 @@
 		2FACC2A1184D4844001D8834 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		2FACC2A3184D485D001D8834 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		2FACC2A5184D4CA1001D8834 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
+		2FC44E32187AA08E00DC7E46 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		2FC44E33187AA08E00DC7E46 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
+		2FC44E34187AA08E00DC7E46 /* libFlurryAds_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds_4.3.0.a; sourceTree = "<group>"; };
 		2FE49EE6184FBC4C007465E6 /* thumb12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb12.png; sourceTree = "<group>"; };
 		2FE49EE7184FBC4C007465E6 /* thumb12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb12@2x.png"; sourceTree = "<group>"; };
 		2FE49EEA184FBF19007465E6 /* thumb_depic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb_depic.png; sourceTree = "<group>"; };
@@ -1097,6 +1101,7 @@
 				2F5A4E2E18344BFB00C6872A /* EventKit.framework in Frameworks */,
 				2F5A4E2C18344BB000C6872A /* AddressBook.framework in Frameworks */,
 				68BF84D216CF7FCC004057FA /* SystemConfiguration.framework in Frameworks */,
+				2FC44E35187AA08E00DC7E46 /* libFlurryAds_4.3.0.a in Frameworks */,
 				68BF84D016CF7FC4004057FA /* Security.framework in Frameworks */,
 				68BD5201168035FD00729309 /* CoreLocation.framework in Frameworks */,
 				68BF84D616CF8B4B004057FA /* MessageUI.framework in Frameworks */,
@@ -1660,6 +1665,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2FC44E3D187AA21B00DC7E46 /* FlurryAds */ = {
+			isa = PBXGroup;
+			children = (
+				2FC44E32187AA08E00DC7E46 /* FlurryAdDelegate.h */,
+				2FC44E33187AA08E00DC7E46 /* FlurryAds.h */,
+				2FC44E34187AA08E00DC7E46 /* libFlurryAds_4.3.0.a */,
+			);
+			name = FlurryAds;
+			path = Flurry;
+			sourceTree = "<group>";
+		};
 		6840AA901671E85600802C37 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1909,6 +1925,7 @@
 				68F2519D1671F49400B66905 /* Icon@2x.png */,
 				68D54E8416708FFB000250A0 /* SPLImage */,
 				2F5A4C4518344AD000C6872A /* FacebookSDK */,
+				2FC44E3D187AA21B00DC7E46 /* FlurryAds */,
 				2F5A4C41183449D700C6872A /* Flurry */,
 				68B8EE5416BC0E5F003F651B /* TPCircularBuffer-master */,
 				68BF84D416CF81D7004057FA /* GoogleYouTube */,
@@ -2735,6 +2752,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					/Users/infosys/Desktop/MyApplications/SPLImage/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
@@ -2785,6 +2803,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					/Users/infosys/Desktop/MyApplications/SPLImage/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
