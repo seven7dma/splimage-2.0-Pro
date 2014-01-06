@@ -67,12 +67,14 @@
     
     CGRect frame = [super getScreenFrameForCurrentOrientation];
     [self adjustFrameBeforeView:frame];
-
+ 
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self adjustFrameAfterView];
+//    [FlurryAds setAdDelegate:self];
+//    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
     
     //set selected filter by default
     

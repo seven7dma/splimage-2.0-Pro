@@ -64,20 +64,18 @@
     [self.view addSubview:toolBar];
     
     if (self.adView.superview == nil) {
-       self.adView = [[MPAdView alloc] initWithAdUnitId:@"5b9fb0e4fdc846a08970907490054507" size:screenFrame.size];
-       // self.adView.delegate = self;
+        self.adView = [[UIView alloc] init];
         CGRect frame = self.adView.frame;
         frame.origin.y = toolBar.frame.origin.y - ADVERT_BAR_HEIGHT;
         frame.size.height = ADVERT_BAR_HEIGHT;
         self.adView.frame = frame;
         [self.view addSubview:self.adView];
-        [self.adView loadAd];
-        self.adView.backgroundColor = [UIColor lightGrayColor];
+        [FlurryAds setAdDelegate:self];
+        [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
+        
         [self.view bringSubviewToFront:self.adView];
-    } else {
-        [self.adView refreshAd];
     }
-
+    
     UIImage *imgNavBar = [UIImage imageNamed:@"topbar_bg"];
     navBarPrimary = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,20, screenFrame.size.width, imgNavBar.size.height)];
     [navBarPrimary setBackgroundImage:imgNavBar forBarMetrics:UIBarMetricsDefault];

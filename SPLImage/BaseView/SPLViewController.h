@@ -10,6 +10,8 @@
 #import "MBProgressHUD.h"
 #import "MPAdView.h"
 #import "GoProViewController.h"
+#import "FlurryAdDelegate.h"
+#import "FlurryAds.h"
 
 @protocol SPLViewControllerDelegate <NSObject>
 @optional
@@ -33,7 +35,7 @@
 }
 
 @property(nonatomic,assign)id <SPLViewControllerDelegate> delegate;
-@property(nonatomic,retain)MPAdView *adView;
+@property(nonatomic,retain)UIView *adView;
 //@property(nonatomic,retain)UIView *advertView;
 -(void)updatePrimaryUI;
 -(void)leftBarButtonClicked:(UIButton *)sender;

@@ -33,7 +33,6 @@
     
     CGRect frame = [super getScreenFrameForCurrentOrientation];
     [self adjustFrameBeforeView:frame];
-
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -41,6 +40,9 @@
     [super viewDidAppear:animated];
     CGRect frame = [super getScreenFrameForCurrentOrientation];
     [self adjustFrameAfterView:frame];
+  //  [FlurryAds setAdDelegate:self];
+  //  [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

@@ -68,6 +68,13 @@
     //Delete files in tmp folder
     [SavedData removeAllImportedFiles];
     [self reloadSelfViewForOrientation:[UIApplication sharedApplication].statusBarOrientation];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+
+    [super viewDidAppear:YES];
+//    [FlurryAds setAdDelegate:self];
+//    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
 
 }
 

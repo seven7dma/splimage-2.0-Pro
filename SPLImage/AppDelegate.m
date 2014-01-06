@@ -10,6 +10,7 @@
 
 #import "TemplateViewController.h"
 #import "Flurry.h"
+#import "FlurryAds.h"
 
 @implementation AppDelegate
 
@@ -27,6 +28,7 @@
 
     [Flurry setCrashReportingEnabled:YES];
     [Flurry startSession:@"VJ7WQCZ63DCH5JBC8T9C"];
+    [FlurryAds initialize:self.window.rootViewController];
   
     //for splash to appear longer
     [NSThread sleepForTimeInterval:2];

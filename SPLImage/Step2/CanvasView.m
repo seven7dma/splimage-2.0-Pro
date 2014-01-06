@@ -49,6 +49,7 @@
             [btnSounds setFrame:CGRectMake(frameCanvas.origin.x+frameCanvas.size.width-imgSoundSelected.size.width-8, frameCanvas.origin.y+8, imgSoundSelected.size.width, imgSoundSelected.size.height)];
             [btnSounds setHidden:YES];
             [btnSounds setUserInteractionEnabled:YES];
+            
             [self addSubview:btnSounds];
             
             NSString *imgName =[NSString stringWithFormat:@"%d.png",tag+1];

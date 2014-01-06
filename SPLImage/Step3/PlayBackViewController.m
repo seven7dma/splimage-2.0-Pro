@@ -36,7 +36,6 @@
 
 - (void)viewDidLoad
 {
-    
     useSuperButtons = YES;
     [super viewDidLoad];
     //UIImage *backImage = [UIImage imageNamed:@"btn_back"];
@@ -59,8 +58,17 @@
     for (int i =0; i<4; i++)
         [arraySequence addObject:[NSNumber numberWithInt:i]];
     videoMergeCompleted = NO;
+    
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+//    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
+}
 
 #pragma mark-
 
@@ -215,8 +223,7 @@
             }
             else{
                 NSLog(@"Play");
-                [self startProcessingOutput];
-
+                [self showFullScreenAd];  // display interstatial add
             }
             break;
         }
@@ -1270,6 +1277,46 @@ ofTotalByteCount:(unsigned long long)dataLength {
         [self reSetUpToolBarButton];
     } else {
         [self setUpToolBarButton];
+    }
+}
+
+#pragma Flurry Ad delegates 
+
+-(void) showFullScreenAd {
+    
+    [FlurryAds setAdDelegate:self];
+    [FlurryAds fetchAdForSpace:@"INTERSTITIAL_MAIN_VIEW" frame:self.view.frame size:FULLSCREEN];
+    // Check if ad is ready. If so, display the ad
+
+    if ([FlurryAds adReadyForSpace:@"INTERSTITIAL_MAIN_VIEW"]) {
+        [FlurryAds displayAdForSpace:@"INTERSTITIAL_MAIN_VIEW" onView:self.view];
+//    } else {
+        // Fetch an ad
+//        [FlurryAds fetchAdForSpace:@"INTERSTITIAL_MAIN_VIEW" frame:self.view.frame size:FULLSCREEN];
+    }
+}
+
+/*
+ *  It is recommended to pause app activities when an interstitial is shown.
+ *  Listen to should display delegate.
+ */
+//- (BOOL) spaceShouldDisplay:(NSString*)adSpace interstitial:(BOOL)
+//interstitial {
+//    if (interstitial) {
+        // Pause app state here
+//    }
+    
+    // Continue ad display
+//    return YES;
+//}
+
+/*
+ *  Resume app state when the interstitial is dismissed.
+ */
+- (void)spaceDidDismiss:(NSString *)adSpace interstitial:(BOOL)interstitial {
+    if (interstitial) {
+        // Resume app state here
+        [self startProcessingOutput];
     }
 }
 
