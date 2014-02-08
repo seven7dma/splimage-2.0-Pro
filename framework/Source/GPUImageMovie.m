@@ -1,3 +1,5 @@
+//GPUImageMovie.m
+//
 #import "GPUImageMovie.h"
 #import "GPUImageMovieWriter.h"
 #import "GPUImageAudioPlayer.h"
@@ -153,6 +155,7 @@
     NSArray *audioTracks = [self.asset tracksWithMediaType:AVMediaTypeAudio];
     BOOL hasAudioTraks = [audioTracks count] > 0;
     BOOL shouldPlayAudio = hasAudioTraks && self.playSound;
+    // look here
     BOOL shouldRecordAudioTrack = (hasAudioTraks && (weakSelf.audioEncodingTarget != nil));
     
     if (shouldRecordAudioTrack || shouldPlayAudio){
@@ -209,6 +212,7 @@
     }
     else
     {
+        // look here see if this gets called when playaudio = YES
         assetStartTime = 0.0;
         while (reader.status == AVAssetReaderStatusReading && (!_shouldRepeat || keepLooping))
         {
@@ -305,7 +309,9 @@
 }
 
 - (void)readNextAudioSampleFromOutput:(AVAssetReaderTrackOutput *)readerAudioTrackOutput {
+
     if (audioEncodingIsFinished && !self.playSound) {
+        // look here
         return;
     }
     
@@ -314,6 +320,7 @@
         
         if (audioSampleBufferRef) {
             
+            // look here
             if (self.playSound){
                 CFRetain(audioSampleBufferRef);
                 dispatch_async(audio_queue, ^{
@@ -324,11 +331,17 @@
                 });
                 
             } else if (self.audioEncodingTarget != nil && !audioEncodingIsFinished){
+
+                runSynchronouslyOnVideoProcessingQueue(^{
+                  CFRetain(audioSampleBufferRef);
+                    
                 [self.audioEncodingTarget processAudioBuffer:audioSampleBufferRef];
-                CMSampleBufferInvalidate(audioSampleBufferRef);
+                //CMSampleBufferInvalidate(audioSampleBufferRef);
+                /* Don't invalidate the buffer as we retain it and use it asynchronously in the audioEncodingTarget */
+                  CFRelease(audioSampleBufferRef);
+              });
+
             }
-            
-            CFRelease(audioSampleBufferRef);
         } else {
             audioEncodingIsFinished = YES;
         }

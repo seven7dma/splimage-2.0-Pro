@@ -1,3 +1,5 @@
+//GPUImageOutput.h
+//
 #import "GPUImageContext.h"
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE

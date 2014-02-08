@@ -332,8 +332,6 @@ NSString *const kGPUImageMovieWriterProgressNotification = @"kGPUImageMovieWrite
     
     if (_hasAudioTrack)
     {
-        CFRetain(audioBuffer);
-
         CMTime currentSampleTime = CMSampleBufferGetOutputPresentationTimeStamp(audioBuffer);
         
         if (CMTIME_IS_INVALID(startTime))
@@ -347,27 +345,24 @@ NSString *const kGPUImageMovieWriterProgressNotification = @"kGPUImageMovieWrite
                 startTime = currentSampleTime;
             });
         }
-
-//        if (!assetWriterAudioInput.readyForMoreMediaData)
-//        {
-//            NSLog(@"Had to drop an audio frame");
-//            return;
-//        }
         
-//        NSLog(@"Recorded audio sample time: %lld, %d, %lld", currentSampleTime.value, currentSampleTime.timescale, currentSampleTime.epoch);
-//        dispatch_async(movieWritingQueue, ^{
-            if (assetWriterAudioInput.readyForMoreMediaData){
-                [assetWriterAudioInput appendSampleBuffer:audioBuffer];
-            } else {
+        CFRetain(audioBuffer);
+        dispatch_async(movieWritingQueue, ^{
+            if (assetWriterAudioInput.readyForMoreMediaData)
+            {
+                if (![assetWriterAudioInput appendSampleBuffer:audioBuffer]) {
+                    NSLog(@"Failed to write audio at time: %lld, with error: %@", currentSampleTime.value, assetWriter.error);
+                } else {
+                    //                  NSLog(@"Recorded audio sample time: %lld, %d, %lld", currentSampleTime.value, currentSampleTime.timescale, currentSampleTime.epoch);
+                }
+            }
+            else
+            {
                 NSLog(@"Had to drop an audio frame");
             }
-
-            if (_shouldInvalidateAudioSampleWhenDone)
-            {
-                CMSampleBufferInvalidate(audioBuffer);
-            }
+            
             CFRelease(audioBuffer);
-//        });
+        });
     }
 }
 
@@ -596,7 +591,7 @@ NSString *const kGPUImageMovieWriterProgressNotification = @"kGPUImageMovieWrite
     dispatch_sync(movieWritingQueue, ^{
         if(![assetWriterPixelBufferInput appendPixelBuffer:pixel_buffer withPresentationTime:frameTime])
         {
-            NSLog(@"Problem appending pixel buffer at time: %lld", frameTime.value);
+             NSLog(@"Problem appending pixel buffer at time: %lld, with error: %@", frameTime.value, assetWriter.error);
         }
         else
         {

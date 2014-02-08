@@ -1,3 +1,6 @@
+//GPUImageOutput.m
+//
+
 #import "GPUImageOutput.h"
 #import "GPUImageMovieWriter.h"
 #import "GPUImagePicture.h"

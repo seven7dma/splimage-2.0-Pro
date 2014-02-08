@@ -51,6 +51,9 @@
     [filtersArray addObject:[GPUImageBrightnessFilter new]];
     
     [SavedData setValue:filtersArray forKey:ARRAY_FILTERS];
+//    [SavedData setValue:[NSArray arrayWithObjects:@"No Filter",@"Mosaic", @"add noise", @"Emboss", @"Tilt Shift",@"Sepia", @"B & W",@"Tsunami", @"300", @"Electronica",@"Mahogany",@"X-RAY", @"2X", @"Inebriated", nil] forKey:ARRAY_FILTER_NAMES];
+  
+    // only 9 filters in free verson.
     [SavedData setValue:[NSArray arrayWithObjects:@"No Filter",@"Mosaic", @"add noise", @"Emboss", @"Tilt Shift",@"Sepia", @"B & W",@"Tsunami", @"300", @"Electronica",@"Mahogany",@"X-RAY", @"2X", @"Inebriated", nil] forKey:ARRAY_FILTER_NAMES];
     
     // setup background Image
