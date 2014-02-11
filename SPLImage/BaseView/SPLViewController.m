@@ -16,6 +16,7 @@
 
 @implementation SPLViewController
 @synthesize delegate = _delegate;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -153,6 +154,7 @@
         return self;
     return nil;
 }
+
 - (void)adViewDidFailToLoadAd:(MPAdView *)view{
     NSLog(@"Failed to load add");
 }

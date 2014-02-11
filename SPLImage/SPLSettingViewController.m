@@ -27,8 +27,17 @@
 
 
 +(id)sharedSettingViewController{
-    NSString *nibName =  IS_IPHONE5 ? @"SPLSettingViewController_iPhone5" : @"SPLSettingViewController";
-	return [[SPLSettingViewController alloc] initWithNibName:nibName bundle:nil] ;
+    
+    NSString *storyboardId = @"MainStoryboard_iPad";
+    //    if (IS_IPAD)
+//        nibName = @"SPLSettingViewController_iPad";
+    
+//	return [[SPLSettingViewController alloc] initWithNibName:nibName bundle:nil] ;
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardId bundle: nil];
+    SPLSettingViewController *settingsVC = [storyboard instantiateViewControllerWithIdentifier:@"settingsVC"];
+    return settingsVC;
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

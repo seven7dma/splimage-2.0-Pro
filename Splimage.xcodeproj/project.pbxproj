@@ -134,6 +134,8 @@
 		2FACC2A2184D4844001D8834 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A1184D4844001D8834 /* background.png */; };
 		2FACC2A4184D485D001D8834 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A3184D485D001D8834 /* background@2x.png */; };
 		2FACC2A6184D4CA1001D8834 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A5184D4CA1001D8834 /* lookup_miss_etikate.png */; };
+		2FB50D3318A9D2D000388024 /* SPLSettingViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB50D3218A9D2D000388024 /* SPLSettingViewController_iPad.xib */; };
+		2FB50D3518A9D85600388024 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FB50D3418A9D85600388024 /* MainStoryboard_iPad.storyboard */; };
 		2FC44E35187AA08E00DC7E46 /* libFlurryAds_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC44E34187AA08E00DC7E46 /* libFlurryAds_4.3.0.a */; };
 		2FE49EE8184FBC4C007465E6 /* thumb12.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EE6184FBC4C007465E6 /* thumb12.png */; };
 		2FE49EE9184FBC4C007465E6 /* thumb12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EE7184FBC4C007465E6 /* thumb12@2x.png */; };
@@ -838,6 +840,9 @@
 		2FACC2A1184D4844001D8834 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		2FACC2A3184D485D001D8834 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		2FACC2A5184D4CA1001D8834 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
+		2FB50D3118A9CE9E00388024 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = Classes/Utilities/Settings.h; sourceTree = "<group>"; };
+		2FB50D3218A9D2D000388024 /* SPLSettingViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPLSettingViewController_iPad.xib; sourceTree = "<group>"; };
+		2FB50D3418A9D85600388024 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		2FC44E32187AA08E00DC7E46 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		2FC44E33187AA08E00DC7E46 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
 		2FC44E34187AA08E00DC7E46 /* libFlurryAds_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds_4.3.0.a; sourceTree = "<group>"; };
@@ -1046,7 +1051,6 @@
 		68F2519F1671F49800B66905 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		68F251A11671F55600B66905 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		68F251A31671F56000B66905 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		68F251A71671F7D900B66905 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = /Users/Girish/SPLImage/SPLImage/Classes/Utilities/Settings.h; sourceTree = "<absolute>"; };
 		68F251C51671FB0A00B66905 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Classes/Utilities/Constants.h; sourceTree = "<group>"; };
 		68F251D2167205A400B66905 /* btn_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_1.png; path = Resources/Images/3G/btn_1.png; sourceTree = "<group>"; };
 		68F251D3167205A400B66905 /* btn_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_2.png; path = Resources/Images/3G/btn_2.png; sourceTree = "<group>"; };
@@ -1311,6 +1315,8 @@
 				2F16DC8F183B308B0067416C /* SPLSettingViewController.m */,
 				2F16DC90183B308B0067416C /* SPLSettingViewController.xib */,
 				2F16DC91183B308B0067416C /* SPLSettingViewController_iPhone5.xib */,
+				2FB50D3218A9D2D000388024 /* SPLSettingViewController_iPad.xib */,
+				2FB50D3418A9D85600388024 /* MainStoryboard_iPad.storyboard */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2019,7 +2025,7 @@
 				68B68FDE167EE74000C2982D /* GPUImageClass */,
 				68BAD7FA1677078200A623D5 /* EVButton */,
 				68F251C51671FB0A00B66905 /* Constants.h */,
-				68F251A71671F7D900B66905 /* Settings.h */,
+				2FB50D3118A9CE9E00388024 /* Settings.h */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -2376,6 +2382,7 @@
 				2FACC25B1842E04A001D8834 /* icon_share.png in Resources */,
 				2F16DC43183AF4BC0067416C /* btn_shareemail@2x.png in Resources */,
 				68F251FC167205AD00B66905 /* toolbar_bg@2x.png in Resources */,
+				2FB50D3318A9D2D000388024 /* SPLSettingViewController_iPad.xib in Resources */,
 				68F251FD167205AD00B66905 /* twitterButton@2x.png in Resources */,
 				2FE49EF9184FC069007465E6 /* thumb09@2x.png in Resources */,
 				68FE175C1675DEC600EAE018 /* Default-568h@2x.png in Resources */,
@@ -2488,6 +2495,7 @@
 				68BD52AA168083DE00729309 /* share_btn.png in Resources */,
 				2F16DBD6183AF3CE0067416C /* tabbar_setting.png in Resources */,
 				68BD52B5168095B400729309 /* switchBlueBg.png in Resources */,
+				2FB50D3518A9D85600388024 /* MainStoryboard_iPad.storyboard in Resources */,
 				2F16DC47183AF4BC0067416C /* btn_customwatermark.png in Resources */,
 				2F16DBD0183AF3CE0067416C /* tabbar_bg.png in Resources */,
 				2F16DC7C183AF4E30067416C /* btn_dropdowntemplate.png in Resources */,

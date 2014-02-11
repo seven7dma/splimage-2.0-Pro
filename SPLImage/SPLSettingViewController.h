@@ -19,7 +19,6 @@
 }
 
 
-
 +(id)sharedSettingViewController;
 
 -(IBAction)actionBack:(id)sender;

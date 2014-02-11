@@ -36,7 +36,7 @@
     useSuperButtons = YES;
     [super viewDidLoad];
     CGRect frame = [super getScreenFrameForCurrentOrientation];
-    scrollTemplateView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBarPrimary.frame.size.height + 20, frame.size.width , frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 74)];
+    scrollTemplateView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBarPrimary.frame.size.height + 20, frame.size.width , frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 80)];
     [scrollTemplateView setPagingEnabled:YES];
     [scrollTemplateView setBackgroundColor:[UIColor clearColor]];
     [scrollTemplateView setShowsHorizontalScrollIndicator:NO];
@@ -140,7 +140,7 @@
     CGFloat btnHeight = 90;
     
     if (IS_IPAD) {
-        btnWidth = btnHeight = 180;
+        btnWidth = btnHeight = 160;
     }
     
     CGFloat widthPadding = (navBarPrimary.frame.size.width/3 - btnWidth) / 2;
@@ -256,8 +256,8 @@
     switch ([sender tag]) {
         case INDEX_LEFT:{
            // EVLog(@"Rate us Btn");
-            SPLSettingViewController *viewController = [SPLSettingViewController sharedSettingViewController];
-            [self.navigationController pushViewController:viewController animated:YES];
+            SPLSettingViewController *settingsVC = [SPLSettingViewController sharedSettingViewController];
+            [self.navigationController pushViewController:settingsVC animated:YES];
             break;
         }
             
