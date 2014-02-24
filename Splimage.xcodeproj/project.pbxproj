@@ -1691,17 +1691,17 @@
 			name = BaseView;
 			sourceTree = "<group>";
 		};
-		6840AA921671E86200802C37 /* Step1 */ = {
+		6840AA921671E86200802C37 /* Templates */ = {
 			isa = PBXGroup;
 			children = (
 				68E9E9A61671EB87008C2458 /* TemplateViewController.h */,
 				68E9E9A71671EB87008C2458 /* TemplateViewController.m */,
 				68E9E9A81671EB87008C2458 /* TemplateViewController.xib */,
 			);
-			name = Step1;
+			name = Templates;
 			sourceTree = "<group>";
 		};
-		6840AA931671E90200802C37 /* Step2 */ = {
+		6840AA931671E90200802C37 /* PatternLayout */ = {
 			isa = PBXGroup;
 			children = (
 				68B7844E1678816A00C5C3B6 /* PatternLayoutViewController.h */,
@@ -1718,10 +1718,10 @@
 				2F09683D183D77EE004F4F66 /* EffectsViewController.h */,
 				2F09683E183D77EE004F4F66 /* EffectsViewController.m */,
 			);
-			name = Step2;
+			name = PatternLayout;
 			sourceTree = "<group>";
 		};
-		6840AA941671E90B00802C37 /* Step3 */ = {
+		6840AA941671E90B00802C37 /* PlayBackVC */ = {
 			isa = PBXGroup;
 			children = (
 				2F71BEFD1836DA6D0084BED9 /* PlayBackViewController.m */,
@@ -1730,10 +1730,10 @@
 				68BF1F3416B91C8300DB7ADD /* VideoPlaybackView.h */,
 				68BF1F3316B91C8300DB7ADD /* VideoPlaybackView.m */,
 			);
-			name = Step3;
+			name = PlayBackVC;
 			sourceTree = "<group>";
 		};
-		6840AA951671E91500802C37 /* Step4 */ = {
+		6840AA951671E91500802C37 /* Miscellenous */ = {
 			isa = PBXGroup;
 			children = (
 				2F84FA8C183FE15100A594B4 /* GoProViewController.h */,
@@ -1743,7 +1743,7 @@
 				68B7DC6A1683396C002F8A5F /* FaceBookLikeViewController.h */,
 				68B7DC6B1683396C002F8A5F /* FaceBookLikeViewController.m */,
 			);
-			name = Step4;
+			name = Miscellenous;
 			sourceTree = "<group>";
 		};
 		68B44BBB169D68BD00547D1A /* Cell */ = {
@@ -1992,10 +1992,10 @@
 				68D54E8D16708FFB000250A0 /* AppDelegate.h */,
 				68D54E8E16708FFB000250A0 /* AppDelegate.m */,
 				6840AA901671E85600802C37 /* BaseView */,
-				6840AA921671E86200802C37 /* Step1 */,
-				6840AA931671E90200802C37 /* Step2 */,
-				6840AA941671E90B00802C37 /* Step3 */,
-				6840AA951671E91500802C37 /* Step4 */,
+				6840AA921671E86200802C37 /* Templates */,
+				6840AA931671E90200802C37 /* PatternLayout */,
+				6840AA941671E90B00802C37 /* PlayBackVC */,
+				6840AA951671E91500802C37 /* Miscellenous */,
 				68F251A61671F7D900B66905 /* Utilities */,
 				68F251A81671F7D900B66905 /* Resources */,
 				68FE176B16760C2100EAE018 /* Plists */,
@@ -2735,14 +2735,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dmitri Hambrick (ESVSY7W5TE)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dmitri Hambrick (ESVSY7W5TE)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/infosys/Desktop/MyApplications/SPLImage/FacebookSDK/**",
 					"$(inherited)",
 				);
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
-					"/Users/infosys/Desktop/MyApplications/SPLImage/FacebookSDK/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/FacebookSDK/**",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2765,7 +2765,7 @@
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/infosys/Desktop/MyApplications/SPLImage/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -2780,8 +2780,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = Splimage;
-				PROVISIONING_PROFILE = "161CE65A-6318-471A-B7BD-93D88AA722D2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "161CE65A-6318-471A-B7BD-93D88AA722D2";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F409A71E-6E93-4845-978A-BC0E61F31F25";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
@@ -2794,17 +2794,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dmitri Hambrick (ESVSY7W5TE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dmitri Hambrick (ESVSY7W5TE)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Commints, LLC (6G54337ZN5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/infosys/Desktop/MyApplications/SPLImage/FacebookSDK/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/FacebookSDK/**",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SPLImage/SplimagePrefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/usr/include/libxml2,
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/framework/Source/**",
+				);
 				INFOPLIST_FILE = "SPLImage/Splimage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -2816,7 +2820,7 @@
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/infosys/Desktop/MyApplications/SPLImage/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -2825,8 +2829,8 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = Splimage;
-				PROVISIONING_PROFILE = "161CE65A-6318-471A-B7BD-93D88AA722D2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "161CE65A-6318-471A-B7BD-93D88AA722D2";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C88E3B9C-BC40-4E36-B839-62AB8D258E3A";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
