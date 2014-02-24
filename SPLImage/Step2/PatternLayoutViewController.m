@@ -301,7 +301,7 @@
         [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
         
         imagePickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *) kUTTypeMovie, nil];
-        [imagePickerController setVideoQuality:UIImagePickerControllerQualityType640x480];//UIImagePickerControllerQualityType640x480 //UIImagePickerControllerQualityTypeLow
+        [imagePickerController setVideoQuality:UIImagePickerControllerQualityTypeHigh];//UIImagePickerControllerQualityType640x480 //UIImagePickerControllerQualityTypeLow
         [imagePickerController setVideoMaximumDuration:VIDEO_MAX_DURATION];
         [imagePickerController setShowsCameraControls:YES];
         imagePickerController.allowsEditing = NO;
@@ -315,7 +315,7 @@
     [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary & UIImagePickerControllerSourceTypeSavedPhotosAlbum];
     
     imagePickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *) kUTTypeMovie, nil];
-    [imagePickerController setVideoQuality:UIImagePickerControllerQualityType640x480
+    [imagePickerController setVideoQuality:UIImagePickerControllerQualityTypeHigh
      ]; //UIImagePickerControllerQualityType640x480 //UIImagePickerControllerQualityTypeLow
     [imagePickerController setVideoMaximumDuration:VIDEO_MAX_DURATION];
     imagePickerController.allowsEditing = YES;
