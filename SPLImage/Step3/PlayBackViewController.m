@@ -1323,7 +1323,7 @@ ofTotalByteCount:(unsigned long long)dataLength {
 - (void)spaceDidDismiss:(NSString *)adSpace interstitial:(BOOL)interstitial {
     if (interstitial) {
         // Resume app state here
-       // [self startProcessingOutput];
+        [self startProcessingOutput];
     }
 }
 
