@@ -1713,6 +1713,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SYMROOT = "$(PROJECT_DIR)/../build";
 			};
 			name = Debug;
@@ -1743,6 +1744,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SYMROOT = "$(PROJECT_DIR)/../build";
 				VALIDATE_PRODUCT = YES;
 			};
