@@ -547,13 +547,13 @@
         
         
         CMTime videoAssetDuration = videoAsset.duration;
-
+        
         BOOL isFast = [[[videoCompositonArray objectAtIndex:index] valueForKey:kIsFast] boolValue];
-
-
+        
+        
         if(isFast)
             videoAssetDuration = CMTimeMultiplyByFloat64(videoAsset.duration, 0.5);
-
+        
         calculateTime = CMTimeAdd(calculateTime, videoAssetDuration);
         
         [videoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAssetDuration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:startTime error:nil];
@@ -561,11 +561,17 @@
         
         if (isNotMute) {
             //If Audiotrack not available then it might crash here ***
+            //  AVMutableCompositionTrack *AudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+            //  BOOL success=  [AudioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, firstAsset.duration) ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:kCMTimeZero error:&error];
+            
             AVMutableCompositionTrack * audioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
             NSLog(@"audio track : %@",audioTrack);
             //NSError *abc = [[NSError alloc] init];
-            //BOOL abc = [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:startTime error:nil];
-            //NSLog(@"return: %d",abc);
+            // sandeep- there is need to check is audio track is availble or not
+            if ([[videoAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0]) {
+                BOOL abc = [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:startTime error:nil];
+                NSLog(@"return: %d",abc);
+            }
         }
         
         AVMutableVideoCompositionLayerInstruction *videoLayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
@@ -582,7 +588,7 @@
                 }
             
         }
-           
+        
         CGAffineTransform transform = [self getTransformationForTag:index];
         
         [videoLayerInstruction setTransform:transform atTime:kCMTimeZero];
@@ -624,19 +630,19 @@
             NSLog(@"Transform : %@",NSStringFromCGAffineTransform(transform));
             
             [instructionsArray addObject:videoLayerInstruction];
- 
+            
         }
-
+    
     patternArray =nil;
     MainInstruction.layerInstructions = instructionsArray;
     
     AVMutableVideoComposition *MainCompositionInst = [AVMutableVideoComposition videoComposition];
     MainCompositionInst.instructions = [NSArray arrayWithObject:MainInstruction];
     MainCompositionInst.frameDuration = CMTimeMake(1, 30);
-
+    
     
     MainCompositionInst.renderSize = CGSizeMake((int)finalVideoWidth,(int)finalVideoHeight);//final width and height
-  
+    
     NSArray *docpaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *tempPath = [docpaths objectAtIndex:0];
     
@@ -653,7 +659,8 @@
         [[NSFileManager defaultManager] removeItemAtPath:exportPath error:nil];
     }
     //change the quality for various file size*********
-    AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetMediumQuality]; // AVAssetExportPresetHighestQuality // AVAssetExportPresetMediumQuality
+    //sandeep there is change exported video qualty
+    AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPreset1280x720]; // AVAssetExportPresetHighestQuality // AVAssetExportPresetMediumQuality
     
     _assetExport.outputFileType = AVFileTypeQuickTimeMovie;//AVFileTypeAppleM4V;//AVFileTypeMPEG4;//
     _assetExport.outputURL = combinedVideoUrl;
@@ -680,7 +687,7 @@
                 NSLog (@"SUCCESS");
                 //save to device library
                 [self videoPrepCompleted];
-
+                
                 break;
             }
         };
@@ -722,7 +729,7 @@
     }
     
     videoMergeCompleted = YES;
-
+    
     [btnPlay setHidden:YES];
     [mySwitch setHidden:YES];
     [btnRightNav setEnabled:YES];
@@ -763,10 +770,10 @@
     HUD.mode = MBProgressHUDModeDeterminate;
     HUD.labelText = @"Encoding Video";
     float totalDuration =12.0f;
-//    int counterIndx = [[SavedData getValueForKey:ARRAY_FRAMES] count];
-//    for (int i = 0; i <counterIndx; i++) {
-//        totalDuration  = totalDuration  + [SavedData getTrackLengthAtIndex:i];
-//    }
+    //    int counterIndx = [[SavedData getValueForKey:ARRAY_FRAMES] count];
+    //    for (int i = 0; i <counterIndx; i++) {
+    //        totalDuration  = totalDuration  + [SavedData getTrackLengthAtIndex:i];
+    //    }
     totalDuration = totalDuration/200000.0;
     HUD.progress=0.0;
     while (HUD.progress < 1.0f) {
@@ -814,7 +821,7 @@
         
         float percentWidth = myContent.size.height;//dimension.x; //
         float percentHeight = myContent.size.width; //dimension.y; //
-
+        
         float width = [SavedData getWidthAtIndex:i];
         float height = [SavedData getHeightAtIndex:i];
         
@@ -845,8 +852,8 @@
     finalVideoWidth = [[[arrayAllValues objectAtIndex:indexOptimum] valueForKey:@"finalWidth"] floatValue];
     finalVideoHeight = [[[arrayAllValues objectAtIndex:indexOptimum] valueForKey:@"finalHeight"] floatValue];
     
-//    when rounding to the nearest n, 
-//    x_rounded = ((x + n/2)/n)*n;
+    //    when rounding to the nearest n,
+    //    x_rounded = ((x + n/2)/n)*n;
     finalVideoWidth = (((int)finalVideoWidth+4)/8)*8;
     finalVideoHeight = (((int)finalVideoHeight+4)/8)*8;
     
@@ -856,7 +863,7 @@
     
     arrayAllArea = nil;
     arrayAllValues = nil;
-//    [SavedData getAllTheValues];
+    //    [SavedData getAllTheValues];
     
 }
 #pragma mark -
@@ -870,7 +877,7 @@
     
     CGFloat ratioWidth = myContent.size.width ;
     CGFloat ratioHeight = myContent.size.height ;
- 
+    
     CGRect myNewContent;
     
     switch ([SavedData getRotationAtIndex:theIndex]) {
@@ -880,11 +887,11 @@
             newY>1.0?newY=1.0:newY<0?newY=0:newY;
             myNewContent = CGRectMake( xPos, newY, ratioWidth,  ratioHeight);//myContent;//
         }   break;
-
+            
         case UIInterfaceOrientationPortraitUpsideDown:{
             CGFloat newX = 1.0-ratioWidth-xPos;
             CGFloat newY = 1.0-ratioHeight-yPos;
-          
+            
             newX>1.0?newX=1.0:newX<0?newX=0:newX;
             newY>1.0?newY=1.0:newY<0?newY=0:newY;
             
@@ -892,7 +899,7 @@
         } break;
             
         case UIInterfaceOrientationLandscapeLeft:
-           myNewContent = CGRectMake(yPos, xPos,  ratioHeight,ratioWidth);//myContent;//
+            myNewContent = CGRectMake(yPos, xPos,  ratioHeight,ratioWidth);//myContent;//
             break;
             
         case UIInterfaceOrientationLandscapeRight:{
@@ -904,7 +911,7 @@
             newY>1.0?newY=1.0:newY<0?newY=0:newY;
             
             myNewContent = CGRectMake(newY, newX,  ratioHeight,ratioWidth);//myContent;//
-//            myNewContent = CGRectMake(yPos, xPos,  ratioHeight,ratioWidth);//myContent;//
+            //            myNewContent = CGRectMake(yPos, xPos,  ratioHeight,ratioWidth);//myContent;//
             
             break;
         }
@@ -950,13 +957,13 @@
     [yAlert show];
     
 }
-#pragma mark - 
+#pragma mark -
 
 -(void)faceBookOperation{
     
     float version = [[UIDevice currentDevice].systemVersion floatValue];
     [self showActivity];
-
+    
     if (version >= 6) {
         __block ACAccount *facebookAccount = nil;
         
@@ -964,9 +971,9 @@
         ACAccountType *facebookAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
         
         NSDictionary *options = @{
-        @"ACFacebookAppIdKey" : FACEBOOK_APP_ID,
-        @"ACFacebookPermissionsKey" : @[@"publish_stream", @"publish_actions",@"user_videos"],
-        @"ACFacebookAudienceKey" : ACFacebookAudienceEveryone}; // Needed only when write permissions are requested
+                                  @"ACFacebookAppIdKey" : FACEBOOK_APP_ID,
+                                  @"ACFacebookPermissionsKey" : @[@"publish_stream", @"publish_actions",@"user_videos"],
+                                  @"ACFacebookAudienceKey" : ACFacebookAudienceEveryone}; // Needed only when write permissions are requested
         
         [accountStore requestAccessToAccountsWithType:facebookAccountType
                                               options:options
@@ -980,7 +987,7 @@
                                                    NSLog(@"%@",error);
                                                    [self removeActivity];
                                                    [[[UIAlertView alloc] initWithTitle:@"Failed!"
-                                                                                      message:@"Log in to the Facebook App First and Try again."
+                                                                               message:@"Log in to the Facebook App First and Try again."
                                                                               delegate:nil
                                                                      cancelButtonTitle:@"OK!"
                                                                      otherButtonTitles:nil]
@@ -1048,7 +1055,7 @@
             
         }
     }];
-   [self myUploadTask];
+    [self myUploadTask];
 }
 -(void)uploadFaceBook{
     [self myUploadTask];
@@ -1167,7 +1174,7 @@
                                         delegate:self
                                didFinishSelector:@selector(uploadTicket:finishedWithEntry:error:)];
     
-   [self myUploadingTask];
+    [self myUploadingTask];
 }
 // progress callback
 - (void)ticket:(GDataServiceTicket *)ticket
@@ -1242,13 +1249,13 @@ ofTotalByteCount:(unsigned long long)dataLength {
     }];
 }
 
-#pragma handle autorotation 
+#pragma handle autorotation
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
-
+    
     CGRect frame = [super getScreenFrameForOrientation:toInterfaceOrientation];
     [self adjustFrameBeforeView:frame];
-
+    
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
@@ -1261,7 +1268,7 @@ ofTotalByteCount:(unsigned long long)dataLength {
     
     [self layoutTopViewForInterfaceFrame:frame];
     if (videoMergeCompleted) {
-
+        
         if (splPlayerView) {
             [splPlayerView stopPlayer];
             [splPlayerView removeFromSuperview];
@@ -1280,19 +1287,19 @@ ofTotalByteCount:(unsigned long long)dataLength {
     }
 }
 
-#pragma Flurry Ad delegates 
+#pragma Flurry Ad delegates
 
 -(void) showFullScreenAd {
     
     [FlurryAds setAdDelegate:self];
     [FlurryAds fetchAdForSpace:@"INTERSTITIAL_MAIN_VIEW" frame:self.view.frame size:FULLSCREEN];
     // Check if ad is ready. If so, display the ad
-
+    
     if ([FlurryAds adReadyForSpace:@"INTERSTITIAL_MAIN_VIEW"]) {
         [FlurryAds displayAdForSpace:@"INTERSTITIAL_MAIN_VIEW" onView:self.view];
-//    } else {
+        //    } else {
         // Fetch an ad
-//        [FlurryAds fetchAdForSpace:@"INTERSTITIAL_MAIN_VIEW" frame:self.view.frame size:FULLSCREEN];
+        //        [FlurryAds fetchAdForSpace:@"INTERSTITIAL_MAIN_VIEW" frame:self.view.frame size:FULLSCREEN];
     }
 }
 
@@ -1303,10 +1310,10 @@ ofTotalByteCount:(unsigned long long)dataLength {
 //- (BOOL) spaceShouldDisplay:(NSString*)adSpace interstitial:(BOOL)
 //interstitial {
 //    if (interstitial) {
-        // Pause app state here
+// Pause app state here
 //    }
-    
-    // Continue ad display
+
+// Continue ad display
 //    return YES;
 //}
 
@@ -1316,7 +1323,7 @@ ofTotalByteCount:(unsigned long long)dataLength {
 - (void)spaceDidDismiss:(NSString *)adSpace interstitial:(BOOL)interstitial {
     if (interstitial) {
         // Resume app state here
-        [self startProcessingOutput];
+       // [self startProcessingOutput];
     }
 }
 

@@ -90,7 +90,7 @@
 - (void)dealloc
 {
     if (audio_queue != nil){
-        dispatch_release(audio_queue);
+        // dispatch_release(audio_queue);
     }
     
     if ([GPUImageContext supportsFastTextureUpload])
@@ -309,7 +309,7 @@
 }
 
 - (void)readNextAudioSampleFromOutput:(AVAssetReaderTrackOutput *)readerAudioTrackOutput {
-
+    
     if (audioEncodingIsFinished && !self.playSound) {
         // look here
         return;
@@ -331,16 +331,16 @@
                 });
                 
             } else if (self.audioEncodingTarget != nil && !audioEncodingIsFinished){
-
+                
                 runSynchronouslyOnVideoProcessingQueue(^{
-                  CFRetain(audioSampleBufferRef);
+                    CFRetain(audioSampleBufferRef);
                     
-                [self.audioEncodingTarget processAudioBuffer:audioSampleBufferRef];
-                //CMSampleBufferInvalidate(audioSampleBufferRef);
-                /* Don't invalidate the buffer as we retain it and use it asynchronously in the audioEncodingTarget */
-                  CFRelease(audioSampleBufferRef);
-              });
-
+                    [self.audioEncodingTarget processAudioBuffer:audioSampleBufferRef];
+                    //CMSampleBufferInvalidate(audioSampleBufferRef);
+                    /* Don't invalidate the buffer as we retain it and use it asynchronously in the audioEncodingTarget */
+                    CFRelease(audioSampleBufferRef);
+                });
+                
             }
         } else {
             audioEncodingIsFinished = YES;
