@@ -717,6 +717,8 @@
     NSString *exportPath = [tempPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",finalVideoName]];
     
     [self removeActivity];
+    [self performSelectorOnMainThread:@selector(loadUpAndPlayVideo) withObject:nil waitUntilDone:YES];
+
     if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(exportPath)) {
         UISaveVideoAtPathToSavedPhotosAlbum(exportPath,
                                             self,
@@ -733,7 +735,7 @@
     [btnPlay setHidden:YES];
     [mySwitch setHidden:YES];
     [btnRightNav setEnabled:YES];
-    [self loadUpAndPlayVideo];
+  //  [self loadUpAndPlayVideo];
     [self reSetUpToolBarButton];
 }
 
