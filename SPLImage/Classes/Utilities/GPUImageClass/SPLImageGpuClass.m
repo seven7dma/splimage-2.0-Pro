@@ -41,7 +41,6 @@
         
         [myContentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"canvasForeground"]]];
         [self addSubview:myContentView];
-        //myContentView.alpha = 0.5;
         viewGpuImage = [[GPUImageView alloc] initWithFrame:CGRectMake(0,0,myContentView.frame.size.width,myContentView.frame.size.height)];
         [viewGpuImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"canvasForeground"]]];
         [viewGpuImage setTag:self.tag];

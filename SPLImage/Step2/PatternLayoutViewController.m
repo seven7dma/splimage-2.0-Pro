@@ -80,9 +80,9 @@
 
     [SavedData setValue:[self getPatternArrayForPattern:selectedPattern] forKey:ARRAY_PATTERN];
 
-    UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
+   // UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
     
-    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:imgCanvas];
+    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:nil];
     canvasView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     [canvasView shouldAddAllTheGesture:YES];
@@ -457,9 +457,9 @@
 -(void)adjustFrameAfterView:(CGRect) frame{
     
     [self  saveSelectedVideoInfo];
-    UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
+    //UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
 
-    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:imgCanvas];
+    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:nil];
 
     [self loadBackSavedVideoInfoAfterRotation];
 

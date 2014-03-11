@@ -9,7 +9,7 @@
 #import "CanvasView.h"
 
 @implementation CanvasView
-#define PADDING 5.0
+#define PADDING 0.0
 @synthesize arrayCanvasView,delegate;
 - (id)initWithFrame:(CGRect)frame andPattern:(NSArray *)patternArray andBGImage:(UIImage *)bgImage
 {
