@@ -831,7 +831,6 @@
     
     [gpuClass setThumbView:[splimageInput imageProcessedUsingGPUFilter: selectedFilter]];
     return;
-    
 }
 
 

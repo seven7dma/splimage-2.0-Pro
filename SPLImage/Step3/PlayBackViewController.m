@@ -9,7 +9,7 @@
 #import "PlayBackViewController.h"
 
 @interface PlayBackViewController () {
- 
+    
     BOOL videoMergeCompleted;
 }
 @end
@@ -29,6 +29,21 @@
         [canvasView setDelegate:self];
         indexSelected = selectedTag;
         [self.view addSubview:canvasView];
+        if (indexSelected==8) {
+            NSNumber *temp = [arraySequence objectAtIndex:0];
+            [arraySequence replaceObjectAtIndex:0 withObject:[arraySequence objectAtIndex:1]];
+            [arraySequence replaceObjectAtIndex:1 withObject:temp];
+        }
+        if (indexSelected==9) {
+            NSNumber *temp = [arraySequence objectAtIndex:0];
+            [arraySequence replaceObjectAtIndex:0 withObject:[arraySequence objectAtIndex:1]];
+            [arraySequence replaceObjectAtIndex:1 withObject:temp];
+        }
+        if (indexSelected==10) {
+            NSNumber *temp = [arraySequence objectAtIndex:0];
+            [arraySequence replaceObjectAtIndex:0 withObject:[arraySequence objectAtIndex:1]];
+            [arraySequence replaceObjectAtIndex:1 withObject:temp];
+        }
         
     }
     return self;
@@ -45,6 +60,10 @@
     UIImage *back = [UIImage imageNamed:@"btn_back"];
     [btnLeftNav setFrame:CGRectMake(9, 5, back.size.width, back.size.height)];
     [btnLeftNav setBackgroundImage:back forState:UIControlStateNormal];
+    
+    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
+    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
+    [btnRightNav setBackgroundImage:goPro forState:UIControlStateNormal];
     
     [self loadUpCanvasView];
     [self setUpToolBarButton];
@@ -63,7 +82,7 @@
 
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-//    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
+    //    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
 }
 
 #pragma mark-
@@ -85,20 +104,20 @@
     NSNumber *temp = [arraySequence objectAtIndex:seq1];
     [arraySequence replaceObjectAtIndex:seq1 withObject:[arraySequence objectAtIndex:seq2]];
     [arraySequence replaceObjectAtIndex:seq2 withObject:temp];
-//    NSLog([arraySequence description]);
+    //    NSLog([arraySequence description]);
 }
 
 
 #pragma mark- SplPlayerViewDelegate
 -(void)splPlayerDidStopPlaying:(NSInteger)playerIndex{
-//    [self showAlertWithMessage:@"Save Video" andTitle:@"" cancelButtonTitle:@"Save" otherButtonTitles:@"Delete" andTag:SAVE_DELETE];
+    [self showAlertWithMessage:@"Save Video" andTitle:@"" cancelButtonTitle:@"Save" otherButtonTitles:@"Delete" andTag:SAVE_DELETE];
 }
 
 #pragma mark-
 -(void)loadUpAndPlayVideo{
     
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
-
+    
     splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, 64, screenFrame.size.width - 10 , screenFrame.size.height - 150) andUrl:combinedVideoUrl andFiltered:FILTER_NONE];
     
     [splPlayerView setTag:indexSelected];
@@ -126,13 +145,13 @@
     [mySwitch setEnabled:YES];
     UIBarButtonItem *barBtn1 = [[UIBarButtonItem alloc] initWithCustomView:mySwitch];
     [arrayBtn addObject:barBtn1];
-
+    
     
     [arrayBtn addObject:spacer];
-
+    
     UIImage *imgPlay = [UIImage imageNamed:@"footer_Play"];
     UIImage *imgPlayGreen = [UIImage imageNamed:@"footer_Play_Green"];
-
+    
     btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnPlay setFrame:CGRectMake(CGRectGetMaxX(mySwitch.frame), 5, imgPlay.size.width, imgPlay.size.height)];
     [btnPlay setImage:imgPlay forState:UIControlStateNormal];
@@ -155,16 +174,20 @@
     UIImage *back = [UIImage imageNamed:@"btn_back"];
     [btnLeftNav setFrame:CGRectMake(9, 5, back.size.width, back.size.height)];
     [btnLeftNav setBackgroundImage:back forState:UIControlStateNormal];
-        
+    
+    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
+    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
+    [btnRightNav setImage:goPro forState:UIControlStateNormal];
+    
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
-
+    
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];// UIBarButtonSystemItemFixedSpace
     spacer.width = 250;
     
-//    [arrayBtn addObject:spacer];
-   
+    //    [arrayBtn addObject:spacer];
+    
     UIImage *homeImage = [UIImage imageNamed:@"home_icon"];
     UIButton *btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnHome setFrame:CGRectMake(5,5,homeImage.size.width,homeImage.size.height)];
@@ -172,7 +195,7 @@
     [btnHome setTag:INDEX_LEFT_NEXT];
     [btnHome setEnabled:YES];
     [btnHome addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     UIBarButtonItem *barBtn1 = [[UIBarButtonItem alloc] initWithCustomView:btnHome];
     [arrayBtn addObject:barBtn1];
     
@@ -190,7 +213,7 @@
     UIBarButtonItem *barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnShare];
     [arrayBtn addObject:barBtn2];
     
-//    [arrayBtn addObject:spacer];
+    //    [arrayBtn addObject:spacer];
     
     [toolBar setItems:arrayBtn animated:YES];
     
@@ -220,7 +243,7 @@
             break;
         }
         case INDEX_LEFT_NEXT:
-        //home button
+            //home button
             [self homeButtonPressed];
             break;
             
@@ -250,9 +273,9 @@
             
         case INDEX_RIGHT:
             NSLog(@"Share");
-//            [self shareVideoOptions];
+            //            [self shareVideoOptions];
             break;
-
+            
         default:
             break;
     }
@@ -271,7 +294,7 @@
             [self setUpAudioButton];
             break;
             
-
+            
         default:
             break;
     }
@@ -297,19 +320,19 @@
             //home
             [self homeButtonAlert:buttonIndex];
             break;
-
+            
         case SUCCESS_FAIL:
             //
             break;
-
+            
         case START_STOP:
             [self startStopAlert:buttonIndex];
             break;
-
+            
         case LOGIN_ALERT:
-             [self uploadToYoutube:[[alertView textFieldAtIndex:0] text]
-                       andPassword:[[alertView textFieldAtIndex:1] text]
-                         withVideo:[NSData dataWithContentsOfURL:combinedVideoUrl]];
+            [self uploadToYoutube:[[alertView textFieldAtIndex:0] text]
+                      andPassword:[[alertView textFieldAtIndex:1] text]
+                        withVideo:[NSData dataWithContentsOfURL:combinedVideoUrl]];
             break;
         default:
             break;
@@ -341,7 +364,7 @@
     switch (btnIndex) {
         case 0:
             NSLog(@"Save");
-//            [self shareVideoOptions];
+            //            [self shareVideoOptions];
             break;
             
         case 1:{
@@ -373,7 +396,7 @@
         default:
             break;
     }
-
+    
 }
 
 #pragma mark -
@@ -383,7 +406,7 @@
                                                    delegate:self cancelButtonTitle:cTitle otherButtonTitles:oTitle, nil];
     [alert setTag:alertTag];
     [alert show];
-
+    
 }
 
 
@@ -405,7 +428,7 @@
     [canvasView removeFromSuperview];
     [self showActivity];
     [self getTheOutPutFrameSize];
-
+    
     if (mySwitch.on) {
         //sequential
         [self prepareSequentialVideo];
@@ -419,7 +442,7 @@
 -(void)prepareSequentialVideo{
     //saveddata
     [self getSetReloadWriter];
- }
+}
 
 -(void)prepareParallelVideo{
     [self getSetReloadWriter];
@@ -444,7 +467,7 @@
         
         NSLog(@"videoFrameSize --- %@",NSStringFromCGSize(videoFrameSize));
         NSLog(@"myContent --- %@",NSStringFromCGRect(myContent));
-       
+        
         [playbackView loadVideoWithName:fileUrl
                               andFilter:selectedFilter
                                 andSize:videoFrameSize
@@ -460,12 +483,12 @@
         [self performSelectorInBackground:@selector(progressTimer) withObject:Nil];
         [self mergeVideos:[self prepareVideoCompositionArray]];
     }
-
+    
 }
 
 -(NSMutableArray *)prepareVideoCompositionArray{
     NSMutableArray * arrayVideoComposition = [NSMutableArray array];
-
+    
     for (int i = 0; i <counter; i++) {
         NSMutableDictionary* dictionaryVideoCompostion = [[NSMutableDictionary alloc] init];
         
@@ -478,7 +501,7 @@
             [dictionaryVideoCompostion setObject:[NSNumber numberWithBool:YES] forKey:kIsFast];
         }else
             [dictionaryVideoCompostion setObject:[NSNumber numberWithBool:NO] forKey:kIsFast];
-
+        
         
         if (mySwitch.on) {
             [dictionaryVideoCompostion setObject:[NSNumber numberWithBool:NO] forKey:kIsMute];
@@ -501,7 +524,7 @@
     CMTime calculateTime = kCMTimeZero;
     CMTime tinyTime =CMTimeMake(1, 100);
     
-//    CGFloat finalVideoWidthExact = 0.0 , finalVideoHeightExact = 0.0;
+    //    CGFloat finalVideoWidthExact = 0.0 , finalVideoHeightExact = 0.0;
     
     for (int i = 0; i < [videoCompositonArray count]; i++) {
         
@@ -509,7 +532,7 @@
         NSInteger index = 0;
         for (NSNumber *N in arraySequence) {
             if (i == [N intValue]) {
-                 index = [arraySequence indexOfObject:N];
+                index = [arraySequence indexOfObject:N];
             }
         }
         
@@ -518,15 +541,15 @@
         AVURLAsset * videoAsset = [[AVURLAsset alloc] initWithURL:url options:nil];
         
         AVMutableCompositionTrack * videoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-
-//        NSLog(NSStringFromCGSize([videoTrack naturalSize]));
         
-//        AVAsset *vAsset = [AVAsset assetWithURL:url];
-//        AVAssetTrack *vTrack =  [[vAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-//        finalVideoWidthExact = finalVideoWidthExact+[vTrack naturalSize].width;
-//        finalVideoHeightExact = finalVideoHeightExact+[vTrack naturalSize].height;
-//        
-//        
+        //        NSLog(NSStringFromCGSize([videoTrack naturalSize]));
+        
+        //        AVAsset *vAsset = [AVAsset assetWithURL:url];
+        //        AVAssetTrack *vTrack =  [[vAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+        //        finalVideoWidthExact = finalVideoWidthExact+[vTrack naturalSize].width;
+        //        finalVideoHeightExact = finalVideoHeightExact+[vTrack naturalSize].height;
+        //
+        //
         
         BOOL isNotMute = ![[[videoCompositonArray objectAtIndex:index] valueForKey:kIsMute] boolValue];
         
@@ -546,10 +569,25 @@
         if(isFast)
             videoAssetDuration = CMTimeMultiplyByFloat64(videoAsset.duration, 0.5);
         
+        
+        
         calculateTime = CMTimeAdd(calculateTime, videoAssetDuration);
         
+        //        if (indexSelected==9) {
+        //            if (i==1) {
+        //               CMTime videoAssetDuration1 = CMTimeMultiplyByFloat64(videoAsset.duration, 0.5);
+        //                [videoTrack insertTimeRange:CMTimeRangeMake(videoAssetDuration1, videoAssetDuration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:startTime error:nil];
+        //
+        //            }
+        //            else
+        //            {
+        //                [videoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAssetDuration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:startTime error:nil];
+        //            }
+        //        }
+        //        else
+        //        {
         [videoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAssetDuration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:startTime error:nil];
-        
+        //       }
         
         if (isNotMute) {
             //If Audiotrack not available then it might crash here ***
@@ -564,6 +602,7 @@
                 BOOL abc = [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration) ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:startTime error:nil];
                 NSLog(@"return: %d",abc);
             }
+            
         }
         
         AVMutableVideoCompositionLayerInstruction *videoLayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
@@ -678,6 +717,7 @@
             {
                 NSLog (@"SUCCESS");
                 //save to device library
+                
                 [self videoPrepCompleted];
                 
                 break;
@@ -707,10 +747,9 @@
     NSArray *docpaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *tempPath = [docpaths objectAtIndex:0];
     NSString *exportPath = [tempPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",finalVideoName]];
-    
-    [self removeActivity];
     [self performSelectorOnMainThread:@selector(loadUpAndPlayVideo) withObject:nil waitUntilDone:YES];
-
+    [self removeActivity];
+    
     if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(exportPath)) {
         UISaveVideoAtPathToSavedPhotosAlbum(exportPath,
                                             self,

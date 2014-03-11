@@ -58,24 +58,24 @@
     
     [self setTemplateButtons];
     [self setUpToolBarButton];
-
+    
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-  
+    
     //Delete files in tmp folder
     [SavedData removeAllImportedFiles];
     [self reloadSelfViewForOrientation:[UIApplication sharedApplication].statusBarOrientation];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-
+    
     [super viewDidAppear:YES];
-//    [FlurryAds setAdDelegate:self];
-//    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
-
+    //    [FlurryAds setAdDelegate:self];
+    //    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
+    
 }
 
 #pragma - mark User Functions
@@ -130,7 +130,7 @@
     
     CGFloat widthPadding = (navBarPrimary.frame.size.width/3 - btnWidth) / 2;
     CGFloat heightPadding = (scrollViewHeight/3 - btnHeight) / 2;
-
+    
     NSLog(@"width padding :%f heightPadding : %f", widthPadding, heightPadding);
     
     for (NSString *strBtnImage in [self readPlistForImagesArray]) {
@@ -171,7 +171,7 @@
     NSLog(@"width padding :%f heightPadding : %f", widthPadding, heightPadding);
     
     for (UIView *buttons in scrollTemplateView.subviews) {
-
+        
         if ( [buttons isKindOfClass:[UIButton class]] ) {
             
             NSInteger buttonNumberOnPage = buttonNumber % 9;
@@ -203,7 +203,7 @@
 -(void)patternSelected:(UIButton *)btnPatternSelected{
     
     NSLog(@"pattern selected: %d", btnPatternSelected.tag);
-    if (btnPatternSelected.tag > 7) {
+    if (btnPatternSelected.tag > 11) {
         // only pro features
         goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
         self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
@@ -240,14 +240,14 @@
 -(void)tabBarButtonClicked:(UIButton *)sender{
     switch ([sender tag]) {
         case INDEX_LEFT:{
-           // EVLog(@"Rate us Btn");
+            // EVLog(@"Rate us Btn");
             SPLSettingViewController *settingsVC = [SPLSettingViewController sharedSettingViewController];
             [self.navigationController pushViewController:settingsVC animated:YES];
             break;
         }
             
         case INDEX_RIGHT:
-         //   EVLog(@"go Pro");
+            //   EVLog(@"go Pro");
             goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
             self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
             [self presentViewController:goProViewController animated:YES completion:nil];
@@ -279,9 +279,9 @@
 
 #pragma mark - Rate Us
 -(void)rateUsOnAppStore{
-
+    
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=608308710"]];
-
+    
 }
 
 #pragma amrk -  UIAlertView Delegate
@@ -292,7 +292,7 @@
         case 1:
             [self rateUsOnAppStore];
             break;
-
+            
         default:
             break;
     }
@@ -328,7 +328,7 @@
 		case MessageComposeResultSent:{
             UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Message sent." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
 			[alertView show];
-
+            
 			break;
         }
 		default:
@@ -356,7 +356,7 @@
     ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     twitterAlerMsg = @"Twitter follow operation incomplete";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTwitterAlertMessage:) name:@"twitter" object:nil];
-
+    
     [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
         if(granted) {
             // Get the list of Twitter accounts.
@@ -381,20 +381,20 @@
                     NSLog(@"%@error %@", output,error.description);
                     if (error) {
                         twitterAlerMsg = @"Twitter follow operation Failed";
-                     }
+                    }
                     else{
                         twitterAlerMsg =  @"You are following @splimage";
-
+                        
                     }
-
+                    
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"twitter" object:nil];
-
-
+                    
+                    
                 }];
             }else{
                 //ask user to login to twitter
                 twitterAlerMsg = @"Twitter follow operation Failed : Login to twitter first";
-               [[NSNotificationCenter defaultCenter] postNotificationName:@"twitter" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"twitter" object:nil];
             }
             
         }else
@@ -418,14 +418,14 @@
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
-
+    
     [self reloadSelfViewForOrientation:toInterfaceOrientation];
 }
 
 -(void)reloadSelfViewForOrientation:(UIInterfaceOrientation) orientation {
-
+    
     CGRect frame = [super getScreenFrameForOrientation:orientation];
-
+    
     [super layoutTopViewForInterfaceFrame:frame];
     
     // resize scrollview

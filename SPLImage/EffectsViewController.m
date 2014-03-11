@@ -49,6 +49,7 @@
         [arrayFilteredImages addObject:[splImageClass imageProcessedUsingGPUFilter:i]];
     }
     
+    
     UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
     toolBarFilters = [[UIToolbar alloc] initWithFrame:CGRectMake(0, screenFrame.size.height-imgToolBar.size.height, screenFrame.size.width , imgToolBar.size.height)];
     [toolBarFilters setBackgroundImage:imgToolBar forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
@@ -60,7 +61,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+
     CGRect frame = [super getScreenFrameForCurrentOrientation];
     [self adjustFrameBeforeView:frame];
  
@@ -76,13 +77,6 @@
     
  //   [tableFilters selectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0] animated:NO  scrollPosition:UITableViewScrollPositionNone ];
   //  [[tableFilters delegate] tableView:tableFilters didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0]];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // add activity indicator here...
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - SplimagePlayer methods

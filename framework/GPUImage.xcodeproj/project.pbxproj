@@ -1761,12 +1761,12 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = (
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/framework/Source/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagePro/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagePro/framework/Source/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/infosys/Desktop/MyApplications/SPLImagebkp/framework,
+					/Users/infosys/Desktop/MyApplications/SPLImagePro/framework,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1784,10 +1784,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Source/iOS/GPUImage-Prefix.pch";
 				GCC_WARN_UNUSED_FUNCTION = NO;
-				HEADER_SEARCH_PATHS = "/Users/infosys/Desktop/MyApplications/SPLImagebkp/SPLImage/Classes/Utilities/TPCircularBuffer-master/**";
+				HEADER_SEARCH_PATHS = "/Users/infosys/Desktop/MyApplications/SPLImagePro/SPLImage/Classes/Utilities/TPCircularBuffer-master/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/infosys/Desktop/MyApplications/SPLImagebkp/framework,
+					/Users/infosys/Desktop/MyApplications/SPLImagePro/framework,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

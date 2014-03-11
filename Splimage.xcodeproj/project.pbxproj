@@ -109,7 +109,6 @@
 		2F5A4D6418344AD200C6872A /* README in Resources */ = {isa = PBXBuildFile; fileRef = 2F5A4C4818344AD000C6872A /* README */; };
 		2F5A4E2C18344BB000C6872A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5A4E2B18344BB000C6872A /* AddressBook.framework */; };
 		2F5A4E2E18344BFB00C6872A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F5A4E2D18344BFB00C6872A /* EventKit.framework */; };
-		2F71BEF81836A7980084BED9 /* Templates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F71BEF71836A7980084BED9 /* Templates.plist */; };
 		2F71BEFB1836D2B20084BED9 /* libGDataTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1412C2183382FE00846182 /* libGDataTouchStaticLib.a */; };
 		2F71BEFE1836EF0A0084BED9 /* PlayBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71BEFD1836DA6D0084BED9 /* PlayBackViewController.m */; };
 		2F84FA7D183F569E00A594B4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84FA7C183F569E00A594B4 /* CoreTelephony.framework */; };
@@ -137,6 +136,7 @@
 		2FB50D3518A9D85600388024 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FB50D3418A9D85600388024 /* MainStoryboard_iPad.storyboard */; };
 		2FC22E3718CEACA900325788 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC22E3618CEACA900325788 /* libFlurry_4.3.2.a */; };
 		2FC22E3B18CEACC900325788 /* libFlurryAds_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC22E3A18CEACC900325788 /* libFlurryAds_4.3.2.a */; };
+		2FC22E4818CEF1BA00325788 /* Templates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FC22E4718CEF1BA00325788 /* Templates.plist */; };
 		2FE49EE8184FBC4C007465E6 /* thumb12.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EE6184FBC4C007465E6 /* thumb12.png */; };
 		2FE49EE9184FBC4C007465E6 /* thumb12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EE7184FBC4C007465E6 /* thumb12@2x.png */; };
 		2FE49EEC184FBF19007465E6 /* thumb_depic.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FE49EEA184FBF19007465E6 /* thumb_depic.png */; };
@@ -814,7 +814,6 @@
 		2F5A4C4818344AD000C6872A /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		2F5A4E2B18344BB000C6872A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		2F5A4E2D18344BFB00C6872A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
-		2F71BEF71836A7980084BED9 /* Templates.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Templates.plist; sourceTree = "<group>"; };
 		2F71BEFD1836DA6D0084BED9 /* PlayBackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PlayBackViewController.m; path = Step3/PlayBackViewController.m; sourceTree = "<group>"; };
 		2F84FA7C183F569E00A594B4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2F84FA82183F56B500A594B4 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -846,6 +845,7 @@
 		2FC22E3818CEACC900325788 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		2FC22E3918CEACC900325788 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
 		2FC22E3A18CEACC900325788 /* libFlurryAds_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds_4.3.2.a; sourceTree = "<group>"; };
+		2FC22E4718CEF1BA00325788 /* Templates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Templates.plist; sourceTree = "<group>"; };
 		2FE49EE6184FBC4C007465E6 /* thumb12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb12.png; sourceTree = "<group>"; };
 		2FE49EE7184FBC4C007465E6 /* thumb12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb12@2x.png"; sourceTree = "<group>"; };
 		2FE49EEA184FBF19007465E6 /* thumb_depic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb_depic.png; sourceTree = "<group>"; };
@@ -2190,7 +2190,7 @@
 		68FE176B16760C2100EAE018 /* Plists */ = {
 			isa = PBXGroup;
 			children = (
-				2F71BEF71836A7980084BED9 /* Templates.plist */,
+				2FC22E4718CEF1BA00325788 /* Templates.plist */,
 			);
 			path = Plists;
 			sourceTree = "<group>";
@@ -2317,7 +2317,6 @@
 				2F16DC0A183AF46C0067416C /* thumb01.png in Resources */,
 				2F16DC4B183AF4BC0067416C /* btn_inappcancel.png in Resources */,
 				2F16DC52183AF4BC0067416C /* btn_shareapplication@2x.png in Resources */,
-				2F71BEF81836A7980084BED9 /* Templates.plist in Resources */,
 				68D54E8916708FFB000250A0 /* InfoPlist.strings in Resources */,
 				68E9E9AA1671EB87008C2458 /* TemplateViewController.xib in Resources */,
 				2F1C2A35186FE10F008FF577 /* SplImageNew.png in Resources */,
@@ -2363,6 +2362,7 @@
 				68F251E6167205A400B66905 /* toolbar_bg.png in Resources */,
 				2F16DC77183AF4E30067416C /* btn_back@2x.png in Resources */,
 				2FACC2621842E15F001D8834 /* home_icon.png in Resources */,
+				2FC22E4818CEF1BA00325788 /* Templates.plist in Resources */,
 				68F251E7167205A400B66905 /* twitterButton.png in Resources */,
 				68F251F3167205AD00B66905 /* btn_1@2x.png in Resources */,
 				68F251F4167205AD00B66905 /* btn_2@2x.png in Resources */,
@@ -2742,7 +2742,7 @@
 					"$(inherited)",
 				);
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/FacebookSDK/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagePro/FacebookSDK/**",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2751,21 +2751,21 @@
 				HEADER_SEARCH_PATHS = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/usr/include/libxml2,
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/framework/Source/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagePro/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagePro/framework/Source/**",
 				);
 				INFOPLIST_FILE = "SPLImage/Splimage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/infosys/Desktop/MyApplications/SPLImage/Flurry,
-					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagePro/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagePro/Flurry,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagePro/Flurry,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -2798,7 +2798,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Commints, LLC (6G54337ZN5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/FacebookSDK/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagePro/FacebookSDK/**",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2806,21 +2806,21 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/usr/include/libxml2,
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/framework/Source/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagePro/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagePro/framework/Source/**",
 				);
 				INFOPLIST_FILE = "SPLImage/Splimage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/infosys/Desktop/MyApplications/SPLImage/Flurry,
-					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagePro/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagePro/Flurry,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagePro/Flurry,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (

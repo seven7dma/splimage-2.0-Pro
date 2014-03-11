@@ -307,9 +307,19 @@
 				<key>CoordinateY</key>
 				<integer>0</integer>
 				<key>Width</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>Height</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>CoordinateX</key>
 				<integer>0</integer>
+				<key>CoordinateY</key>
+				<real>0.5</real>
+				<key>Width</key>
+				<real>0.5</real>
+				<key>Height</key>
+				<real>0.5</real>
 			</dict>
 		</array>
 	</dict>
@@ -326,7 +336,7 @@
 				<key>CoordinateY</key>
 				<integer>0</integer>
 				<key>Width</key>
-				<real>0.33</real>
+				<integer>1</integer>
 				<key>Height</key>
 				<integer>1</integer>
 			</dict>
@@ -337,16 +347,6 @@
 				<integer>0</integer>
 				<key>Width</key>
 				<real>0.33</real>
-				<key>Height</key>
-				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>CoordinateX</key>
-				<real>0.66</real>
-				<key>CoordinateY</key>
-				<integer>0</integer>
-				<key>Width</key>
-				<real>0.34</real>
 				<key>Height</key>
 				<integer>1</integer>
 			</dict>
@@ -367,7 +367,7 @@
 				<key>Width</key>
 				<integer>1</integer>
 				<key>Height</key>
-				<real>0.33</real>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>CoordinateX</key>
@@ -378,16 +378,6 @@
 				<integer>1</integer>
 				<key>Height</key>
 				<real>0.33</real>
-			</dict>
-			<dict>
-				<key>CoordinateX</key>
-				<integer>0</integer>
-				<key>CoordinateY</key>
-				<real>0.66</real>
-				<key>Width</key>
-				<integer>1</integer>
-				<key>Height</key>
-				<real>0.34</real>
 			</dict>
 		</array>
 	</dict>
