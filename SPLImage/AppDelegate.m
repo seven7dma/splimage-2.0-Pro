@@ -27,7 +27,7 @@
     self.window.rootViewController = navController;
 
     [Flurry setCrashReportingEnabled:YES];
-    [Flurry startSession:@"VJ7WQCZ63DCH5JBC8T9C"];
+    [Flurry startSession:@"KJQGGC4HZP6Q87NPJJ92"];
     [FlurryAds initialize:self.window.rootViewController];
   
     //for splash to appear longer
