@@ -105,24 +105,9 @@
     [btnRateStars setFrame:CGRectMake(100, 5, imgStars.size.width, imgStars.size.height)];
     [btnRateStars setImage:imgStars forState:UIControlStateNormal];
     [btnRateStars setTag:INDEX_LEFT];
-//    [btnRateStars addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    UIBarButtonItem *barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnRateStars];
-//    [arrayBtn addObject:barBtn2];
 
-//    [arrayBtn addObject:spacer];
-
-    UIImage *imgHeart = [UIImage imageNamed:@"tabbar_pro"];
-    btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnShare setFrame:CGRectMake(CGRectGetMaxX(btnRateStars.frame), 5, imgHeart.size.width, imgHeart.size.height)];
-    [btnShare setImage:imgHeart forState:UIControlStateNormal];
-    [btnShare setTag:INDEX_RIGHT];
-    [btnShare addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
     UIBarButtonItem *barBtn3 = [[UIBarButtonItem alloc] initWithCustomView:btnShare];
     [arrayBtn addObject:barBtn3];
-
-//    [arrayBtn addObject:spacer];
 
     [toolBar setItems:arrayBtn animated:YES];
 
@@ -283,8 +268,8 @@
             break;
             
         case INDEX_RIGHT:
-            NSLog(@"Instagram follow Btn");
-            [self goToInstagram];
+            NSLog(@"HD clicked");
+            [self goHD];
             break;
 
         default:
@@ -354,8 +339,11 @@
 }
 
 #pragma mark - Social Media
--(void)goToInstagram{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"instagram://user?username=splimage"]];
+-(void)goHD{
+    
+    goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
+    self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self presentViewController:goProViewController animated:YES completion:nil];
 }
 
 -(void) goToTwitter{

@@ -46,10 +46,6 @@
     [btnLeftNav setFrame:CGRectMake(9, 5, back.size.width, back.size.height)];
     [btnLeftNav setBackgroundImage:back forState:UIControlStateNormal];
     
-    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
-    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
-    [btnRightNav setBackgroundImage:goPro forState:UIControlStateNormal];
-    
     [self loadUpCanvasView];
     [self setUpToolBarButton];
     [canvasView disableTheGreenBorders];
@@ -159,11 +155,7 @@
     UIImage *back = [UIImage imageNamed:@"btn_back"];
     [btnLeftNav setFrame:CGRectMake(9, 5, back.size.width, back.size.height)];
     [btnLeftNav setBackgroundImage:back forState:UIControlStateNormal];
-    
-    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
-    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
-    [btnRightNav setImage:goPro forState:UIControlStateNormal];
-    
+        
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
 
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
