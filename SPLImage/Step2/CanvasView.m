@@ -9,7 +9,7 @@
 #import "CanvasView.h"
 
 @implementation CanvasView
-#define PADDING 0.0
+#define PADDING 0.5
 @synthesize arrayCanvasView,delegate;
 - (id)initWithFrame:(CGRect)frame andPattern:(NSArray *)patternArray andBGImage:(UIImage *)bgImage
 {
@@ -34,7 +34,7 @@
             
             NSMutableDictionary *dictViews = [NSMutableDictionary dictionaryWithCapacity:0];
             
-            CGRect frameCanvas = CGRectMake(frame.size.width * [[items valueForKey:COORDINATE_X] floatValue] +PADDING, frame.size.height * [[items valueForKey:COORDINATE_Y] floatValue] +PADDING, frame.size.width * [[items valueForKey:WIDTH] floatValue] - 2*PADDING, frame.size.height * [[items valueForKey:HEIGHT] floatValue] - 2*PADDING);
+            CGRect frameCanvas = CGRectMake(frame.size.width * [[items valueForKey:COORDINATE_X] floatValue] +PADDING, frame.size.height * [[items valueForKey:COORDINATE_Y] floatValue] +PADDING, frame.size.width * [[items valueForKey:WIDTH] floatValue] - PADDING, frame.size.height * [[items valueForKey:HEIGHT] floatValue] - 2*PADDING);
             
             myScrollView =[[SPLImageGpuClass alloc] initWithFrame:frameCanvas andTag:tag];
             [self addSubview:myScrollView];
