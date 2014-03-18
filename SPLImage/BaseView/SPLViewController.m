@@ -96,7 +96,7 @@
         [navBarPrimary addSubview:btnLeftNav];
         
         imgBtnNav = nil;
-        imgBtnNav = [UIImage imageNamed:@"tabbar_pro"];
+        imgBtnNav = [UIImage imageNamed:@"topbar_instagram"];
         btnRightNav = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnRightNav setFrame:CGRectMake(screenFrame.size.width - (imgBtnNav.size.width+9), 5, imgBtnNav.size.width, imgBtnNav.size.height)];
         [btnRightNav setTag:INDEX_RIGHT];
@@ -107,6 +107,7 @@
         imgBtnNav = [UIImage imageNamed:@"SplImageNew"];
         btnCenterNav = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnCenterNav setFrame:CGRectMake(screenFrame.size.width/2 - imgBtnNav.size.width/2, 5, imgBtnNav.size.width, imgBtnNav.size.height)];
+        [btnCenterNav addTarget:self action:@selector(rightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btnCenterNav setImage:imgBtnNav forState:UIControlStateNormal];
         btnCenterNav.userInteractionEnabled = NO;
         [navBarPrimary addSubview:btnCenterNav];

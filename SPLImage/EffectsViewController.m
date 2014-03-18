@@ -39,6 +39,10 @@
     //[btnCenterNav setFrame:CGRectMake(9, 5, effects.size.width, effects.size.height)];
     //[btnCenterNav setBackgroundImage:effects forState:UIControlStateNormal];
     
+    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
+    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
+    [btnRightNav setImage:goPro forState:UIControlStateNormal];
+    
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
     
     videoPath = [SavedData getVideoURLAtIndex:selectedIndex];
