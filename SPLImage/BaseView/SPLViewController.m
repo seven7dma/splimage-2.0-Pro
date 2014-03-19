@@ -87,9 +87,9 @@
     
     [self.navigationController.navigationBar setHidden:YES];
     if (useSuperButtons) {
-        UIImage *imgBtnNav = [UIImage imageNamed:@"topbar_twitter"];
+        UIImage *imgBtnNav = [UIImage imageNamed:@"icon-facebook"];
         btnLeftNav = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [btnLeftNav setFrame:CGRectMake(9, 5, imgBtnNav.size.width, imgBtnNav.size.height)];
+        [btnLeftNav setFrame:CGRectMake(15, 5, imgBtnNav.size.width + 5, imgBtnNav.size.height)];
         [btnLeftNav setTag:INDEX_LEFT];
         [btnLeftNav addTarget:self action:@selector(leftBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btnLeftNav setBackgroundImage:imgBtnNav forState:UIControlStateNormal];
@@ -104,7 +104,7 @@
         [btnRightNav setImage:imgBtnNav forState:UIControlStateNormal];
         [navBarPrimary addSubview:btnRightNav];
         
-        imgBtnNav = [UIImage imageNamed:@"SplImageNew"];
+        imgBtnNav = [UIImage imageNamed:@"splImageBrandiPhone"];
         btnCenterNav = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnCenterNav setFrame:CGRectMake(screenFrame.size.width/2 - imgBtnNav.size.width/2, 5, imgBtnNav.size.width, imgBtnNav.size.height)];
         [btnCenterNav addTarget:self action:@selector(rightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];

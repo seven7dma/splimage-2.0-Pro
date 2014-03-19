@@ -234,6 +234,7 @@
         [self.navigationController pushViewController:patternLayoutView animated:YES];
     }
 }
+
 - (void)changePage {
     // update the scroll view to the appropriate page
     CGRect frame;
@@ -278,8 +279,8 @@
 -(void)navBarButtonClicked:(UIButton *)sender{
     switch ([sender tag]) {
         case INDEX_LEFT:
-            NSLog(@"Twitter Like Btn");
-            [self goToTwitter];
+            NSLog(@"Facebook Like Btn");
+            [self goToFacebook];
             break;
             
         case INDEX_RIGHT:
@@ -356,6 +357,10 @@
 #pragma mark - Social Media
 -(void)goToInstagram{
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"instagram://user?username=splimage"]];
+}
+
+-(void) goToFacebook{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://facebook.com/SPLIMAGE"]];
 }
 
 -(void) goToTwitter{
