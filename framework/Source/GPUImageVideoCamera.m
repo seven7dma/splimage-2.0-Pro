@@ -474,10 +474,10 @@ NSString *const kGPUImageYUVVideoRangeConversionForLAFragmentShaderString = SHAD
 		for (AVCaptureConnection *connection in videoOutput.connections)
 		{
 			if ([connection respondsToSelector:@selector(setVideoMinFrameDuration:)])
-				connection.videoMinFrameDuration = CMTimeMake(1, _frameRate);
+				connection.videoMinFrameDuration = CMTimeMake(1, (int)_frameRate);
 			
 			if ([connection respondsToSelector:@selector(setVideoMaxFrameDuration:)])
-				connection.videoMaxFrameDuration = CMTimeMake(1, _frameRate);
+				connection.videoMaxFrameDuration = CMTimeMake(1, (int)_frameRate);
 		}
 	}
 	else

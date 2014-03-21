@@ -6369,7 +6369,6 @@
 				SKIP_INSTALL = YES;
 				WARNING_CFLAGS = (
 					"-Wall",
-					"-Werror",
 					"-Wendif-labels",
 					"-Wnewline-eof",
 					"-Wfloat-equal",
@@ -6395,7 +6394,6 @@
 				SKIP_INSTALL = YES;
 				WARNING_CFLAGS = (
 					"-Wall",
-					"-Werror",
 					"-Wendif-labels",
 					"-Wnewline-eof",
 				);

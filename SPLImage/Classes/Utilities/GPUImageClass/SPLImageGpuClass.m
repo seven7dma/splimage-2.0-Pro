@@ -13,7 +13,7 @@
 @synthesize btnAddVideo;
 @synthesize viewThumb;
 @synthesize shouldZoom =_shouldZoom;
-@synthesize counter;
+@synthesize counter = _counter;
 #define PADDING 0.3
 
 - (id)initWithFrame:(CGRect)frame andTag:(int)selfTag
@@ -123,10 +123,8 @@
 
         [self setScrollViewToCenter];
     }
-
-   
-
 }
+
 -(void)setScrollViewToCenter{
     [self setZoomScale:zScale animated:NO];
     float xScroll,yScroll;
@@ -220,8 +218,8 @@
     
     //Tricky: not quite as we do conventionally
         
-//        CGRect cropContent = CGRectMake( xPos, yPos, ratioWidth, ratioHeight);//Portrait
-    CGRect cropContent = CGRectMake( yPos, xPos,  ratioHeight,ratioWidth);//LandScape
+    CGRect cropContent = CGRectMake( xPos, yPos, ratioWidth, ratioHeight);//Portrait
+ //   CGRect cropContent = CGRectMake( yPos, xPos,  ratioHeight,ratioWidth);//LandScape
 
     NSLog(@"cropContent saved: %@\n-----------",NSStringFromCGRect(cropContent));
     
