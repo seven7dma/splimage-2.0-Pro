@@ -148,7 +148,8 @@
     movieFile.runBenchmark = YES;
     movieFile.playAtActualSpeed = YES;
  //   movieFile.playAt2XSpeed = !runActualSpeed;
-
+    //fix crash when contentsize grows > 1.0
+    contentRect = CGRectMake(0, 0, 1, 1);
     cropFilter = [[GPUImageCropFilter alloc] initWithCropRegion:contentRect];
 
     [self getForwardFitting:sampleURL];
