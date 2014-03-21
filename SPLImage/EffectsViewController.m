@@ -101,10 +101,10 @@
     
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
 
-    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, screenFrame.size.width - 10, screenFrame.size.height - 150) andUrl:videoPath andFiltered:selectedFilter];
+    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, screenFrame.size.width - 10, screenFrame.size.height - 180) andUrl:videoPath andFiltered:selectedFilter];
     [splPlayerView setTag:selectedIndex];
     [splPlayerView setDelegate:self];
-    [splPlayerView addThumbViewImage];
+    [splPlayerView loadUpPlayer];
     [self.view addSubview:splPlayerView];
 }
 
@@ -154,20 +154,23 @@
     [btnRev setImage:imgRev forState:UIControlStateNormal];
     [btnRev setTag:INDEX_LEFT_NEXT];
     [btnRev addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnRev];
-    [arrayBtn addObject:barBtn2];
+ //   UIBarButtonItem *barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnRev];
+ //   [arrayBtn addObject:barBtn2];
     
     [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer];
+
+ //   UIImage *imgFwd = [UIImage imageNamed:@"fwd"];
+ //   UIButton * btnFwd = [UIButton buttonWithType:UIButtonTypeCustom];
+ //   [btnFwd setFrame:CGRectMake(30, 5, imgFwd.size.width, imgFwd.size.height)];
+ //   [btnFwd setImage:imgFwd forState:UIControlStateNormal];
+ //   [btnFwd setTag:INDEX_RIGHT_PREVIOUS];
+ //   [btnFwd addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImage *imgFwd = [UIImage imageNamed:@"fwd"];
-    UIButton * btnFwd = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnFwd setFrame:CGRectMake(30, 5, imgFwd.size.width, imgFwd.size.height)];
-    [btnFwd setImage:imgFwd forState:UIControlStateNormal];
-    [btnFwd setTag:INDEX_RIGHT_PREVIOUS];
-    [btnFwd addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *barBtn3 = [[UIBarButtonItem alloc] initWithCustomView:btnFwd];
-    [arrayBtn addObject:barBtn3];
+  //  UIBarButtonItem *barBtn3 = [[UIBarButtonItem alloc] initWithCustomView:btnFwd];
+  //  [arrayBtn addObject:barBtn3];
     
     [arrayBtn addObject:spacer];
 
@@ -273,7 +276,10 @@
             
         case INDEX_RIGHT:
             NSLog(@"go Pro");
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/splimage-shoot-it.-splice/id608308710?mt=8"]];
+         //   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/splimage-shoot-it.-splice/id608308710?mt=8"]];
+            goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
+            self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            [self presentViewController:goProViewController animated:YES completion:nil];
             break;
     }
 }

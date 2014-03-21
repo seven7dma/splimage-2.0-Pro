@@ -1,4 +1,4 @@
- //
+//
 //  FiltersViewController.m
 //  SPLImage
 //
@@ -9,6 +9,8 @@
 #import "FiltersViewController.h"
 
 @interface FiltersViewController ()
+
+@property (nonatomic, strong) UITableViewCell *selectedCell;
 
 @end
 
@@ -54,7 +56,7 @@
     [toolBarFilters setBackgroundImage:imgToolBar forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
     [self.view addSubview:toolBarFilters];
     
-    tableFilters = [[UITableView alloc] initWithFrame:CGRectMake(0, screenFrame.size.height - FILTER_TABLE_HEIGHT - 88, screenFrame.size.width, FILTER_TABLE_HEIGHT)];
+    tableFilters = [[UITableView alloc] initWithFrame:CGRectMake(0, screenFrame.size.height - FILTER_TABLE_HEIGHT , screenFrame.size.width, FILTER_TABLE_HEIGHT)];
     NSLog(@"adview height : %f",self.adView.frame.size.height);
     //tableFilters.backgroundColor = [UIColor greenColor];
     //[tableFilters setBackgroundColor:[UIColor blackColor]];
@@ -66,8 +68,8 @@
 
     CGAffineTransform rotateTable = CGAffineTransformMakeRotation(-M_PI_2);
     tableFilters.transform = rotateTable;
-    tableFilters.frame = CGRectMake(0,screenFrame.size.height - FILTER_TABLE_HEIGHT - 88,tableFilters.frame.size.height,tableFilters.frame.size.width);
-
+    tableFilters.frame = CGRectMake(0,screenFrame.size.height - FILTER_TABLE_HEIGHT ,tableFilters.frame.size.height,tableFilters.frame.size.width);
+    
     // Do any additional setup after loading the view from its nib.
     
     [self setUpToolBarButton];
@@ -89,6 +91,7 @@
     [tableFilters selectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0] animated:NO  scrollPosition:UITableViewScrollPositionNone ];
     [[tableFilters delegate] tableView:tableFilters didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0]];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -107,15 +110,15 @@
     }
     
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
-
-    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, screenFrame.size.width - 10, screenFrame.size.height - FILTER_TABLE_HEIGHT - 160) andUrl:videoPath andFiltered:selectedFilter];
-
+    
+    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, screenFrame.size.width - 10, screenFrame.size.height - FILTER_TABLE_HEIGHT - 70) andUrl:videoPath andFiltered:selectedFilter];
+    
     [splPlayerView setTag:selectedIndex];
     
     [splPlayerView setDelegate:self];
-    [splPlayerView addThumbViewImage];
+    [splPlayerView loadUpPlayer];
     [self.view addSubview:splPlayerView];
-
+    
 }
 
 -(void)stopPlayer{
@@ -232,9 +235,7 @@
     [cell setThisFilter:indexPath.row];
     [cell setBtnFilterImage:[arrayFilteredImages objectAtIndex:indexPath.row]];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-  
     return cell;
-
 }
 
 
@@ -246,6 +247,15 @@
     [self stopPlayer];
     selectedFilter = indexPath.row;
     [self loadUpPlayer];
+    if (self.selectedCell) {
+        //reset the old selected cell
+        self.selectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+        self.selectedCell.layer.borderWidth = 0.0f;
+    }
+    //set new selected cell and border color
+    self.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    self.selectedCell.layer.borderColor = [UIColor greenColor].CGColor;
+    self.selectedCell.layer.borderWidth = 2.0f;
 }
 
 #pragma mark- SplPlayerViewDelegate
@@ -313,9 +323,9 @@
     [self setUpToolBarButton];
     
     UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
-    toolBarFilters.frame = CGRectMake(0, frame.size.height-imgToolBar.size.height, frame.size.width , imgToolBar.size.height);
+    toolBarFilters.frame = CGRectMake(0, frame.size.height-imgToolBar.size.height, frame.size.width + 88, imgToolBar.size.height);
     
-    tableFilters.frame = CGRectMake(0, frame.size.height - FILTER_TABLE_HEIGHT - 88, frame.size.width, FILTER_TABLE_HEIGHT);
+    tableFilters.frame = CGRectMake(0, frame.size.height - FILTER_TABLE_HEIGHT, frame.size.width, FILTER_TABLE_HEIGHT);
 
     [self.view addSubview:tableFilters];
     selectedFilter = [SavedData getFilterAtIndex:selectedIndex];
