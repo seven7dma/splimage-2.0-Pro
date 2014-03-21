@@ -77,9 +77,10 @@
     [btnLeftNav setFrame:CGRectMake(9, 8, changePattern.size.width, changePattern.size.height)];
     [btnLeftNav setBackgroundImage:changePattern forState:UIControlStateNormal];
     //[btnLeftNav setImage:changePattern forState:UIControlStateNormal];
-
+    
     [SavedData setValue:[self getPatternArrayForPattern:selectedPattern] forKey:ARRAY_PATTERN];
-
+    btnRightNav.hidden = true;
+    
    // UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
     
     canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:nil];
@@ -500,7 +501,7 @@
                 [objects setValue:savedObjects[kZoomScale] forKey:kZoomScale];
                 [objects setValue:savedObjects[kShouldRevert] forKey:kShouldRevert];
                 [objects setValue:savedObjects[kContentOffset] forKey:kContentOffset];
-                [objects setValue:savedObjects[kShouldRevert] forKey:kShouldRevert];
+                //  [objects setValue:savedObjects[kShouldRevert] forKey:kShouldRevert];
                 [objects setValue:savedObjects[kVideoURL] forKey:kVideoURL];
             
             }
