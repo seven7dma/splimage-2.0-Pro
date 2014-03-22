@@ -100,22 +100,21 @@
 
     [arrayBtn addObject:spacer];
     
-    UIImage *imgStars = [UIImage imageNamed:@"Stars"];
+    UIImage *imgStars = [UIImage imageNamed:@"icon-heart-rate"];
     UIButton *btnRateStars = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnRateStars setFrame:CGRectMake(100, 5, imgStars.size.width, imgStars.size.height)];
     [btnRateStars setImage:imgStars forState:UIControlStateNormal];
-    [btnRateStars setTag:INDEX_LEFT];
-//    [btnRateStars addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [btnRateStars setTag:INDEX_LEFT_NEXT];
+    [btnRateStars addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-//    UIBarButtonItem *barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnRateStars];
-//    [arrayBtn addObject:barBtn2];
+    UIBarButtonItem *barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnRateStars];
+    [arrayBtn addObject:barBtn2];
+    [arrayBtn addObject:spacer];
 
-//    [arrayBtn addObject:spacer];
-
-    UIImage *imgHeart = [UIImage imageNamed:@"tabbar_pro"];
+    UIImage *imgHD = [UIImage imageNamed:@"tabbar_pro"];
     btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnShare setFrame:CGRectMake(CGRectGetMaxX(btnRateStars.frame), 5, imgHeart.size.width, imgHeart.size.height)];
-    [btnShare setImage:imgHeart forState:UIControlStateNormal];
+    [btnShare setFrame:CGRectMake(CGRectGetMaxX(btnRateStars.frame), 5, imgHD.size.width, imgHD.size.height)];
+    [btnShare setImage:imgHD forState:UIControlStateNormal];
     [btnShare setTag:INDEX_RIGHT];
     [btnShare addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -256,12 +255,21 @@
 -(void)tabBarButtonClicked:(UIButton *)sender{
     switch ([sender tag]) {
         case INDEX_LEFT:{
-           // EVLog(@"Rate us Btn");
+ 
             SPLSettingViewController *settingsVC = [SPLSettingViewController sharedSettingViewController];
             [self.navigationController pushViewController:settingsVC animated:YES];
             break;
         }
-            
+        case INDEX_LEFT_NEXT:{
+            // EVLog(@"Rate us Btn");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Rate Splimage"
+                                                            message:@"Having fun with Splimage? \nWe would love to hear from you.\n If you can take a moment to write a 5-star review; we would greatly appreciate it.\n Thank you for your support :-)"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Not now"
+                                                  otherButtonTitles:@"Rate", nil];
+            [alert show];
+            break;
+        }
         case INDEX_RIGHT:
          //   EVLog(@"go Pro");
             goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
@@ -296,8 +304,7 @@
 #pragma mark - Rate Us
 -(void)rateUsOnAppStore{
 
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=608308710"]];
-
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"itms-apps://itunes.apple.com/app/id608308710"]];
 }
 
 #pragma amrk -  UIAlertView Delegate
