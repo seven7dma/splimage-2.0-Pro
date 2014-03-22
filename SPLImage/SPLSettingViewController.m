@@ -28,12 +28,13 @@
 
 +(id)sharedSettingViewController{
     
-    NSString *storyboardId = @"MainStoryboard_iPad";
-    //    if (IS_IPAD)
-//        nibName = @"SPLSettingViewController_iPad";
+    NSString *storyboardId;
     
-//	return [[SPLSettingViewController alloc] initWithNibName:nibName bundle:nil] ;
-
+    if (IS_IPAD)
+        storyboardId = @"MainStoryboard_iPad";
+    else
+        storyboardId = @"MainStoryboard_iPhone";
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardId bundle: nil];
     SPLSettingViewController *settingsVC = [storyboard instantiateViewControllerWithIdentifier:@"settingsVC"];
     return settingsVC;
@@ -392,7 +393,7 @@
         case 0:
             break;
         case 1:
-           // [self rateUsOnAppStore];
+            [self rateUsOnAppStore];
             break;
             
         default:
@@ -403,8 +404,7 @@
 #pragma mark - Rate Us
 -(void)rateUsOnAppStore{
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=608308710"]];
-    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"itms-apps://itunes.apple.com/app/id608308710"]];
 }
 
 @end
