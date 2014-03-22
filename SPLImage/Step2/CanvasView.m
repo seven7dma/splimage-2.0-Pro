@@ -90,7 +90,12 @@
 
             [btnSounds addTarget:self action:@selector(setTheSelectedSounds:) forControlEvents:UIControlEventTouchUpInside];
             [arrayButtonSound addObject:btnSounds];
+            if (tag == 0)
+                btnSounds.selected = NO;
+            else
+                btnSounds.selected = YES;
             
+            [self setTheSelectedSounds:btnSounds];
               
             [dictViews setObject:myScrollView forKey:CANVAS_VIEW_GREEN_BG];
             [dictViews setObject:myScrollView.viewGpuImage forKey:CANVAS_VIEW_GRAY];
@@ -274,18 +279,19 @@
 -(void)setTheSelectedSounds:(id)sender{
     
     for (UIButton *B in arrayButtonSound) {
-        if ([B tag]==[sender tag])
-            [B setSelected:YES];
-        else
-            [B setSelected:NO];
-    }
-    for (NSDictionary *items in [SavedData getValueForKey:ARRAY_FRAMES]) {
-        if ([[items valueForKey:kTag] integerValue]==[sender tag]) {
-            [items setValue:[NSNumber numberWithBool:NO] forKey:kIsMute];
-        }else
-            [items setValue:[NSNumber numberWithBool:YES] forKey:kIsMute];
+        if ([B tag]==[sender tag]) {
+            if (B.isSelected)
+                [B setSelected:NO];
+            else
+                [B setSelected:YES];
+        }
     }
     
+    for (NSDictionary *items in [SavedData getValueForKey:ARRAY_FRAMES]) {
+        if ([[items valueForKey:kTag] integerValue]==[sender tag]) {
+            [items setValue:[NSNumber numberWithBool:![sender isSelected]] forKey:kIsMute];
+        }
+    }
 }
 
 #pragma mark -

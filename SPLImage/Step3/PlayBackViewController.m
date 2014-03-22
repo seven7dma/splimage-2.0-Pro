@@ -95,7 +95,7 @@
     [canvasView shouldAddAllTheGesture:NO];
     [canvasView displayAllSoundButtons:YES];
     [canvasView hideVideoAddBtns];
-    [self setUpAudioButton];
+   // [self setUpAudioButton];
 }
 
 #pragma mark- canvasViewDelegate
@@ -296,7 +296,7 @@
             
         case FALSE:
             NSLog(@"switchOFF");
-            [self setUpAudioButton];
+          //  [self setUpAudioButton];
             break;
             
 
@@ -306,8 +306,10 @@
 }
 
 -(void)setUpAudioButton{
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setTag:0];
+    btn.selected = YES;
     [canvasView setTheSelectedSounds:btn];
 }
 
@@ -502,12 +504,11 @@
         [dictionaryVideoCompostion setObject:url forKey:kVideoURL];
         [dictionaryVideoCompostion setObject:[NSNumber numberWithBool:[SavedData getIsTrackMuteAtIndex:i]] forKey:kIsMute];
         
-        if ([SavedData getFilterAtIndex:i]==FILTER_2X) {
-            [dictionaryVideoCompostion setObject:[NSNumber numberWithBool:YES] forKey:kIsFast];
-        }else
-            [dictionaryVideoCompostion setObject:[NSNumber numberWithBool:NO] forKey:kIsFast];
+       // if ([SavedData getFilterAtIndex:i]==FILTER_2X) {
+       //     [dictionaryVideoCompostion setObject:[NSNumber numberWithBool:YES] forKey:kIsFast];
+       // }else
+        [dictionaryVideoCompostion setObject:[NSNumber numberWithBool:NO] forKey:kIsFast];
 
-        
         if (mySwitch.on) {
             [dictionaryVideoCompostion setObject:[NSNumber numberWithBool:NO] forKey:kIsMute];
             
