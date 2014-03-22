@@ -29,10 +29,31 @@
 //    [myFilter removeAllTargets];
 //    [myFilter endProcessing];
     switch (selectedFilter) {
-        case FILTER_LOWPASS:
-        case FILTER_2X:
+
         case FILTER_NONE:
             myFilter = [GPUImageBrightnessFilter new];
+            break;
+            
+        case FILTER_MOSAIC:
+           // myFilter = [GPUImageMosaicFilter new];
+            myFilter = [GPUImageBrightnessFilter new];
+
+            break;
+            
+        case FILTER_ADDNOISE:
+            myFilter =  [GPUImagePerlinNoiseFilter new];
+            break;
+            
+        case FILTER_EMBOSS:
+            myFilter =  [GPUImageEmbossFilter new];
+            break;
+            
+        case FILTER_TILTSHIFT:
+            myFilter = [GPUImageTiltShiftFilter new];
+            break;
+            
+        case FILTER_SEPIA:
+            myFilter = [GPUImageSepiaFilter new];
             break;
             
         case FILTER_BLACK_WHITE:
@@ -46,7 +67,7 @@
         case FILTER_CARTOON:
             myFilter = [GPUImageToonFilter new];
             break;
-
+            
         case FILTER_SOBELEDGE:
             myFilter = [GPUImageSobelEdgeDetectionFilter new];
             break;
@@ -54,30 +75,13 @@
         case FILTER_ETIKATE:
             myFilter = [GPUImageMissEtikateFilter new];
             break;
- 
+            
         case FILTER_XRAY:
             myFilter = [GPUImageColorInvertFilter new];
             break;
-        case FILTER_MOSAIC:
-            myFilter = [GPUImageBrightnessFilter new];
-            //myFilter = [GPUImageBrightnessFilter new];
-            break;
-        case FILTER_ADDNOISE:
-            myFilter = [GPUImageBrightnessFilter new];
-            //myFilter = [GPUImageBrightnessFilter new];
-            break;
-        case FILTER_EMBOSS:
-            myFilter = [GPUImageEmbossFilter new];
-            //myFilter = [GPUImageBrightnessFilter new];
-            break;
-        case FILTER_TILTSHIFT:
-            myFilter = [GPUImageTiltShiftFilter new];
-            break;
-        case FILTER_SEPIA:
-            //myFilter = [GPUImageBrightnessFilter new];
-            myFilter = [GPUImageSepiaFilter new]; 
-            break;
+            
         default:
+            myFilter = [GPUImageBrightnessFilter new];
             break;
     }
    
@@ -91,14 +95,34 @@
     GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:[self getAssetThumbnail]];
     
     GPUImageOutput <GPUImageInput> * stillImageFilter;//  = [[SavedData getValueForKey:ARRAY_FILTERS] objectAtIndex:selectedFilter];
-    
+
     switch (selectedFilter) {
-        case FILTER_LOWPASS:
-        case FILTER_2X:
+ 
         case FILTER_NONE:
             stillImageFilter = [GPUImageBrightnessFilter new];
             break;
+      
+        case FILTER_MOSAIC:
+            //stillImageFilter = [GPUImageMosaicFilter new];
+            stillImageFilter = [GPUImageBrightnessFilter new];
+            break;
+
+        case FILTER_ADDNOISE:
+            stillImageFilter =  [GPUImagePerlinNoiseFilter new];
+            break;
+        
+        case FILTER_EMBOSS:
+            stillImageFilter =  [GPUImageEmbossFilter new];
+            break;
             
+        case FILTER_TILTSHIFT:
+            stillImageFilter = [GPUImageTiltShiftFilter new];
+            break;
+
+        case FILTER_SEPIA:
+            stillImageFilter = [GPUImageSepiaFilter new];
+            break;
+
         case FILTER_BLACK_WHITE:
             stillImageFilter = [GPUImageGrayscaleFilter new];
             break;
@@ -122,37 +146,9 @@
         case FILTER_XRAY:
             stillImageFilter = [GPUImageColorInvertFilter new];
             break;
-        case FILTER_MOSAIC:
-            //stillImageFilter = [GPUImageMosaicFilter new];
-            stillImageFilter = [GPUImageBrightnessFilter new];
-
-            break;
-            
-        case FILTER_ADDNOISE:
-            stillImageFilter =  [GPUImagePerlinNoiseFilter new];
-            //stillImageFilter = [GPUImageBrightnessFilter new];
-
-            break;
-            
-        case FILTER_EMBOSS:
-            stillImageFilter =  [GPUImageEmbossFilter new];
-            //stillImageFilter = [GPUImageBrightnessFilter new];
-
-            break;
-            
-        case FILTER_TILTSHIFT:
-            stillImageFilter = [GPUImageTiltShiftFilter new];
-            //stillImageFilter = [GPUImageBrightnessFilter new];
-
-            break;
-            
-        case FILTER_SEPIA:
-            stillImageFilter = [GPUImageSepiaFilter new];
-            //stillImageFilter = [GPUImageBrightnessFilter new];
-
-            break;
-
+        
         default:
+            stillImageFilter = [GPUImageBrightnessFilter new];
             break;
     }
     
@@ -198,6 +194,7 @@
 
     return theImage; //newImage;//
 }
+
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 -(UIInterfaceOrientation)orientationForTrack:(AVAsset *)asset
 {

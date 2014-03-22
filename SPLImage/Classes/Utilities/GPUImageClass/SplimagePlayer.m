@@ -85,37 +85,30 @@
     
     isActualSpeed = YES;
     switch (selectedFilter) {
+            
         case FILTER_NONE:
             myFilter = [GPUImageBrightnessFilter new];
             break;
-        case FILTER_MOSAIC:
-            //myFilter = [GPUImageMosaicFilter new];
-            myFilter = [GPUImageBrightnessFilter new];
             
+        case FILTER_MOSAIC:
+          //  myFilter = [GPUImageMosaicFilter new];
+            myFilter = [GPUImageBrightnessFilter new];
             break;
             
         case FILTER_ADDNOISE:
             myFilter =  [GPUImagePerlinNoiseFilter new];
-            // myFilter = [GPUImageBrightnessFilter new];
-            
             break;
             
         case FILTER_EMBOSS:
             myFilter =  [GPUImageEmbossFilter new];
-            //myFilter = [GPUImageBrightnessFilter new];
-            
             break;
             
         case FILTER_TILTSHIFT:
             myFilter = [GPUImageTiltShiftFilter new];
-            // myFilter = [GPUImageBrightnessFilter new];
-            
             break;
             
         case FILTER_SEPIA:
             myFilter = [GPUImageSepiaFilter new];
-            //myFilter = [GPUImageBrightnessFilter new];
-            
             break;
             
         case FILTER_BLACK_WHITE:
@@ -137,19 +130,6 @@
         case FILTER_ETIKATE:
             myFilter = [GPUImageMissEtikateFilter new];
             break;
-            
-        case FILTER_2X:
-            myFilter = [GPUImageBrightnessFilter new];
-            isActualSpeed = NO;
-            break;
-            
-        case FILTER_LOWPASS:
-        {
-            GPUImageLowPassFilter *filter2 = [[GPUImageLowPassFilter   alloc] init];
-            [filter2 setFilterStrength:0.7];
-            myFilter = filter2;
-            break;
-        }
             
         case FILTER_XRAY:
             myFilter = [GPUImageColorInvertFilter new];
