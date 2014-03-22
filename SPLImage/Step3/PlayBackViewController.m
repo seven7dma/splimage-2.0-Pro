@@ -132,7 +132,10 @@
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spacer.width = 10;
+    if (IS_IPAD)
+        spacer.width = 110;
+    else
+        spacer.width = 10;
     
     [arrayBtn addObject:spacer];
     
@@ -146,7 +149,6 @@
     UIBarButtonItem *barBtn1 = [[UIBarButtonItem alloc] initWithCustomView:mySwitch];
     [arrayBtn addObject:barBtn1];
 
-    
     [arrayBtn addObject:spacer];
 
     UIImage *imgPlay = [UIImage imageNamed:@"footer_Play"];

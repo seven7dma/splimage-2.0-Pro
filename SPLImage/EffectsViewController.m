@@ -35,13 +35,15 @@
     //[btnLeftNav setImage:back forState:UIControlStateNormal];
     [btnLeftNav setBackgroundImage:back forState:UIControlStateNormal];
     
+    btnRightNav.hidden = YES;
+    
     //UIImage *effects = [UIImage imageNamed:@"Effects"];
     //[btnCenterNav setFrame:CGRectMake(9, 5, effects.size.width, effects.size.height)];
     //[btnCenterNav setBackgroundImage:effects forState:UIControlStateNormal];
     
-    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
-    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
-    [btnRightNav setImage:goPro forState:UIControlStateNormal];
+    //UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
+    //[btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
+    //[btnRightNav setImage:goPro forState:UIControlStateNormal];
     
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
     
@@ -135,7 +137,10 @@
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spacer.width = 40;
+    if (IS_IPAD)
+        spacer.width = 110;
+    else
+        spacer.width = 37;
     
     UIImage *imgBtn = [UIImage imageNamed:@"icon_filter"];
     UIButton * btnFx = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -174,14 +179,14 @@
     
     [arrayBtn addObject:spacer];
 
-    UIImage *imgCut = [UIImage imageNamed:@"Cut"];
-    UIButton * btnCut = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnCut setFrame:CGRectMake(70, 5, imgCut.size.width, imgCut.size.height)];
-    [btnCut setImage:imgCut forState:UIControlStateNormal];
-    [btnCut setTag:INDEX_RIGHT];
-    [btnCut addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *imgPro = [UIImage imageNamed:@"tabbar_pro"];
+    UIButton * btnPro = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnPro setFrame:CGRectMake(65, 5, imgPro.size.width, imgPro.size.height)];
+    [btnPro setImage:imgPro forState:UIControlStateNormal];
+    [btnPro setTag:INDEX_RIGHT];
+    [btnPro addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *barBtn4 = [[UIBarButtonItem alloc] initWithCustomView:btnCut];
+    UIBarButtonItem *barBtn4 = [[UIBarButtonItem alloc] initWithCustomView:btnPro];
     [arrayBtn addObject:barBtn4];
     
     [arrayBtn addObject:spacer];

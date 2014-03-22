@@ -112,8 +112,11 @@
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     CGRect frame = [super getScreenFrameForCurrentOrientation];
-    spacer.width = frame.size.width/3;
     
+    if (IS_IPAD)
+        spacer.width = 105;
+    else
+        spacer.width = 35;
  //   [arrayBtn addObject:spacer];
     
   //  UIImage *imgCommints = [UIImage imageNamed:@"commint"];
@@ -132,9 +135,11 @@
     [btnFx setTag:INDEX_LEFT];
     [btnFx addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnFx];
-    [arrayBtn addObject:barBtn2];
+    UIBarButtonItem *barBtn1 = [[UIBarButtonItem alloc] initWithCustomView:btnFx];
+    [arrayBtn addObject:barBtn1];
     
+    [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer];
     [arrayBtn addObject:spacer];
 
     UIImage *imgPlay = [UIImage imageNamed:@"footer_Play"];
@@ -147,12 +152,13 @@
     [btnPlay setTag:INDEX_LEFT_NEXT];
     [btnPlay addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
-    UIBarButtonItem *barBtn3 = [[UIBarButtonItem alloc] initWithCustomView:btnPlay];
-    [barBtn3 setEnabled:NO];
-    [arrayBtn addObject:barBtn3];
+    UIBarButtonItem *barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnPlay];
+    [barBtn2 setEnabled:NO];
+    [arrayBtn addObject:barBtn2];
     
     [arrayBtn addObject:spacer];
- 
+    [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer];
     
     UIImage *imgCut = [UIImage imageNamed:@"Cut"];
     UIButton * btnCut = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -161,12 +167,12 @@
     [btnCut setTag:INDEX_RIGHT_PREVIOUS];
     [btnCut addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *barBtn4 = [[UIBarButtonItem alloc] initWithCustomView:btnCut];
-    [arrayBtn addObject:barBtn4];
+    UIBarButtonItem *barBtn3 = [[UIBarButtonItem alloc] initWithCustomView:btnCut];
+    [arrayBtn addObject:barBtn3];
     
     [arrayBtn addObject:spacer];
     
-    UIImage *imgShare = [UIImage imageNamed:@"share_icon"];
+    /*UIImage *imgShare = [UIImage imageNamed:@"share_icon"];
 
     UIButton * btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnShare setFrame:CGRectMake(280, 5, imgShare.size.width, imgShare.size.height)];
@@ -178,7 +184,7 @@
     UIBarButtonItem *barBtn5 = [[UIBarButtonItem alloc] initWithCustomView:btnShare];
     [arrayBtn addObject:barBtn5];
     
-    [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer]; */
     
     [toolBar setItems:arrayBtn animated:YES];
     

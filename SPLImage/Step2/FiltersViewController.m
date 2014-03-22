@@ -244,9 +244,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self stopPlayer];
-    selectedFilter = indexPath.row;
-    [self loadUpPlayer];
+    
     if (self.selectedCell) {
         //reset the old selected cell
         self.selectedCell.layer.borderColor = [UIColor clearColor].CGColor;
@@ -256,6 +254,16 @@
     self.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     self.selectedCell.layer.borderColor = [UIColor greenColor].CGColor;
     self.selectedCell.layer.borderWidth = 2.0f;
+    if (indexPath.row > 0 && indexPath.row < 6) {
+        goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
+        self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:goProViewController animated:YES completion:nil];
+        return;
+    }
+    
+    [self stopPlayer];
+    selectedFilter = indexPath.row;
+    [self loadUpPlayer];
 }
 
 #pragma mark- SplPlayerViewDelegate
