@@ -7,6 +7,7 @@
 //
 
 #import "CanvasView.h"
+#import <QuartzCore/CAGradientLayer.h>
 
 @implementation CanvasView
 #define PADDING 0.5
@@ -49,7 +50,7 @@
             [btnSounds setFrame:CGRectMake(frameCanvas.origin.x+frameCanvas.size.width-imgSoundSelected.size.width-8, frameCanvas.origin.y+8, imgSoundSelected.size.width, imgSoundSelected.size.height)];
             [btnSounds setHidden:YES];
             [btnSounds setUserInteractionEnabled:YES];
-            
+            [self startWigglingforView:btnSounds];
             [self addSubview:btnSounds];
             
             NSString *imgName =[NSString stringWithFormat:@"%d.png",tag+1];
@@ -60,6 +61,7 @@
             [imageViewSeq setFrame:CGRectMake(frameCanvas.origin.x+frameCanvas.size.width-imgSoundSelected.size.width-8, frameCanvas.origin.y+8, imgSoundSelected.size.width, imgSoundSelected.size.height)];
             [imageViewSeq setUserInteractionEnabled:YES];
             [imageViewSeq setHidden:YES];
+            [self startWigglingforView:imageViewSeq];
             [self addSubview:imageViewSeq];
             [arraySequences addObject:imageViewSeq];
             
@@ -848,6 +850,42 @@
 }
 
 #pragma mark - Scroll Data
+
+#pragma mark Wiggle animation
+
+
+- (void)startWigglingforView:(UIView *)button {
+    CAAnimation *rotationAnimation = [self wiggleRotationAnimation];
+    [button.layer addAnimation:rotationAnimation forKey:@"wiggleRotation"];
+     
+    CAAnimation *translationYAnimation = [self wiggleTranslationYAnimation];
+    [button.layer addAnimation:translationYAnimation forKey:@"wiggleTranslationY"];
+}
+
+
+- (CAAnimation *)wiggleRotationAnimation {
+    CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
+    anim.values = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-0.05f],
+                   [NSNumber numberWithFloat:0.05f],
+                   nil];
+    anim.duration = 0.09f;
+    anim.autoreverses = YES;
+    anim.repeatCount = HUGE_VALF;
+    return anim;
+}
+
+
+- (CAAnimation *)wiggleTranslationYAnimation {
+    CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
+    anim.values = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1.0f],
+                   [NSNumber numberWithFloat:1.0f],
+                   nil];
+    anim.duration = 0.07f;
+    anim.autoreverses = YES;
+    anim.repeatCount = HUGE_VALF;
+    anim.additive = YES;
+    return anim;
+}
 
 
 @end
