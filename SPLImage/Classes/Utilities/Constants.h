@@ -126,7 +126,7 @@ typedef enum
 
 #define FILTER_TABLE_HEIGHT 120
 #define VIDEO_VIEW_HEIGHT 320
-#define VIDEO_MAX_DURATION 15.0
+#define VIDEO_MAX_DURATION 20.0
 
 //keys and accesses
 
