@@ -37,14 +37,6 @@
     
     btnRightNav.hidden = YES;
     
-    //UIImage *effects = [UIImage imageNamed:@"Effects"];
-    //[btnCenterNav setFrame:CGRectMake(9, 5, effects.size.width, effects.size.height)];
-    //[btnCenterNav setBackgroundImage:effects forState:UIControlStateNormal];
-    
-    //UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
-    //[btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
-    //[btnRightNav setImage:goPro forState:UIControlStateNormal];
-    
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
     
     videoPath = [SavedData getVideoURLAtIndex:selectedIndex];
@@ -75,9 +67,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self adjustFrameAfterView];
-//    [FlurryAds setAdDelegate:self];
-//    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
-    
+
     //set selected filter by default
     
  //   [tableFilters selectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0] animated:NO  scrollPosition:UITableViewScrollPositionNone ];
@@ -103,7 +93,7 @@
     
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
 
-    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height, screenFrame.size.width - 10, screenFrame.size.height - 180) andUrl:videoPath andFiltered:selectedFilter];
+    splPlayerView = [[SplPlayerView alloc] initWithFrame:CGRectMake(5, navBarPrimary.frame.origin.y + navBarPrimary.frame.size.height + 20 , screenFrame.size.width - 10, screenFrame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 60) andUrl:videoPath andFiltered:selectedFilter];
     [splPlayerView setTag:selectedIndex];
     [splPlayerView setDelegate:self];
     [splPlayerView loadUpPlayer];
@@ -179,16 +169,6 @@
     
     [arrayBtn addObject:spacer];
 
-    UIImage *imgPro = [UIImage imageNamed:@"tabbar_pro"];
-    UIButton * btnPro = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnPro setFrame:CGRectMake(65, 5, imgPro.size.width, imgPro.size.height)];
-    [btnPro setImage:imgPro forState:UIControlStateNormal];
-    [btnPro setTag:INDEX_RIGHT];
-    [btnPro addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *barBtn4 = [[UIBarButtonItem alloc] initWithCustomView:btnPro];
-    [arrayBtn addObject:barBtn4];
-    
     [arrayBtn addObject:spacer];
     
     [toolBarFilters setItems:arrayBtn animated:YES];
@@ -206,9 +186,6 @@
             break;
             
         default:
-            goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
-            self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-            [self presentViewController:goProViewController animated:YES completion:nil];
             break;
     }
 }
@@ -282,9 +259,6 @@
         case INDEX_RIGHT:
             NSLog(@"go Pro");
          //   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/splimage-shoot-it.-splice/id608308710?mt=8"]];
-            goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
-            self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-            [self presentViewController:goProViewController animated:YES completion:nil];
             break;
     }
 }

@@ -40,9 +40,6 @@
     [super viewDidAppear:animated];
     CGRect frame = [super getScreenFrameForCurrentOrientation];
     [self adjustFrameAfterView:frame];
-  //  [FlurryAds setAdDelegate:self];
-  //  [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -83,7 +80,7 @@
     
    // UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
     
-    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:nil];
+    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, navBarPrimary.frame.size.width-10, frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 60) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:nil];
     canvasView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     [canvasView shouldAddAllTheGesture:YES];
@@ -466,7 +463,7 @@
     [self  saveSelectedVideoInfo];
     //UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
 
-    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, self.navigationController.navigationBar.frame.size.width-10, frame.size.height - 200) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:nil];
+    canvasView =[[CanvasView alloc] initWithFrame:CGRectMake(5, 80, navBarPrimary.frame.size.width - 10, frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 60) andPattern:[SavedData getValueForKey:ARRAY_PATTERN] andBGImage:nil];
 
     [self loadBackSavedVideoInfoAfterRotation];
 

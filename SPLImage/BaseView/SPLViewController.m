@@ -66,19 +66,6 @@
     [toolBar setBackgroundImage:imgToolBar forToolbarPosition:UIToolbarPositionBottom barMetrics:UIBarMetricsDefault];
     [self.view addSubview:toolBar];
     
-    if (self.adView.superview == nil) {
-        self.adView = [[UIView alloc] init];
-        CGRect frame = self.adView.frame;
-        frame.origin.y = toolBar.frame.origin.y - ADVERT_BAR_HEIGHT;
-        frame.size.height = ADVERT_BAR_HEIGHT;
-        self.adView.frame = frame;
-        [self.view addSubview:self.adView];
-        [FlurryAds setAdDelegate:self];
-        [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
-        
-        [self.view bringSubviewToFront:self.adView];
-    }
-    
     UIImage *imgNavBar = [UIImage imageNamed:@"topbar_bg"];
     navBarPrimary = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,20, screenFrame.size.width, imgNavBar.size.height)];
     [navBarPrimary setBackgroundImage:imgNavBar forBarMetrics:UIBarMetricsDefault];
@@ -231,8 +218,6 @@
     UIImage *imgToolBar = [UIImage imageNamed:@"tabbar_bg"];
     toolBar.frame = CGRectMake(0, frame.size.height- imgToolBar.size.height, frame.size.width , imgToolBar.size.height);
     
-    // resize adview
-    self.adView.frame = CGRectMake(0, frame.size.height - toolBar.frame.size.height - ADVERT_BAR_HEIGHT, frame.size.width, ADVERT_BAR_HEIGHT);
 }
 
 @end

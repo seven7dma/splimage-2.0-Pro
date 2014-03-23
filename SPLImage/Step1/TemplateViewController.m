@@ -36,7 +36,7 @@
     useSuperButtons = YES;
     [super viewDidLoad];
     CGRect frame = [super getScreenFrameForCurrentOrientation];
-    scrollTemplateView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBarPrimary.frame.size.height + 20, frame.size.width , frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 80)];
+    scrollTemplateView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navBarPrimary.frame.size.height + 20, frame.size.width , frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 20)];
     [scrollTemplateView setPagingEnabled:YES];
     [scrollTemplateView setBackgroundColor:[UIColor clearColor]];
     [scrollTemplateView setShowsHorizontalScrollIndicator:NO];
@@ -46,7 +46,8 @@
     [self.view addSubview:scrollTemplateView];
     [self.view bringSubviewToFront:scrollTemplateView];
     
-    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(10, self.adView.frame.origin.y  - 20 , 5, 10)];
+    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(10, toolBar.frame.origin.y - 20 , 5, 10)];
+    
     [pageControl setCenter:CGPointMake(self.view.center.x, pageControl.center.y)];
     [pageControl setNumberOfPages:2];
     [pageControl setCurrentPage:0];
@@ -73,9 +74,6 @@
 - (void) viewDidAppear:(BOOL)animated {
 
     [super viewDidAppear:YES];
-//    [FlurryAds setAdDelegate:self];
-//    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
-
 }
 
 #pragma - mark User Functions
@@ -84,7 +82,7 @@
     NSMutableArray *arrayBtn = [NSMutableArray arrayWithCapacity:0];
     
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];// UIBarButtonSystemItemFixedSpace
-    spacer.width = 250;
+    spacer.width = 600;
     
 //    [arrayBtn addObject:spacer];
 
@@ -99,29 +97,21 @@
     [arrayBtn addObject:barBtn1];
 
     [arrayBtn addObject:spacer];
-    
+    [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer];
+    [arrayBtn addObject:spacer];
+
     UIImage *imgStars = [UIImage imageNamed:@"icon-heart-rate"];
     UIButton *btnRateStars = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnRateStars setFrame:CGRectMake(100, 5, imgStars.size.width, imgStars.size.height)];
     [btnRateStars setImage:imgStars forState:UIControlStateNormal];
-    [btnRateStars setTag:INDEX_LEFT_NEXT];
+    [btnRateStars setTag:INDEX_RIGHT];
     [btnRateStars addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *barBtn2 = [[UIBarButtonItem alloc] initWithCustomView:btnRateStars];
     [arrayBtn addObject:barBtn2];
-    [arrayBtn addObject:spacer];
-
-    UIImage *imgHD = [UIImage imageNamed:@"tabbar_pro"];
-    btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnShare setFrame:CGRectMake(CGRectGetMaxX(btnRateStars.frame), 5, imgHD.size.width, imgHD.size.height)];
-    [btnShare setImage:imgHD forState:UIControlStateNormal];
-    [btnShare setTag:INDEX_RIGHT];
-    [btnShare addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *barBtn3 = [[UIBarButtonItem alloc] initWithCustomView:btnShare];
-    [arrayBtn addObject:barBtn3];
-
-//    [arrayBtn addObject:spacer];
 
     [toolBar setItems:arrayBtn animated:YES];
 
@@ -132,7 +122,7 @@
     CGRect frame = [super getScreenFrameForCurrentOrientation];
     
     // calculate the height of scrollview
-    CGFloat scrollViewHeight = frame.size.height - 30 - navBarPrimary.frame.size.height - toolBar.frame.size.height - self.adView.frame.size.height;
+    CGFloat scrollViewHeight = frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height;
     
     NSInteger buttonNumber =0;
     CGFloat btnWidth = 90;
@@ -169,7 +159,7 @@
     CGRect frame = [super getScreenFrameForOrientation:interfaceOrientation];
     
     // calculate the height of scrollview
-    CGFloat scrollViewHeight = frame.size.height - 30 - navBarPrimary.frame.size.height - toolBar.frame.size.height - self.adView.frame.size.height;
+    CGFloat scrollViewHeight = frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 20;
     
     NSInteger buttonNumber =0;
     CGFloat btnWidth = 90;
@@ -217,14 +207,7 @@
 -(void)patternSelected:(UIButton *)btnPatternSelected{
     
     NSLog(@"pattern selected: %d", btnPatternSelected.tag);
-    if (btnPatternSelected.tag > 7) {
-        // only pro features
-        goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
-        self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [self presentViewController:goProViewController animated:YES completion:nil];
-        return;
-        
-    } else if (btnPatternSelected.tag == 7) {
+    if (btnPatternSelected.tag == 7) {
         // depic button
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/ag/app/depic-transparent-collage/id694589312?mt=8&ign-mpt=uo%3D2"]];
         return;
@@ -260,7 +243,7 @@
             [self.navigationController pushViewController:settingsVC animated:YES];
             break;
         }
-        case INDEX_LEFT_NEXT:{
+        case INDEX_RIGHT:{
             // EVLog(@"Rate us Btn");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Rate Splimage"
                                                             message:@"Having fun with Splimage? \nWe would love to hear from you.\n If you can take a moment to write a 5-star review; we would greatly appreciate it.\n Thank you for your support :-)"
@@ -270,13 +253,7 @@
             [alert show];
             break;
         }
-        case INDEX_RIGHT:
-         //   EVLog(@"go Pro");
-            goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
-            self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-            [self presentViewController:goProViewController animated:YES completion:nil];
-            break;
-            
+
         default:
             break;
     }
@@ -453,16 +430,8 @@
     [super layoutTopViewForInterfaceFrame:frame];
     
     // resize scrollview
-    scrollTemplateView.frame = CGRectMake(0, navBarPrimary.frame.size.height + 20, frame.size.width , frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 74);
+    scrollTemplateView.frame = CGRectMake(0, navBarPrimary.frame.size.height + 20, frame.size.width , frame.size.height - navBarPrimary.frame.size.height - toolBar.frame.size.height - 20);
     [scrollTemplateView  setContentSize:CGSizeMake(pageControl.numberOfPages * frame.size.width, scrollTemplateView.frame.size.height)];
-    
-    // TODO resize pageControl
-    //    pageControl.frame = CGRectMake(frame.size.width/2 - 5, frame.size.height - toolBar.frame.size.height - self.adView.frame.size.height - 10, 10, 10);
-    
-    //pageControl.frame = CGRectMake(10, self.adView.frame.origin.y  - 20 , 5, 10);
-    //pageControl.center = CGPointMake(frame.size.width/2 - 10, pageControl.center.y);
-    
-    //pageControl.backgroundColor = [UIColor redColor];
     
     // layout buttons for new orientation
     

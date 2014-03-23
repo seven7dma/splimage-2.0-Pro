@@ -17,8 +17,6 @@
 		2F16DBD1183AF3CE0067416C /* tabbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBC9183AF3CE0067416C /* tabbar_bg@2x.png */; };
 		2F16DBD2183AF3CE0067416C /* tabbar_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBCA183AF3CE0067416C /* tabbar_more.png */; };
 		2F16DBD3183AF3CE0067416C /* tabbar_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBCB183AF3CE0067416C /* tabbar_more@2x.png */; };
-		2F16DBD4183AF3CE0067416C /* tabbar_pro.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBCC183AF3CE0067416C /* tabbar_pro.png */; };
-		2F16DBD5183AF3CE0067416C /* tabbar_pro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBCD183AF3CE0067416C /* tabbar_pro@2x.png */; };
 		2F16DBD6183AF3CE0067416C /* tabbar_setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBCE183AF3CE0067416C /* tabbar_setting.png */; };
 		2F16DBD7183AF3CE0067416C /* tabbar_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBCF183AF3CE0067416C /* tabbar_setting@2x.png */; };
 		2F16DBEA183AF4480067416C /* topbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBDF183AF4470067416C /* topbar_bg.png */; };
@@ -109,9 +107,6 @@
 		2F84FA7D183F569E00A594B4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84FA7C183F569E00A594B4 /* CoreTelephony.framework */; };
 		2F84FA83183F56B500A594B4 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84FA82183F56B500A594B4 /* iAd.framework */; };
 		2F84FA85183F56E500A594B4 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84FA84183F56E500A594B4 /* PassKit.framework */; };
-		2F84FA8A183FE11200A594B4 /* GoProViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F84FA88183FE11200A594B4 /* GoProViewController.xib */; };
-		2F84FA8B183FE11200A594B4 /* GoProViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F84FA89183FE11200A594B4 /* GoProViewController_iPad.xib */; };
-		2F84FA8E183FE15100A594B4 /* GoProViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84FA8D183FE15100A594B4 /* GoProViewController.m */; };
 		2F864AE5183B54CF00B32FC5 /* Canvas.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F864AE3183B54CF00B32FC5 /* Canvas.png */; };
 		2F864AE6183B54CF00B32FC5 /* Canvas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F864AE4183B54CF00B32FC5 /* Canvas@2x.png */; };
 		2F864AEF183C0B5E00B32FC5 /* accept_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F864AEB183C0B5E00B32FC5 /* accept_icon.png */; };
@@ -420,8 +415,6 @@
 		2F16DBC9183AF3CE0067416C /* tabbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@2x.png"; sourceTree = "<group>"; };
 		2F16DBCA183AF3CE0067416C /* tabbar_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_more.png; sourceTree = "<group>"; };
 		2F16DBCB183AF3CE0067416C /* tabbar_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_more@2x.png"; sourceTree = "<group>"; };
-		2F16DBCC183AF3CE0067416C /* tabbar_pro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_pro.png; sourceTree = "<group>"; };
-		2F16DBCD183AF3CE0067416C /* tabbar_pro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_pro@2x.png"; sourceTree = "<group>"; };
 		2F16DBCE183AF3CE0067416C /* tabbar_setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_setting.png; sourceTree = "<group>"; };
 		2F16DBCF183AF3CE0067416C /* tabbar_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_setting@2x.png"; sourceTree = "<group>"; };
 		2F16DBDF183AF4470067416C /* topbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topbar_bg.png; sourceTree = "<group>"; };
@@ -826,10 +819,6 @@
 		2F84FA7C183F569E00A594B4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2F84FA82183F56B500A594B4 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		2F84FA84183F56E500A594B4 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
-		2F84FA88183FE11200A594B4 /* GoProViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoProViewController.xib; sourceTree = "<group>"; };
-		2F84FA89183FE11200A594B4 /* GoProViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoProViewController_iPad.xib; sourceTree = "<group>"; };
-		2F84FA8C183FE15100A594B4 /* GoProViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoProViewController.h; sourceTree = "<group>"; };
-		2F84FA8D183FE15100A594B4 /* GoProViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoProViewController.m; sourceTree = "<group>"; };
 		2F864AE3183B54CF00B32FC5 /* Canvas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Canvas.png; sourceTree = "<group>"; };
 		2F864AE4183B54CF00B32FC5 /* Canvas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Canvas@2x.png"; sourceTree = "<group>"; };
 		2F864AEB183C0B5E00B32FC5 /* accept_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accept_icon.png; sourceTree = "<group>"; };
@@ -1180,8 +1169,6 @@
 				2F16DBC9183AF3CE0067416C /* tabbar_bg@2x.png */,
 				2F16DBCA183AF3CE0067416C /* tabbar_more.png */,
 				2F16DBCB183AF3CE0067416C /* tabbar_more@2x.png */,
-				2F16DBCC183AF3CE0067416C /* tabbar_pro.png */,
-				2F16DBCD183AF3CE0067416C /* tabbar_pro@2x.png */,
 				2F16DBCE183AF3CE0067416C /* tabbar_setting.png */,
 				2F16DBCF183AF3CE0067416C /* tabbar_setting@2x.png */,
 			);
@@ -1761,10 +1748,6 @@
 		6840AA951671E91500802C37 /* Miscellenous */ = {
 			isa = PBXGroup;
 			children = (
-				2F84FA8C183FE15100A594B4 /* GoProViewController.h */,
-				2F84FA8D183FE15100A594B4 /* GoProViewController.m */,
-				2F84FA88183FE11200A594B4 /* GoProViewController.xib */,
-				2F84FA89183FE11200A594B4 /* GoProViewController_iPad.xib */,
 				68B7DC6A1683396C002F8A5F /* FaceBookLikeViewController.h */,
 				68B7DC6B1683396C002F8A5F /* FaceBookLikeViewController.m */,
 			);
@@ -2379,7 +2362,6 @@
 				68F251DF167205A400B66905 /* btn_3.png in Resources */,
 				68F251E0167205A400B66905 /* Coming-Soon.png in Resources */,
 				68F251E1167205A400B66905 /* fbButton.png in Resources */,
-				2F16DBD5183AF3CE0067416C /* tabbar_pro@2x.png in Resources */,
 				2F16DC0F183AF46C0067416C /* thumb03@2x.png in Resources */,
 				2F16DBEB183AF4480067416C /* topbar_bg@2x.png in Resources */,
 				68F251E2167205A400B66905 /* Navbar.png in Resources */,
@@ -2506,7 +2488,6 @@
 				2F16DC0D183AF46C0067416C /* thumb02@2x.png in Resources */,
 				2F16DBED183AF4480067416C /* topbar_change@2x.png in Resources */,
 				68BD5264168036DF00729309 /* MPAdBrowserController.xib in Resources */,
-				2F16DBD4183AF3CE0067416C /* tabbar_pro.png in Resources */,
 				68BD5268168036DF00729309 /* MPCloseButtonX.png in Resources */,
 				2F16DBEF183AF4480067416C /* topbar_depic@2x.png in Resources */,
 				2FF0CCBE183D6867002BE5C3 /* icon_filter@2x.png in Resources */,
@@ -2585,7 +2566,6 @@
 				68B44BBA169D46F700547D1A /* Play_All_Once_green.png in Resources */,
 				68B03F8516A050410024DE31 /* play_selected@2x.png in Resources */,
 				68B03F8716A0504A0024DE31 /* play_selected.png in Resources */,
-				2F84FA8B183FE11200A594B4 /* GoProViewController_iPad.xib in Resources */,
 				2F16DBD7183AF3CE0067416C /* tabbar_setting@2x.png in Resources */,
 				68C0727716B7DE1200CC9FA3 /* 4.png in Resources */,
 				2F16DC5A183AF4BC0067416C /* btn_sharemms.png in Resources */,
@@ -2611,7 +2591,6 @@
 				2F9FF61F18DD6DF8004A5564 /* Icon-76@2x.png in Resources */,
 				68B92FD816E62B92003B6E03 /* redo_btn.png in Resources */,
 				2F9FF61D18DD6DF8004A5564 /* Icon-72@2x.png in Resources */,
-				2F84FA8A183FE11200A594B4 /* GoProViewController.xib in Resources */,
 				68B92FDB16E62B9E003B6E03 /* home_btn@2x.png in Resources */,
 				68B92FDC16E62B9E003B6E03 /* redo_btn@2x.png in Resources */,
 			);
@@ -2664,7 +2643,6 @@
 				68B44BBE169D691800547D1A /* SplFilterCell.m in Sources */,
 				68C247F316A436F100157CDC /* SplimageInput.m in Sources */,
 				2F16DC92183B308B0067416C /* SPLSettingViewController.m in Sources */,
-				2F84FA8E183FE15100A594B4 /* GoProViewController.m in Sources */,
 				68BF1F3516B91C8300DB7ADD /* VideoPlaybackView.m in Sources */,
 				68B8EE5016BBB8A0003F651B /* SplPlayerView.m in Sources */,
 				68B8EE5B16BC0E5F003F651B /* TPCircularBuffer+AudioBufferList.c in Sources */,
@@ -2794,7 +2772,7 @@
 					"$(inherited)",
 				);
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/FacebookSDK/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/FacebookSDK/**",
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2803,8 +2781,8 @@
 				HEADER_SEARCH_PATHS = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/usr/include/libxml2,
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/framework/Source/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/framework/Source/**",
 				);
 				INFOPLIST_FILE = "SPLImage/Splimage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -2817,7 +2795,7 @@
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/Flurry,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -2850,7 +2828,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Commints, LLC (6G54337ZN5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/FacebookSDK/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/FacebookSDK/**",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2858,21 +2836,21 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/usr/include/libxml2,
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
-					"/Users/infosys/Desktop/MyApplications/SPLImagebkp/framework/Source/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/SPLImage/Classes/Utilities/TPCircularBuffer-master/**",
+					"/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/framework/Source/**",
 				);
 				INFOPLIST_FILE = "SPLImage/Splimage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/infosys/Desktop/MyApplications/SPLImage/Flurry,
-					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/Flurry,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/infosys/Desktop/MyApplications/SPLImagebkp/Flurry,
+					/Users/infosys/Desktop/MyApplications/SPLImagebkpPro/Flurry,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (

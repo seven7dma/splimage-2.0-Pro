@@ -57,7 +57,6 @@
     [self.view addSubview:toolBarFilters];
     
     tableFilters = [[UITableView alloc] initWithFrame:CGRectMake(0, screenFrame.size.height - FILTER_TABLE_HEIGHT , screenFrame.size.width, FILTER_TABLE_HEIGHT)];
-    NSLog(@"adview height : %f",self.adView.frame.size.height);
     //tableFilters.backgroundColor = [UIColor greenColor];
     //[tableFilters setBackgroundColor:[UIColor blackColor]];
     [tableFilters setDelegate:self];
@@ -84,10 +83,8 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-//    [FlurryAds setAdDelegate:self];
-//    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
+    
     //set selected filter by default
-
     [tableFilters selectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0] animated:NO  scrollPosition:UITableViewScrollPositionNone ];
     [[tableFilters delegate] tableView:tableFilters didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:selectedFilter inSection:0]];
 }
@@ -254,13 +251,7 @@
     self.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     self.selectedCell.layer.borderColor = [UIColor greenColor].CGColor;
     self.selectedCell.layer.borderWidth = 2.0f;
-    if (indexPath.row > 0 && indexPath.row < 6) {
-        goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
-        self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [self presentViewController:goProViewController animated:YES completion:nil];
-        return;
-    }
-    
+
     [self stopPlayer];
     selectedFilter = indexPath.row;
     [self loadUpPlayer];

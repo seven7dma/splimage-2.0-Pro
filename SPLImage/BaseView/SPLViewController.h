@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "MPAdView.h"
-#import "GoProViewController.h"
 #import "FlurryAdDelegate.h"
 #import "FlurryAds.h"
 
@@ -31,11 +30,9 @@
     UIButton *btnCenterNav;
     BOOL useSuperButtons;
     MBProgressHUD *HUD;
-    GoProViewController *goProViewController;
 }
 
 @property(nonatomic,assign)id <SPLViewControllerDelegate> delegate;
-@property(nonatomic,retain)UIView *adView;
 //@property(nonatomic,retain)UIView *advertView;
 -(void)updatePrimaryUI;
 -(void)leftBarButtonClicked:(UIButton *)sender;

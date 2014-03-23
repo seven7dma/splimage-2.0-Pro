@@ -61,10 +61,6 @@
     [btnLeftNav setFrame:CGRectMake(9, 5, back.size.width, back.size.height)];
     [btnLeftNav setBackgroundImage:back forState:UIControlStateNormal];
     
-    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
-    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
-    [btnRightNav setBackgroundImage:goPro forState:UIControlStateNormal];
-    
     [self loadUpCanvasView];
     [self setUpToolBarButton];
     [canvasView disableTheGreenBorders];
@@ -73,7 +69,7 @@
     for (int i =0; i<4; i++)
         [arraySequence addObject:[NSNumber numberWithInt:i]];
     videoMergeCompleted = NO;
-    
+    btnRightNav.hidden = YES;
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -82,7 +78,6 @@
 
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-//    [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
 }
 
 #pragma mark-
@@ -174,12 +169,10 @@
 -(void)reSetUpToolBarButton{
     
     UIImage *done = [UIImage imageNamed:@"btn_done"];
-    [btnLeftNav setFrame:CGRectMake(9, 5, done.size.width, done.size.height)];
-    [btnLeftNav setBackgroundImage:done forState:UIControlStateNormal];
-    
-    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
-    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
-    [btnRightNav setImage:goPro forState:UIControlStateNormal];
+    [btnRightNav setFrame:CGRectMake(navBarPrimary.frame.size.width - done.size.width - 30, 5, done.size.width + 20, done.size.height)];
+    [btnRightNav setBackgroundImage:done forState:UIControlStateNormal];
+    [btnRightNav setHidden:NO];
+    [btnLeftNav setHidden:YES];
     
     CGRect screenFrame = [super getScreenFrameForCurrentOrientation];
 
@@ -240,7 +233,8 @@
             }
             else{
                 NSLog(@"Play");
-                [self showFullScreenAd];  // display interstatial add
+                [self reSetUpToolBarButton];
+                [self startProcessingOutput];
             }
             break;
         }
@@ -262,7 +256,7 @@
 -(void)navBarButtonClicked:(UIButton *)sender{
     [canvasView stopPlayer];
     switch ([sender tag]) {
-        case INDEX_LEFT:
+        case INDEX_RIGHT:
             NSLog(@"done");
             if (splPlayerView) {
                 [splPlayerView stopPlayer];
@@ -273,15 +267,7 @@
             }
             [self.navigationController popToRootViewControllerAnimated:YES];
             break;
-            
-        case INDEX_RIGHT:
-            NSLog(@"goPro");
-            
-//            [self shareVideoOptions];
-            goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
-            self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-            [self presentViewController:goProViewController animated:YES completion:nil];
-            break;
+
 
         default:
             break;
@@ -398,6 +384,7 @@
             
         case 1:{
             //call out OutPutMovie
+            [self reSetUpToolBarButton];
             [self startProcessingOutput];
         }
             break;
@@ -1327,47 +1314,6 @@ ofTotalByteCount:(unsigned long long)dataLength {
       // [self reSetUpToolBarButton];
     } else {
         [self reSetUpToolBarButton];
-    }
-}
-
-#pragma Flurry Ad delegates
-
--(void) showFullScreenAd {
-    
-    [FlurryAds setAdDelegate:self];
-    [FlurryAds fetchAdForSpace:@"INTERSTITIAL_MAIN_VIEW" frame:self.view.frame size:FULLSCREEN];
-    // Check if ad is ready. If so, display the ad
-    
-    if ([FlurryAds adReadyForSpace:@"INTERSTITIAL_MAIN_VIEW"]) {
-        [FlurryAds displayAdForSpace:@"INTERSTITIAL_MAIN_VIEW" onView:self.view];
-        //    } else {
-        // Fetch an ad
-        //        [FlurryAds fetchAdForSpace:@"INTERSTITIAL_MAIN_VIEW" frame:self.view.frame size:FULLSCREEN];
-    }
-}
-
-/*
- *  It is recommended to pause app activities when an interstitial is shown.
- *  Listen to should display delegate.
- */
-//- (BOOL) spaceShouldDisplay:(NSString*)adSpace interstitial:(BOOL)
-//interstitial {
-//    if (interstitial) {
-// Pause app state here
-//    }
-
-// Continue ad display
-//    return YES;
-//}
-
-/*
- *  Resume app state when the interstitial is dismissed.
- */
-- (void)spaceDidDismiss:(NSString *)adSpace interstitial:(BOOL)interstitial {
-    if (interstitial) {
-        // Resume app state here
-        [self reSetUpToolBarButton];
-        [self startProcessingOutput];
     }
 }
 
