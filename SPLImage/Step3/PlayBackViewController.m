@@ -1029,42 +1029,32 @@
     
     float version = [[UIDevice currentDevice].systemVersion floatValue];
     [self showActivity];
-    
+    NSLog( @"### running FB sdk version: %@", [FBSettings sdkVersion] );
+
     if (version >= 6) {
-        __block ACAccount *facebookAccount = nil;
+        if (![FBSession.activeSession isOpen]){
+            
+            [FBSession openActiveSessionWithPublishPermissions:@[@"publish_stream", @"publish_actions"] defaultAudience:FBSessionDefaultAudienceEveryone allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                    if (status == FBSessionStateOpen) {
+                            
+                        [self uploadVideoToFacebook];
+                    } else {
+                        NSLog(@"%@",error);
+                        [self removeActivity];
+                        [[[UIAlertView alloc] initWithTitle:@"Failed!"
+                                                    message:@"Log in to the Facebook App First and Try again."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK!"
+                                          otherButtonTitles:nil]
+                         show];
+                    }
+            }];
+        } else {
+            
+            [self uploadVideoToFacebook];
+        }
         
-        ACAccountStore *accountStore =[[ACAccountStore alloc] init];
-        ACAccountType *facebookAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-        
-        NSDictionary *options = @{
-                                  @"ACFacebookAppIdKey" : FACEBOOK_APP_ID,
-                                  @"ACFacebookPermissionsKey" : @[@"publish_stream", @"publish_actions",@"user_videos"],
-                                  @"ACFacebookAudienceKey" : ACFacebookAudienceEveryone}; // Needed only when write permissions are requested
-        
-        [accountStore requestAccessToAccountsWithType:facebookAccountType
-                                              options:options
-                                           completion:^(BOOL granted, NSError *error) {
-                                               if (granted)
-                                               {
-                                                   NSArray *accounts = [accountStore accountsWithAccountType:facebookAccountType];
-                                                   facebookAccount = [accounts lastObject];
-                                                   [self loadUpTheFaceBookRequest:facebookAccount];
-                                               } else {
-                                                   NSLog(@"%@",error);
-                                                   [self removeActivity];
-                                                   [[[UIAlertView alloc] initWithTitle:@"Failed!"
-                                                                               message:@"Log in to the Facebook App First and Try again."
-                                                                              delegate:nil
-                                                                     cancelButtonTitle:@"OK!"
-                                                                     otherButtonTitles:nil]
-                                                    show];
-                                               }
-                                           }];
-        
-        
-        
-        
-    }else{
+    } else{
         if (![FBSession.activeSession isOpen]) {
             [FBSession.activeSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
                 if ([session isOpen]) {
@@ -1123,6 +1113,19 @@
     }];
     [self myUploadTask];
 }
+
+-(void)uploadVideoToFacebook {
+    
+    __block ACAccount *facebookAccount = nil;
+    
+    ACAccountStore *accountStore =[[ACAccountStore alloc] init];
+    ACAccountType *facebookAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+
+    NSArray *accounts = [accountStore accountsWithAccountType:facebookAccountType];
+    facebookAccount = [accounts lastObject];
+    [self loadUpTheFaceBookRequest:facebookAccount];
+}
+
 -(void)uploadFaceBook{
     [self myUploadTask];
     NSData *videoData = [NSData dataWithContentsOfURL:combinedVideoUrl];
