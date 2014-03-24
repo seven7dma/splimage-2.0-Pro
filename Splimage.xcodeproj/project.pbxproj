@@ -143,6 +143,7 @@
 		2FACC2A2184D4844001D8834 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A1184D4844001D8834 /* background.png */; };
 		2FACC2A4184D485D001D8834 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A3184D485D001D8834 /* background@2x.png */; };
 		2FACC2A6184D4CA1001D8834 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FACC2A5184D4CA1001D8834 /* lookup_miss_etikate.png */; };
+		2FB287AD18DFD44E00273828 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB287AC18DFD44E00273828 /* KeychainItemWrapper.m */; };
 		2FB50D3518A9D85600388024 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FB50D3418A9D85600388024 /* MainStoryboard_iPad.storyboard */; };
 		2FC22E3718CEACA900325788 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC22E3618CEACA900325788 /* libFlurry_4.3.2.a */; };
 		2FC22E3B18CEACC900325788 /* libFlurryAds_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC22E3A18CEACC900325788 /* libFlurryAds_4.3.2.a */; };
@@ -854,6 +855,8 @@
 		2FACC2A1184D4844001D8834 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		2FACC2A3184D485D001D8834 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		2FACC2A5184D4CA1001D8834 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
+		2FB287AB18DFD44E00273828 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		2FB287AC18DFD44E00273828 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		2FB50D3118A9CE9E00388024 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = Classes/Utilities/Settings.h; sourceTree = "<group>"; };
 		2FB50D3418A9D85600388024 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		2FC22E3518CEACA900325788 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
@@ -1745,6 +1748,8 @@
 		6840AA951671E91500802C37 /* Miscellenous */ = {
 			isa = PBXGroup;
 			children = (
+				2FB287AB18DFD44E00273828 /* KeychainItemWrapper.h */,
+				2FB287AC18DFD44E00273828 /* KeychainItemWrapper.m */,
 				68B7DC6A1683396C002F8A5F /* FaceBookLikeViewController.h */,
 				68B7DC6B1683396C002F8A5F /* FaceBookLikeViewController.m */,
 			);
@@ -2615,6 +2620,7 @@
 				68BD5241168036CC00729309 /* CDataScanner_Extensions.m in Sources */,
 				68BD5242168036CC00729309 /* NSCharacterSet_Extensions.m in Sources */,
 				68BD5243168036CC00729309 /* NSDictionary_JSONExtensions.m in Sources */,
+				2FB287AD18DFD44E00273828 /* KeychainItemWrapper.m in Sources */,
 				68BD5244168036CC00729309 /* NSScanner_Extensions.m in Sources */,
 				68BD5245168036CC00729309 /* CJSONDataSerializer.m in Sources */,
 				68BD5246168036CC00729309 /* CJSONDeserializer.m in Sources */,

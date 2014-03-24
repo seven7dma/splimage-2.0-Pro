@@ -7,10 +7,13 @@
 //
 
 #import "PlayBackViewController.h"
+#import <Security/Security.h>
+#import "KeychainItemWrapper.h"
 
 @interface PlayBackViewController () {
     
     BOOL videoMergeCompleted;
+    KeychainItemWrapper *keychainItem;
 }
 @end
 
@@ -70,6 +73,7 @@
         [arraySequence addObject:[NSNumber numberWithInt:i]];
     videoMergeCompleted = NO;
     btnRightNav.hidden = YES;
+    keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"SplImageYoutubeCredentials" accessGroup:nil];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -324,11 +328,16 @@
             [self startStopAlert:buttonIndex];
             break;
 
-        case LOGIN_ALERT:
+        case LOGIN_ALERT: {
              [self uploadToYoutube:[[alertView textFieldAtIndex:0] text]
                        andPassword:[[alertView textFieldAtIndex:1] text]
                          withVideo:[NSData dataWithContentsOfURL:combinedVideoUrl]];
+            
+            [keychainItem setObject:[alertView textFieldAtIndex:1].text forKey:(__bridge id)kSecValueData];
+            [keychainItem setObject:[alertView textFieldAtIndex:0].text forKey:(__bridge id)kSecAttrAccount];
+        
             break;
+        }
         default:
             break;
     }
@@ -980,13 +989,28 @@
 #pragma mark -
 
 -(void)uploadToYouTube{
-    
-    UIAlertView *yAlert = [[UIAlertView alloc] initWithTitle:@"Upload to YouTube" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
-    [yAlert setTag:LOGIN_ALERT];
-    [yAlert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
-    [yAlert show];
-    
+
+    NSString *username = [keychainItem objectForKey:(__bridge id)kSecAttrAccount];
+    if (username.length) {
+        
+        //Youtube user already exists, directly upload video
+        NSData *password = [keychainItem objectForKey:(__bridge id)kSecValueData];
+        NSString *passwordDecoded = [[NSString alloc] initWithData:password
+                                                          encoding:NSUTF8StringEncoding];
+        [self uploadToYoutube:username
+                  andPassword:passwordDecoded
+                    withVideo:[NSData dataWithContentsOfURL:combinedVideoUrl]];
+        
+    } else {
+        
+        //ask user to login 
+        UIAlertView *yAlert = [[UIAlertView alloc] initWithTitle:@"Upload to YouTube" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        [yAlert setTag:LOGIN_ALERT];
+        [yAlert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
+        [yAlert show];
+    }
 }
+
 #pragma mark -
 
 -(void)faceBookOperation{
@@ -1238,6 +1262,7 @@ ofTotalByteCount:(unsigned long long)dataLength {
         
         [alert show];
     } else {
+        [keychainItem resetKeychainItem];
         alertMsg = @"Upload Failed. Try Again Later.";//[NSString stringWithFormat:@"Error: %@", [error description]];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                         message:alertMsg

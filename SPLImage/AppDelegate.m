@@ -11,6 +11,7 @@
 #import "TemplateViewController.h"
 #import "Flurry.h"
 #import "FlurryAds.h"
+#import "KeychainItemWrapper.h"
 
 @implementation AppDelegate
 
@@ -39,7 +40,9 @@
     
     
     [self.window makeKeyAndVisible];
-    
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"SplImageYoutubeCredentials" accessGroup:nil];
+    [keychainItem resetKeychainItem];
+
     return YES;
 }
 
