@@ -12,7 +12,6 @@
 		2F096849183D7D8A004F4F66 /* rev@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F096845183D7D8A004F4F66 /* rev@2x.png */; };
 		2F09684A183D7D8A004F4F66 /* fwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F096846183D7D8A004F4F66 /* fwd.png */; };
 		2F09684B183D7D8A004F4F66 /* fwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F096847183D7D8A004F4F66 /* fwd@2x.png */; };
-		2F1412B618337E6D00846182 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1412B518337E6D00846182 /* FacebookSDK.framework */; };
 		2F16DBD0183AF3CE0067416C /* tabbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBC8183AF3CE0067416C /* tabbar_bg.png */; };
 		2F16DBD1183AF3CE0067416C /* tabbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBC9183AF3CE0067416C /* tabbar_bg@2x.png */; };
 		2F16DBD2183AF3CE0067416C /* tabbar_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F16DBCA183AF3CE0067416C /* tabbar_more.png */; };
@@ -409,7 +408,6 @@
 		2F096845183D7D8A004F4F66 /* rev@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rev@2x.png"; sourceTree = "<group>"; };
 		2F096846183D7D8A004F4F66 /* fwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fwd.png; sourceTree = "<group>"; };
 		2F096847183D7D8A004F4F66 /* fwd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fwd@2x.png"; sourceTree = "<group>"; };
-		2F1412B518337E6D00846182 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		2F1412B7183382FD00846182 /* GData.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GData.xcodeproj; path = "gdata-objectivec-client-read-only/Source/GData.xcodeproj"; sourceTree = "<group>"; };
 		2F16DBC8183AF3CE0067416C /* tabbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_bg.png; sourceTree = "<group>"; };
 		2F16DBC9183AF3CE0067416C /* tabbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@2x.png"; sourceTree = "<group>"; };
@@ -1124,7 +1122,6 @@
 				68BD5201168035FD00729309 /* CoreLocation.framework in Frameworks */,
 				2FC22E3B18CEACC900325788 /* libFlurryAds_4.3.2.a in Frameworks */,
 				68BF84D616CF8B4B004057FA /* MessageUI.framework in Frameworks */,
-				2F1412B618337E6D00846182 /* FacebookSDK.framework in Frameworks */,
 				68B8EE5E16BC0F03003F651B /* AudioToolbox.framework in Frameworks */,
 				68FC98531681D7A3006FA4E2 /* libsqlite3.0.dylib in Frameworks */,
 				2FC22E3718CEACA900325788 /* libFlurry_4.3.2.a in Frameworks */,
@@ -1963,7 +1960,6 @@
 				2F84FA7C183F569E00A594B4 /* CoreTelephony.framework */,
 				2F5A4E2D18344BFB00C6872A /* EventKit.framework */,
 				2F5A4E2B18344BB000C6872A /* AddressBook.framework */,
-				2F1412B518337E6D00846182 /* FacebookSDK.framework */,
 				68BF84D516CF8B4B004057FA /* MessageUI.framework */,
 				68BF84D116CF7FCC004057FA /* SystemConfiguration.framework */,
 				68BF84CF16CF7FC4004057FA /* Security.framework */,
