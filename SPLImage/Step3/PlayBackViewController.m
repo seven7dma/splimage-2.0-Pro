@@ -260,6 +260,11 @@
 -(void)navBarButtonClicked:(UIButton *)sender{
     [canvasView stopPlayer];
     switch ([sender tag]) {
+        
+        case INDEX_LEFT:
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+            
         case INDEX_RIGHT:
             NSLog(@"done");
             if (splPlayerView) {
