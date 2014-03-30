@@ -271,7 +271,7 @@
             if (splPlayerView) {
                 [splPlayerView removeFromSuperview];
             }
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
             break;
             
         case INDEX_RIGHT:
