@@ -103,7 +103,11 @@
         [btnRightNav setImage:imgBtnNav forState:UIControlStateNormal];
         [navBarPrimary addSubview:btnRightNav];
         
-        imgBtnNav = [UIImage imageNamed:@"splImageBrandiPhone"];
+        if (IS_IPAD)
+            imgBtnNav = [UIImage imageNamed:@"SplImageBrandiPad"];
+        else
+            imgBtnNav = [UIImage imageNamed:@"splImageBrandiPhone"];
+        
         btnCenterNav = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnCenterNav setFrame:CGRectMake(screenFrame.size.width/2 - imgBtnNav.size.width/2, 5, imgBtnNav.size.width, imgBtnNav.size.height)];
         [btnCenterNav addTarget:self action:@selector(rightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
