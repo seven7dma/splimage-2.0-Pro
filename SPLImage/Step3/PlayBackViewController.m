@@ -999,11 +999,11 @@
     if (username.length) {
         
         //Youtube user already exists, directly upload video
-        NSData *password = [keychainItem objectForKey:(__bridge id)kSecValueData];
-        NSString *passwordDecoded = [[NSString alloc] initWithData:password
-                                                          encoding:NSUTF8StringEncoding];
+        NSString *password = [keychainItem objectForKey:(__bridge id)kSecValueData];
+       // NSString *passwordDecoded = [[NSString alloc] initWithData:password
+       //                                                   encoding:NSUTF8StringEncoding];
         [self uploadToYoutube:username
-                  andPassword:passwordDecoded
+                  andPassword:password
                     withVideo:[NSData dataWithContentsOfURL:combinedVideoUrl]];
         
     } else {
