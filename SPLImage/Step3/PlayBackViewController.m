@@ -179,7 +179,7 @@
     UIImage *done = [UIImage imageNamed:@"btn_done"];
     [btnLeftNav setFrame:CGRectMake(9, 5, done.size.width, done.size.height)];
     [btnLeftNav setBackgroundImage:done forState:UIControlStateNormal];
-    
+    [btnLeftNav setTag:INDEX_LEFT_NEXT];
     UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
     [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
     [btnRightNav setImage:goPro forState:UIControlStateNormal];
@@ -275,6 +275,18 @@
                 [splPlayerView removeFromSuperview];
             }
             [self.navigationController popViewControllerAnimated:YES];
+            break;
+
+        case INDEX_LEFT_NEXT:
+            NSLog(@"done");
+            if (splPlayerView) {
+                [splPlayerView stopPlayer];
+            }
+            
+            if (splPlayerView) {
+                [splPlayerView removeFromSuperview];
+            }
+            [self.navigationController popToRootViewControllerAnimated:YES];
             break;
             
         case INDEX_RIGHT:
