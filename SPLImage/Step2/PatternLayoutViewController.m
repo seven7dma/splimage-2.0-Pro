@@ -128,7 +128,7 @@
     
   //  [arrayBtn addObject:spacer];
     
-    UIImage *imgBtn = [UIImage imageNamed:@"fx"];
+    UIImage *imgBtn = [UIImage imageNamed:@"icon_filter"];
     UIButton * btnFx = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnFx setFrame:CGRectMake(25, 5, imgBtn.size.width, imgBtn.size.height)];
     [btnFx setImage:imgBtn forState:UIControlStateNormal];
@@ -212,8 +212,8 @@
             NSLog(@"Fx") ;
             if (selectedVideo==999) break;
             if ([SavedData isVideoAvalableAtSelectedPosition:selectedVideo]){
-                effectsViewController  = [[EffectsViewController alloc] initWithNibName:@"FiltersViewController" bundle:nil andTag:selectedVideo];
-                [self.navigationController pushViewController:effectsViewController animated:YES];
+                filtersViewController  = [[FiltersViewController alloc] initWithNibName:@"FiltersViewController" bundle:nil andTag:selectedVideo];
+                [self.navigationController pushViewController:filtersViewController animated:YES];
             }
             break;
         }

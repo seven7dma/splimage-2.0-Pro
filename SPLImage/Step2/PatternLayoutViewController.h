@@ -21,7 +21,7 @@
     NSMutableArray *arrayVideoUrls;
     UIImagePickerController *imagePickerController;
     UIButton * btnPlay;
-    EffectsViewController *effectsViewController;
+    FiltersViewController *filtersViewController;
     TrimVideoViewController *trimVideoViewController;
     UIViewController *pushThisController;
     NSURL * videoPath;
