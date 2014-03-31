@@ -427,7 +427,7 @@
 #pragma mark -
 
 -(void)shareVideoOptions{
-    actionSheetShareVideo = [[UIActionSheet alloc] initWithTitle:@"Choose Video Shareing Option" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook",@"YouTube",@"Email", nil];
+    actionSheetShareVideo = [[UIActionSheet alloc] initWithTitle:@"Choose Video Sharing Option" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook",@"YouTube",@"Email", nil];
     [actionSheetShareVideo setBackgroundColor:[UIColor lightGrayColor]];
     [actionSheetShareVideo showInView:self.view];
 }
