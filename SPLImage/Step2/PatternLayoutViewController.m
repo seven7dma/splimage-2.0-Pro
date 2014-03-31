@@ -30,7 +30,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
+   // btnRightNav.hidden = true;
+
     CGRect frame = [super getScreenFrameForCurrentOrientation];
     [self adjustFrameBeforeView:frame];
 }
@@ -40,6 +41,7 @@
     [super viewDidAppear:animated];
     CGRect frame = [super getScreenFrameForCurrentOrientation];
     [self adjustFrameAfterView:frame];
+  //  btnRightNav.hidden = true;
   //  [FlurryAds setAdDelegate:self];
   //  [FlurryAds fetchAndDisplayAdForSpace:@"BANNER_MAIN_VIEW" view:self.adView size:BANNER_BOTTOM];
 
@@ -76,10 +78,15 @@
     UIImage *changePattern = [UIImage imageNamed:@"topbar_change"];
     [btnLeftNav setFrame:CGRectMake(9, 8, changePattern.size.width, changePattern.size.height)];
     [btnLeftNav setBackgroundImage:changePattern forState:UIControlStateNormal];
+    [btnLeftNav setTag:INDEX_LEFT];
     //[btnLeftNav setImage:changePattern forState:UIControlStateNormal];
+    UIImage *goPro = [UIImage imageNamed:@"tabbar_pro"];
+    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width - goPro.size.width - 5, 5, goPro.size.width, goPro.size.height)];
+    [btnRightNav setImage:goPro forState:UIControlStateNormal];
+    [btnRightNav setTag:INDEX_RIGHT];
     
     [SavedData setValue:[self getPatternArrayForPattern:selectedPattern] forKey:ARRAY_PATTERN];
-    btnRightNav.hidden = true;
+  //  btnRightNav.hidden = true;
     
    // UIImage *imgCanvas = [UIImage imageNamed:@"Canvas"];
     
@@ -191,14 +198,30 @@
 }
 
 -(void)navBarButtonClicked:(UIButton *)sender{
-    [canvasView stopPlayer];//    [canvasView stopPlayingAllPlayers];
+    
     NSLog (@"selected video: %ld", (long)selectedVideo);
-    if (self.atleastOneVideo) {
-        UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Clear all videos and close?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, close", nil];
-        [alertView show];
-    }else {
-        [canvasView setDelegate:Nil];
-        [self.navigationController popViewControllerAnimated:YES];
+    
+    switch ([sender tag]) {
+        case INDEX_LEFT:{
+            
+            [canvasView stopPlayer];//    [canvasView stopPlayingAllPlayers];
+            if (self.atleastOneVideo) {
+                UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Clear all videos and close?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, close", nil];
+                [alertView show];
+            }else {
+                [canvasView setDelegate:Nil];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            break;
+        }
+        case INDEX_RIGHT: {
+            goProViewController = [[GoProViewController alloc] initWithNibName:@"GoProViewController" bundle:nil];
+            self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            [self presentViewController:goProViewController animated:YES completion:nil];
+            break;
+        }
+        default:
+            break;
     }
 }
 
