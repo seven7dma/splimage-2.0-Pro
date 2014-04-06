@@ -173,8 +173,9 @@
 -(void)reSetUpToolBarButton{
     
     UIImage *done = [UIImage imageNamed:@"btn_done"];
-    [btnRightNav setFrame:CGRectMake(navBarPrimary.frame.size.width - done.size.width - 30, 5, done.size.width + 20, done.size.height)];
-    [btnRightNav setBackgroundImage:done forState:UIControlStateNormal];
+    [btnRightNav setFrame:CGRectMake(self.navigationController.navigationBar.frame.size
+                                     .width - done.size.width - 9, 5, done.size.width, done.size.height)];
+    [btnRightNav setImage:done forState:UIControlStateNormal];
     [btnRightNav setHidden:NO];
     [btnLeftNav setHidden:YES];
     
