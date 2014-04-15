@@ -112,16 +112,20 @@
         }else{
             contentWidth = imageWidth*contentHeight/imageHeight;
         }
+       
+        NSLog(@"contentHeight height ------%f",contentHeight);
+        NSLog(@"contentWidth width ------%f",contentWidth);
         
-        NSLog(@"contentHeight Width ------%f",contentHeight);
-        NSLog(@"contentWidth height ------%f",contentWidth);
+        if (contentWidth > self.frame.size.width) {
         
-        [self setContentSize:CGSizeMake(contentWidth, contentHeight)];
+            [self setContentSize:CGSizeMake(contentWidth, contentHeight)];
+        }
+        
         [myContentView setFrame:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height)];
         [viewThumb setFrame:CGRectMake(0, 0, myContentView.frame.size.width, myContentView.frame.size.height)];
         [viewGpuImage setFrame:CGRectMake(0, 0, myContentView.frame.size.width, myContentView.frame.size.height)];
 
-        [self setScrollViewToCenter];
+            [self setScrollViewToCenter];
     }
 }
 
