@@ -75,19 +75,21 @@
     if (useSuperButtons) {
         UIImage *imgBtnNav = [UIImage imageNamed:@"icon-facebook"];
         btnLeftNav = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [btnLeftNav setFrame:CGRectMake(15, 5, imgBtnNav.size.width + 5, imgBtnNav.size.height)];
+        [btnLeftNav setFrame:CGRectMake(15, 5, imgBtnNav.size.width + 10, imgBtnNav.size.height)];
         [btnLeftNav setTag:INDEX_LEFT];
         [btnLeftNav addTarget:self action:@selector(leftBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btnLeftNav setBackgroundImage:imgBtnNav forState:UIControlStateNormal];
+        btnLeftNav.contentMode = UIViewContentModeScaleAspectFit;
         [navBarPrimary addSubview:btnLeftNav];
         
         imgBtnNav = nil;
         imgBtnNav = [UIImage imageNamed:@"topbar_instagram"];
         btnRightNav = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnRightNav setFrame:CGRectMake(screenFrame.size.width - (imgBtnNav.size.width+9), 5, imgBtnNav.size.width, imgBtnNav.size.height)];
+        [btnRightNav setFrame:CGRectMake(screenFrame.size.width - imgBtnNav.size.width - 10, 5, imgBtnNav.size.width + 15, imgBtnNav.size.height + 15)];
         [btnRightNav setTag:INDEX_RIGHT];
         [btnRightNav addTarget:self action:@selector(rightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btnRightNav setImage:imgBtnNav forState:UIControlStateNormal];
+        
         [navBarPrimary addSubview:btnRightNav];
         
         if (IS_IPAD)
