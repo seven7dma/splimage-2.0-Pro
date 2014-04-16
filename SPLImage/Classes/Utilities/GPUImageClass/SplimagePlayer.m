@@ -90,9 +90,8 @@
             myFilter = [GPUImageBrightnessFilter new];
             break;
             
-        case FILTER_MOSAIC:
-          //  myFilter = [GPUImageMosaicFilter new];
-            myFilter = [GPUImageBrightnessFilter new];
+        case FILTER_SKETCH:
+            myFilter = [GPUImageSketchFilter new];
             break;
             
         case FILTER_ADDNOISE:

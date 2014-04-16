@@ -36,9 +36,7 @@
     NSMutableArray * filtersArray = [NSMutableArray array];
     
     [filtersArray addObject:[GPUImageBrightnessFilter new]];
-    [filtersArray addObject:[GPUImageBrightnessFilter new]];
-
-   // [filtersArray addObject:[GPUImageMosaicFilter new]];
+    [filtersArray addObject:[GPUImageSketchFilter new]];
     [filtersArray addObject:[GPUImagePerlinNoiseFilter new]];
     [filtersArray addObject:[GPUImageEmbossFilter new]];
     [filtersArray addObject:[GPUImageTiltShiftFilter new]];
@@ -51,10 +49,10 @@
     [filtersArray addObject:[GPUImageColorInvertFilter new]];
     
     [SavedData setValue:filtersArray forKey:ARRAY_FILTERS];
-//    [SavedData setValue:[NSArray arrayWithObjects:@"No Filter",@"Mosaic", @"add noise", @"Emboss", @"Tilt Shift",@"Sepia", @"B & W",@"Tsunami", @"300", @"Electronica",@"Mahogany",@"X-RAY", @"2X", @"Inebriated", nil] forKey:ARRAY_FILTER_NAMES];
+//    [SavedData setValue:[NSArray arrayWithObjects:@"No Filter",@"Sketch", @"add noise", @"Emboss", @"Tilt Shift",@"Sepia", @"B & W",@"Tsunami", @"300", @"Electronica",@"Mahogany",@"X-RAY", @"2X", @"Inebriated", nil] forKey:ARRAY_FILTER_NAMES];
   
     // only 9 filters in free verson.
-    [SavedData setValue:[NSArray arrayWithObjects:@"No Filter",@"Mosaic", @"add noise", @"Emboss", @"Tilt Shift",@"Sepia", @"B & W",@"Tsunami", @"300", @"Electronica",@"Mahogany",@"X-RAY", nil] forKey:ARRAY_FILTER_NAMES];
+    [SavedData setValue:[NSArray arrayWithObjects:@"No Filter",@"Sketch", @"add noise", @"Emboss", @"Tilt Shift",@"Sepia", @"B & W",@"Tsunami", @"300", @"Electronica",@"Mahogany",@"X-RAY", nil] forKey:ARRAY_FILTER_NAMES];
     
     // setup background Image
     imageViewBaseBg = [[UIImageView alloc] initWithFrame:screenFrame];
