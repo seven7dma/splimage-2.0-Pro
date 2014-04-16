@@ -32,7 +32,7 @@ typedef enum
 typedef enum
 {
     FILTER_NONE,
-    FILTER_MOSAIC,
+    FILTER_SKETCH,
     FILTER_ADDNOISE,
     FILTER_EMBOSS,
     FILTER_TILTSHIFT,
