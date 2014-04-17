@@ -103,6 +103,7 @@
 		2F71BEF81836A7980084BED9 /* Templates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F71BEF71836A7980084BED9 /* Templates.plist */; };
 		2F71BEFB1836D2B20084BED9 /* libGDataTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1412C2183382FE00846182 /* libGDataTouchStaticLib.a */; };
 		2F71BEFE1836EF0A0084BED9 /* PlayBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71BEFD1836DA6D0084BED9 /* PlayBackViewController.m */; };
+		2F76432718FFBEC1007BFCA6 /* lookup_amatorka.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F76432618FFBEC1007BFCA6 /* lookup_amatorka.png */; };
 		2F84FA7D183F569E00A594B4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84FA7C183F569E00A594B4 /* CoreTelephony.framework */; };
 		2F84FA83183F56B500A594B4 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84FA82183F56B500A594B4 /* iAd.framework */; };
 		2F84FA85183F56E500A594B4 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84FA84183F56E500A594B4 /* PassKit.framework */; };
@@ -819,6 +820,7 @@
 		2F5A4E2D18344BFB00C6872A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		2F71BEF71836A7980084BED9 /* Templates.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Templates.plist; sourceTree = "<group>"; };
 		2F71BEFD1836DA6D0084BED9 /* PlayBackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PlayBackViewController.m; path = Step3/PlayBackViewController.m; sourceTree = "<group>"; };
+		2F76432618FFBEC1007BFCA6 /* lookup_amatorka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_amatorka.png; sourceTree = "<group>"; };
 		2F84FA7C183F569E00A594B4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2F84FA82183F56B500A594B4 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		2F84FA84183F56E500A594B4 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
@@ -2060,6 +2062,7 @@
 		68F251A91671F98200B66905 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2F76432618FFBEC1007BFCA6 /* lookup_amatorka.png */,
 				2F9FF60818DD6DF8004A5564 /* Icon-40.png */,
 				2F9FF60918DD6DF8004A5564 /* Icon-40@2x.png */,
 				2F9FF60A18DD6DF8004A5564 /* Icon-60.png */,
@@ -2400,6 +2403,7 @@
 				68F251E5167205A400B66905 /* Stars.png in Resources */,
 				2F864AF5183C0F2500B32FC5 /* canvasForeground.png in Resources */,
 				2F9FF62218DD6DF8004A5564 /* Icon-Small.png in Resources */,
+				2F76432718FFBEC1007BFCA6 /* lookup_amatorka.png in Resources */,
 				2F9FF61B18DD6DF8004A5564 /* Icon-60@2x.png in Resources */,
 				2FA2C57018E8B34E00D23D47 /* Default-Landscape@2x.png in Resources */,
 				68F251E6167205A400B66905 /* toolbar_bg.png in Resources */,

@@ -94,8 +94,8 @@
             myFilter = [GPUImageSketchFilter new];
             break;
             
-        case FILTER_ADDNOISE:
-            myFilter =  [GPUImagePerlinNoiseFilter new];
+        case FILTER_AMATORKA:
+            myFilter =  [GPUImageAmatorkaFilter new];
             break;
             
         case FILTER_EMBOSS:
