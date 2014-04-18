@@ -39,6 +39,14 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
+			<string>com.commints.splimage</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>splimage</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
