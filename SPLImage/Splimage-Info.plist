@@ -42,7 +42,7 @@
 			<string>com.commints.splimage</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>splimage</string>
+				<string>splimagefree</string>
 			</array>
 		</dict>
 		<dict>
