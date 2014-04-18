@@ -209,7 +209,18 @@
     NSLog(@"pattern selected: %d", btnPatternSelected.tag);
     if (btnPatternSelected.tag == 7) {
         // depic button
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/ag/app/depic-transparent-collage/id694589312?mt=8&ign-mpt=uo%3D2"]];
+        
+        if ([[UIApplication sharedApplication]
+             canOpenURL:[NSURL URLWithString:@"DePic://"]])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"DePic://"]];
+        }else if ([[UIApplication sharedApplication]
+              canOpenURL:[NSURL URLWithString:@"DePicfree://"]])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"DePicfree://"]];
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/ag/app/depic-transparent-collage/id694589312?mt=8&ign-mpt=uo%3D2"]];
+        }
         return;
     } else {
         patternLayoutView = [[PatternLayoutViewController alloc] initWithNibName:@"PatternLayoutViewController" bundle:nil andTag:[btnPatternSelected tag]];
